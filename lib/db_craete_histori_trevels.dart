@@ -36,18 +36,11 @@ class DBHelper {
     var dbClient = await db;
     employee.id = await dbClient.insert(TABLE, employee.toMap());
     return employee;
-    /*
-    await dbClient.transaction((txn) async {
-      var query = "INSERT INTO $TABLE ($NAME) VALUES ('" + employee.name + "')";
-      return await txn.rawInsert(query);
-    });
-    */
   }
 
   Future<List< HistoriTravels>> getEmployees() async {
     var dbClient = await db;
     List<Map> maps = await dbClient.query(TABLE, columns: [ID, COORDINATE]);
-    //List<Map> maps = await dbClient.rawQuery("SELECT * FROM $TABLE");
     List< HistoriTravels> employees = [];
     if (maps.length > 0) {
       for (int i = 0; i < maps.length; i++) {
