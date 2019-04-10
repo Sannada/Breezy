@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong/latlong.dart';
+import 'dart:async';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:google_maps_webservice/places.dart';
+
+const  kGoogleApiKey = "AIzaSyC9g_39KNI0QDKC1SW50Pz6Oz0YbHRBY8o";
 
 class MapFragment extends StatefulWidget {
   @override
@@ -10,21 +14,51 @@ class MapFragment extends StatefulWidget {
 }
 
 class _MapFragmentState extends State<MapFragment> {
+  Completer<GoogleMapController> _controller = Completer();
+
+  static const LatLng _center = const LatLng(49.8450449, 24.0361399);
+  Set<Marker> markers = Set();
+  MapType _currentMapType = MapType.normal;
+  LatLng centerPosition;
+
+
+  void _onCameraMove(CameraPosition position) {
+    centerPosition = position.target;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: new FlutterMap(
-            options: new MapOptions(
-                center: new LatLng(49.85, 24.03), minZoom: 5.0),
-            layers: [
-              new TileLayerOptions(
-                  urlTemplate:
-                  "https://api.mapbox.com/styles/v1/lewmax/cjsyeb8sz0j391fog4ucxrkqy/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGV3bWF4IiwiYSI6ImNqbmx3dDk5eDFwdnYza3E5eGQ4MGMyMzYifQ.aBTyyXEnL_C52ix-m08j0g",
-                  additionalOptions: {
-                    'accessToken':
-                    'pk.eyJ1IjoibGV3bWF4IiwiYSI6ImNqbmx3dDk5eDFwdnYza3E5eGQ4MGMyMzYifQ.aBTyyXEnL_C52ix-m08j0g',
-                    'id': 'mapbox.mapbox-streets-v7'
-                  }),
-            ]));
+
+    Future<Prediction> p = PlacesAutocomplete.show(
+        context: context,
+        apiKey: kGoogleApiKey,
+        mode: Mode.overlay, // Mode.fullscreen
+        language: "en",
+        components: [new Component(Component.country, "en")]);
+
+    return new Scaffold(
+        appBar: new AppBar(
+          title: new Text("Google Maps"),
+        ),
+        body: Stack(children: <Widget>[
+          GoogleMap(
+            mapType: _currentMapType,
+            myLocationEnabled: true,
+            markers: markers,
+            onCameraMove: _onCameraMove,
+            initialCameraPosition: CameraPosition(
+              target: _center,
+              zoom: 14.4746,
+            ),
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+            },
+          ),
+
+
+        ]),
+
+    );
   }
 }
+
