@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'db_histori_travels.dart';
-import 'db_craete_histori_trevels.dart';
+import 'package:breezy/screens/db_histori_travels.dart';
 import 'dart:async';
-
+import 'package:breezy/screens/db_craete_histori_trevels.dart';
 
 class DBTestPage extends StatefulWidget {
   final String title;
@@ -19,7 +18,7 @@ class _DBTestPageState extends State<DBTestPage> {
   //
   Future<List<HistoriTravels>>  histori;
   TextEditingController controller = TextEditingController();
-  String xStart;
+  String name;
   int curUserId;
 
   final formKey = new GlobalKey<FormState>();
@@ -48,13 +47,13 @@ class _DBTestPageState extends State<DBTestPage> {
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
       if (isUpdating) {
-        HistoriTravels h =  HistoriTravels(curUserId, xStart);
+        HistoriTravels h =  HistoriTravels(curUserId, name);
         dbHelper.update(h);
         setState(() {
           isUpdating = false;
         });
       } else {
-        HistoriTravels h =  HistoriTravels(null, xStart);
+        HistoriTravels h =  HistoriTravels(null, name);
         dbHelper.save(h);
       }
       clearName();
@@ -77,7 +76,7 @@ class _DBTestPageState extends State<DBTestPage> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(labelText: 'Ведіть координати'),
               validator: (val) => val.length == 0 ? 'Ведіть будь-ласка координати' : null,
-              onSaved: (val) => xStart = val,
+              onSaved: (val) => name = val,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
