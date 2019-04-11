@@ -4,8 +4,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:google_maps_webservice/places.dart';
 
-const  kGoogleApiKey = "AIzaSyC9g_39KNI0QDKC1SW50Pz6Oz0YbHRBY8o";
-
 class MapFragment extends StatefulWidget {
   @override
   _MapFragmentState createState() {
@@ -29,13 +27,6 @@ class _MapFragmentState extends State<MapFragment> {
   @override
   Widget build(BuildContext context) {
 
-    Future<Prediction> p = PlacesAutocomplete.show(
-        context: context,
-        apiKey: kGoogleApiKey,
-        mode: Mode.overlay, // Mode.fullscreen
-        language: "en",
-        components: [new Component(Component.country, "en")]);
-
     return new Scaffold(
         appBar: new AppBar(
           title: new Text("Google Maps"),
@@ -54,8 +45,6 @@ class _MapFragmentState extends State<MapFragment> {
               _controller.complete(controller);
             },
           ),
-
-
         ]),
 
     );
