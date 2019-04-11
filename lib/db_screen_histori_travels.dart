@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'db_histori_travels.dart';
-import 'dart:async';
 import 'db_craete_histori_trevels.dart';
+import 'dart:async';
+
 
 class DBTestPage extends StatefulWidget {
   final String title;
@@ -18,7 +19,7 @@ class _DBTestPageState extends State<DBTestPage> {
   //
   Future<List<HistoriTravels>>  histori;
   TextEditingController controller = TextEditingController();
-  String name;
+  String xStart;
   int curUserId;
 
   final formKey = new GlobalKey<FormState>();
@@ -47,13 +48,13 @@ class _DBTestPageState extends State<DBTestPage> {
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
       if (isUpdating) {
-        HistoriTravels h =  HistoriTravels(curUserId, name);
+        HistoriTravels h =  HistoriTravels(curUserId, xStart);
         dbHelper.update(h);
         setState(() {
           isUpdating = false;
         });
       } else {
-        HistoriTravels h =  HistoriTravels(null, name);
+        HistoriTravels h =  HistoriTravels(null, xStart);
         dbHelper.save(h);
       }
       clearName();
@@ -76,7 +77,7 @@ class _DBTestPageState extends State<DBTestPage> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(labelText: 'Ведіть координати'),
               validator: (val) => val.length == 0 ? 'Ведіть будь-ласка координати' : null,
-              onSaved: (val) => name = val,
+              onSaved: (val) => xStart = val,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -118,13 +119,13 @@ class _DBTestPageState extends State<DBTestPage> {
             .map(
               (histori) => DataRow(cells: [
             DataCell(
-              Text(histori.name),
+              Text(histori.xStart),
               onTap: () {
                 setState(() {
                   isUpdating = true;
                   curUserId = histori.id;
                 });
-                controller.text = histori.name;
+                controller.text = histori.xStart;
               },
             ),
             DataCell(IconButton(
