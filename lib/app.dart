@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
 import 'fragments/route_details.dart';
-import 'fragments/map_fragment.dart';
 import 'fragments/preferences.dart';
 import 'fragments/db_fragment.dart';
 
@@ -13,22 +12,41 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       onGenerateRoute: (RouteSettings settings) {
         switch (settings.name) {
-          case '/':
-            return MaterialPageRoute(builder: (context)=> HomePage());
-            break;
           case '/preferences':
-            return MaterialPageRoute(builder: (context)=> Preferences());
+            return SlideRightRoute(widget:Preferences());
             break;
           case '/route_details':
-            return MaterialPageRoute(builder: (context)=> RouteDetails());
+            return SlideRightRoute(widget:RouteDetails());
             break;
-          case '/db_fragments':
-            return MaterialPageRoute(builder: (context)=> DBFragment());
+          case '/db_fragment':
+            return SlideRightRoute(widget:DBFragment());
             break;
         }
       },
-      debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
   }
+}
+
+class SlideRightRoute extends PageRouteBuilder {
+  final Widget widget;
+  SlideRightRoute({this.widget})
+      : super(
+    pageBuilder: (BuildContext context, Animation<double> animation,
+        Animation<double> secondaryAnimation) {
+      return widget;
+    },
+    transitionsBuilder: (BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        Widget child) {
+      return new SlideTransition(
+        position: new Tween<Offset>(
+          begin: const Offset(1.0, 0.0),
+          end: Offset.zero,
+        ).animate(animation),
+        child: child,
+      );
+    },
+  );
 }

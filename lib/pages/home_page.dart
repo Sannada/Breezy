@@ -13,7 +13,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: Text("Breezy"),
+        title: Text("GoogleMaps"),
       ),
       drawer: new Drawer(
         child: new Column(
@@ -23,9 +23,9 @@ class HomePageState extends State<HomePage> {
               accountEmail: Text("mr.lewmax@gmail.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor:
-                Theme.of(context).platform == TargetPlatform.iOS
-                    ? Colors.blue
-                    : Colors.white,
+                    Theme.of(context).platform == TargetPlatform.iOS
+                        ? Colors.blue
+                        : Colors.white,
                 child: Text(
                   "M",
                   style: TextStyle(fontSize: 40.0),
@@ -39,21 +39,21 @@ class HomePageState extends State<HomePage> {
                     trailing: new Icon(Icons.check_circle),
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.pushNamed(context, '/preferences');
+                      Navigator.of(context).pushNamed('/preferences');
                     }),
                 new ListTile(
                     title: new Text("Route details"),
                     trailing: new Icon(Icons.filter_list),
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.pushNamed(context, '/route_details');
+                      Navigator.of(context).pushNamed('/route_details');
                     }),
                 new ListTile(
                     title: new Text("Travel History"),
                     trailing: new Icon(Icons.history),
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.pushNamed(context, '/travel_history');
+                      Navigator.of(context).pushNamed('/db_fragment');
                     }),
                 new Divider(),
                 new ListTile(
