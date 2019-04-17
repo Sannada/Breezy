@@ -11,12 +11,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      routes: <String, WidgetBuilder>{
-        "/maps": (BuildContext context) => MapFragment(),
-        "/preferences": (BuildContext context) => Preferences(),
-        "/route_details": (BuildContext context) => RouteDetails(),
-        "/travel_history": (BuildContext context) => DBFragment(),
+      onGenerateRoute: (RouteSettings settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(builder: (context)=> HomePage());
+            break;
+          case '/preferences':
+            return MaterialPageRoute(builder: (context)=> Preferences());
+            break;
+          case '/route_details':
+            return MaterialPageRoute(builder: (context)=> RouteDetails());
+            break;
+          case '/db_fragments':
+            return MaterialPageRoute(builder: (context)=> DBFragment());
+            break;
+        }
       },
+      debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
   }

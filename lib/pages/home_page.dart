@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../fragments/map_fragment.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,8 +13,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        // here we display the title corresponding to the fragment
-        // you can instead choose to have a static title
+        title: Text("Breezy"),
       ),
       drawer: new Drawer(
         child: new Column(
@@ -35,32 +35,25 @@ class HomePageState extends State<HomePage> {
             new Column(
               children: <Widget>[
                 new ListTile(
-                    title: new Text("Maps"),
-                    trailing: new Icon(Icons.map),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed('/maps');
-                    }),
-                new ListTile(
                     title: new Text("Preferences"),
                     trailing: new Icon(Icons.check_circle),
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed('/preferences');
+                      Navigator.pushNamed(context, '/preferences');
                     }),
                 new ListTile(
                     title: new Text("Route details"),
                     trailing: new Icon(Icons.filter_list),
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed('/route_details');
+                      Navigator.pushNamed(context, '/route_details');
                     }),
                 new ListTile(
                     title: new Text("Travel History"),
                     trailing: new Icon(Icons.history),
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed('/travel_history');
+                      Navigator.pushNamed(context, '/travel_history');
                     }),
                 new Divider(),
                 new ListTile(
@@ -73,11 +66,7 @@ class HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Container(
-        child: Center(
-          child: Text("Breezy", style: TextStyle(fontSize: 35),),
-        ),
-      ),
+      body: MapFragment(),
     );
   }
 }

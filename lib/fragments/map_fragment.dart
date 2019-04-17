@@ -27,11 +27,7 @@ class _MapFragmentState extends State<MapFragment> {
   @override
   Widget build(BuildContext context) {
 
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Google Maps"),
-        ),
-        body: Stack(children: <Widget>[
+    return Stack(children: <Widget>[
           GoogleMap(
             mapType: _currentMapType,
             myLocationEnabled: true,
@@ -45,9 +41,7 @@ class _MapFragmentState extends State<MapFragment> {
               _controller.complete(controller);
             },
           ),
-        ]),
-
-    );
+        ]);
   }
 }
 

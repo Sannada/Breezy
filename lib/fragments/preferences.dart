@@ -147,11 +147,12 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                     ],
                   )),
             ),
+            buildCheckbox(_value1, _value1Changed, "hiii"),
             new Card(
               child: new CheckboxListTile(
                 value: _value1,
                 onChanged: _value1Changed,
-                title: new Text('Hello World'),
+                title: new Text('Air conditioning'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -160,7 +161,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value2,
                 onChanged: _value2Changed,
-                title: new Text('Hello World'),
+                title: new Text('Wifi'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -169,7 +170,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value3,
                 onChanged: _value3Changed,
-                title: new Text('Hello World'),
+                title: new Text('Kitchen'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -178,16 +179,18 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value4,
                 onChanged: _value4Changed,
-                title: new Text('Hello World'),
+                title: new Text('Entire place'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
             ),
+
+
             new Card(
               child: new CheckboxListTile(
                 value: _value5,
                 onChanged: _value5Changed,
-                title: new Text('Hello World'),
+                title: new Text('...'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -196,7 +199,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value6,
                 onChanged: _value6Changed,
-                title: new Text('Hello World'),
+                title: new Text('Kitchen'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -205,7 +208,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value7,
                 onChanged: _value7Changed,
-                title: new Text('Hello World'),
+                title: new Text('Shampoo'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -214,7 +217,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value8,
                 onChanged: _value8Changed,
-                title: new Text('Hello World'),
+                title: new Text('Heating'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -223,7 +226,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value9,
                 onChanged: _value9Changed,
-                title: new Text('Hello World'),
+                title: new Text('Air conditioning'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -232,7 +235,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value10,
                 onChanged: _value10Changed,
-                title: new Text('Hello World'),
+                title: new Text('Washer'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -241,7 +244,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value11,
                 onChanged: _value11Changed,
-                title: new Text('Hello World'),
+                title: new Text('Dryer'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -250,7 +253,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value12,
                 onChanged: _value12Changed,
-                title: new Text('Hello World'),
+                title: new Text('Wifi'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -259,7 +262,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value13,
                 onChanged: _value13Changed,
-                title: new Text('Hello World'),
+                title: new Text('Breakfast'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -268,7 +271,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value14,
                 onChanged: _value14Changed,
-                title: new Text('Hello World'),
+                title: new Text('Indoor fireplace'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -277,7 +280,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value15,
                 onChanged: _value15Changed,
-                title: new Text('Hello World'),
+                title: new Text('Hangers'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -286,7 +289,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value16,
                 onChanged: _value16Changed,
-                title: new Text('Hello World'),
+                title: new Text('Iron'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -295,7 +298,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value17,
                 onChanged: _value17Changed,
-                title: new Text('Hello World'),
+                title: new Text('Hair dryer'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
@@ -304,13 +307,1220 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               child: new CheckboxListTile(
                 value: _value18,
                 onChanged: _value18Changed,
-                title: new Text('Hello World'),
+                title: new Text('Laptop friendly workspace'),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.red,
               ),
             ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('TV'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Crib'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('High chair'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Self check-in'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Smoke detector'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Carbon monoxide detector'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Private bathroom'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('...'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Free parking on premises'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Gym'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Hot tub'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Pool'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('...House rules...'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Suitable for events'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Pets allowed'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Smoking allowed'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('...Accessibility...'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Step-free access'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Well-lit path to entrance'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Wide doorway'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Flat path to front door'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('..Bathroom..'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Step-free access'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Wide doorway'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Accessible-height bed'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Wide clearance to bed'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Electric profiling bed'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Step-free access'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Fixed grab bars for shower'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Fixed grab bars for toilet'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Wide doorway'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Roll-in shower'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Shower chair'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Handheld shower head'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Bathtub with bath chair'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Accessible-height toilet'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Wide clearance to shower, toilet'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('..Common areas..'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Step-free access'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Wide entryway'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('..Parking..'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Disabled parking spot'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('..Equipment..'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Mobile hoist'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Pool with pool hoist'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Ceiling hoist'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('...Property type...'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('House'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Apartment'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Bed and breakfast'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Boutique hotel'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Bungalow'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Cabin'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Chalet'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Cottage'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Guest suite'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Guesthouse'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Hostel'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Hotel'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Loft'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Resort'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Townhouse'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Villa'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('...Unique homes...'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Barn'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Boat'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Camper/RV'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Campsite'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Casa particular (Cuba)'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Castle'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Cave'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Cycladic house (Greece)'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Dammuso (Italy)'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Dome house'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Earth house'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Farm stay'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Heritage hotel (India)'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Houseboat'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Hut'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Igloo'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Island'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Lighthouse'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Minsu (Taiwan)'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Nature lodge'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Pension (South Korea)'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Plane'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Pousada'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Ryokan (Japan)'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Shepherd\'s hut (U.K., France)'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Tent'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Tiny house'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Tipi'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Treehouse'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Trullo (Italy)'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Windmill'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text('Yurt'),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+            new Card(
+              child: new CheckboxListTile(
+                value: _value18,
+                onChanged: _value18Changed,
+                title: new Text(''),
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.red,
+              ),
+            ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           ],
         ));
+
   }
 
   Widget startPointField() {
@@ -417,6 +1627,18 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
       onPressed: () {
         formKey.currentState.reset();
       },
+    );
+  }
+
+  Widget buildCheckbox(bool value, valueChanged, title) {
+    return new Card(
+      child: new CheckboxListTile(
+        value: value,
+        onChanged: valueChanged,
+        title: new Text(title),
+        controlAffinity: ListTileControlAffinity.leading,
+        activeColor: Colors.red,
+      ),
     );
   }
 }
