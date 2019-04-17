@@ -147,6 +147,11 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                     ],
                   )),
             ),
+            buildCheckbox(_value1, _value1Changed, "hello"),
+            buildCheckbox(_value1, _value1Changed, "hello"),
+            buildCheckbox(_value1, _value1Changed, "hello"),
+            buildCheckbox(_value1, _value1Changed, "hello"),
+            buildCheckbox(_value1, _value1Changed, "hello"),
             new Card(
               child: new CheckboxListTile(
                 value: _value1,
@@ -417,6 +422,18 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
       onPressed: () {
         formKey.currentState.reset();
       },
+    );
+  }
+
+  Widget buildCheckbox(value, valueChanged, title) {
+    return new Card(
+      child: new CheckboxListTile(
+        value: value,
+        onChanged: valueChanged,
+        title: new Text(title),
+        controlAffinity: ListTileControlAffinity.leading,
+        activeColor: Colors.red,
+      ),
     );
   }
 }
