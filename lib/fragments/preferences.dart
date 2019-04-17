@@ -75,6 +75,13 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
   bool _value16 = false;
   bool _value17 = false;
   bool _value18 = false;
+  bool _value19 = false;
+  bool _value20 = false;
+  bool _value21 = false;
+  bool _value22 = false;
+  bool _value23 = false;
+  bool _value24 = false;
+  bool _value25 = false;
 
   void _value1Changed(bool value) => setState(() => _value1 = value);
 
@@ -112,6 +119,20 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
 
   void _value18Changed(bool value) => setState(() => _value18 = value);
 
+  void _value19Changed(bool value) => setState(() => _value19 = value);
+
+  void _value20Changed(bool value) => setState(() => _value20 = value);
+
+  void _value21Changed(bool value) => setState(() => _value21 = value);
+
+  void _value22Changed(bool value) => setState(() => _value22 = value);
+
+  void _value23Changed(bool value) => setState(() => _value23 = value);
+
+  void _value24Changed(bool value) => setState(() => _value24 = value);
+
+  void _value25Changed(bool value) => setState(() => _value25 = value);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -147,173 +168,34 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                     ],
                   )),
             ),
-            buildCheckbox(_value1, _value1Changed, "hello"),
-            buildCheckbox(_value1, _value1Changed, "hello"),
-            buildCheckbox(_value1, _value1Changed, "hello"),
-            buildCheckbox(_value1, _value1Changed, "hello"),
-            buildCheckbox(_value1, _value1Changed, "hello"),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value1,
-                onChanged: _value1Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value2,
-                onChanged: _value2Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value3,
-                onChanged: _value3Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value4,
-                onChanged: _value4Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value5,
-                onChanged: _value5Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value6,
-                onChanged: _value6Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value7,
-                onChanged: _value7Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value8,
-                onChanged: _value8Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value9,
-                onChanged: _value9Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value10,
-                onChanged: _value10Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value11,
-                onChanged: _value11Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value12,
-                onChanged: _value12Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value13,
-                onChanged: _value13Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value14,
-                onChanged: _value14Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value15,
-                onChanged: _value15Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value16,
-                onChanged: _value16Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value17,
-                onChanged: _value17Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
-            new Card(
-              child: new CheckboxListTile(
-                value: _value18,
-                onChanged: _value18Changed,
-                title: new Text('Hello World'),
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.red,
-              ),
-            ),
+            buildCheckbox(_value1, _value1Changed, "hiiiiii"),
+            buildCheckbox(_value2, _value2Changed, "hiiiiii"),
+            buildCheckbox(_value3, _value3Changed, "hiiiiii"),
+            buildCheckbox(_value4, _value4Changed, "hiiiiii"),
+            buildCheckbox(_value5, _value5Changed, "hiiiiii"),
+            buildCheckbox(_value6, _value6Changed, "hiiiiii"),
+            buildCheckbox(_value7, _value7Changed, "hiiiiii"),
+            buildCheckbox(_value8, _value8Changed, "hiiiiii"),
+            buildCheckbox(_value9, _value9Changed, "hiiiiii"),
+            buildCheckbox(_value10, _value10Changed, "hiiiiii"),
+            buildCheckbox(_value11, _value11Changed, "hiiiiii"),
+            buildCheckbox(_value12, _value12Changed, "hiiiiii"),
+            buildCheckbox(_value13, _value13Changed, "hiiiiii"),
+            buildCheckbox(_value14, _value14Changed, "hiiiiii"),
+            buildCheckbox(_value15, _value15Changed, "hiiiiii"),
+            buildCheckbox(_value16, _value16Changed, "hiiiiii"),
+            buildCheckbox(_value17, _value17Changed, "hiiiiii"),
+            buildCheckbox(_value18, _value18Changed, "hiiiiii"),
+            buildCheckbox(_value19, _value19Changed, "hiiiiii"),
+            buildCheckbox(_value20, _value20Changed, "hiiiiii"),
+            buildCheckbox(_value21, _value21Changed, "hiiiiii"),
+            buildCheckbox(_value22, _value22Changed, "hiiiiii"),
+            buildCheckbox(_value23, _value23Changed, "hiiiiii"),
+            buildCheckbox(_value24, _value24Changed, "hiiiiii"),
+            buildCheckbox(_value25, _value25Changed, "hiiiiii"),
+
+
+
           ],
         ));
   }
@@ -436,4 +318,5 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
       ),
     );
   }
+
 }

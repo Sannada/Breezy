@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
 import 'fragments/route_details.dart';
-import 'fragments/map_fragment.dart';
 import 'fragments/preferences.dart';
-import 'fragments/travel_histrory_fragment.dart';
+import 'fragments/db_fragment.dart';
 
 class MyApp extends StatelessWidget {
 
@@ -11,13 +10,43 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      routes: <String, WidgetBuilder>{
-        "/maps": (BuildContext context) => MapFragment(),
-        "/preferences": (BuildContext context) => Preferences(),
-        "/route_details": (BuildContext context) => RouteDetails(),
-        "/travel_history": (BuildContext context) => TravelHistory(),
+      onGenerateRoute: (RouteSettings settings) {
+        switch (settings.name) {
+          case '/preferences':
+            return SlideRightRoute(widget:Preferences());
+            break;
+          case '/route_details':
+            return SlideRightRoute(widget:RouteDetails());
+            break;
+          case '/db_fragment':
+            return SlideRightRoute(widget:DBFragment());
+            break;
+        }
       },
       home: HomePage(),
     );
   }
+}
+
+class SlideRightRoute extends PageRouteBuilder {
+  final Widget widget;
+  SlideRightRoute({this.widget})
+      : super(
+    pageBuilder: (BuildContext context, Animation<double> animation,
+        Animation<double> secondaryAnimation) {
+      return widget;
+    },
+    transitionsBuilder: (BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        Widget child) {
+      return new SlideTransition(
+        position: new Tween<Offset>(
+          begin: const Offset(1.0, 0.0),
+          end: Offset.zero,
+        ).animate(animation),
+        child: child,
+      );
+    },
+  );
 }

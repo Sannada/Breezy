@@ -13,9 +13,8 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-          // here we display the title corresponding to the fragment
-          // you can instead choose to have a static title
-          ),
+        title: Text("GoogleMaps"),
+      ),
       drawer: new Drawer(
         child: new Column(
           children: <Widget>[
@@ -36,13 +35,6 @@ class HomePageState extends State<HomePage> {
             new Column(
               children: <Widget>[
                 new ListTile(
-                    title: new Text("Maps"),
-                    trailing: new Icon(Icons.map),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed('/maps');
-                    }),
-                new ListTile(
                     title: new Text("Preferences"),
                     trailing: new Icon(Icons.check_circle),
                     onTap: () {
@@ -61,7 +53,7 @@ class HomePageState extends State<HomePage> {
                     trailing: new Icon(Icons.history),
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed('/travel_history');
+                      Navigator.of(context).pushNamed('/db_fragment');
                     }),
                 new Divider(),
                 new ListTile(
@@ -74,11 +66,7 @@ class HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Container(
-        child: Center(
-          child: Text("Breezy", style: TextStyle(fontSize: 35),),
-        ),
-      ),
+      body: MapFragment(),
     );
   }
 }
