@@ -23,9 +23,9 @@ class HomePageState extends State<HomePage> {
               accountEmail: Text("mr.lewmax@gmail.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor:
-                    Theme.of(context).platform == TargetPlatform.iOS
-                        ? Colors.blue
-                        : Colors.white,
+                Theme.of(context).platform == TargetPlatform.iOS
+                    ? Colors.blue
+                    : Colors.white,
                 child: Text(
                   "M",
                   style: TextStyle(fontSize: 40.0),

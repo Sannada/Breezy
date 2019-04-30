@@ -28,21 +28,21 @@ class _MapFragmentState extends State<MapFragment> {
   Widget build(BuildContext context) {
 
     return new Scaffold(
-        body: Stack(children: <Widget>[
-          GoogleMap(
-            mapType: _currentMapType,
-            myLocationEnabled: true,
-            markers: markers,
-            onCameraMove: _onCameraMove,
-            initialCameraPosition: CameraPosition(
-              target: _center,
-              zoom: 14.4746,
-            ),
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
+      body: Stack(children: <Widget>[
+        GoogleMap(
+          mapType: _currentMapType,
+          myLocationEnabled: true,
+          markers: markers,
+          onCameraMove: _onCameraMove,
+          initialCameraPosition: CameraPosition(
+            target: _center,
+            zoom: 14.4746,
           ),
-        ]),
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+        ),
+      ]),
 
     );
   }
