@@ -1,4 +1,5 @@
-import 'package:breezy/screens/db_screen_histori_travels.dart';
+
+import 'package:breezy/screens/main_histori.dart';
 import 'package:flutter/material.dart';
 
 class DBFragment extends StatefulWidget {
