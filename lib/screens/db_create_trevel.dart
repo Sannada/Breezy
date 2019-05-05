@@ -73,7 +73,7 @@ class DBProvider {
         where: "id = ?", whereArgs: [trevel.id]);
     return res;
   }
-//видалає якійсь елемент
+//видалає якийсь елемент
   deleteTrevel(int id) async {
     final db = await database;
     db.delete("Trevel", where: "id = ?", whereArgs: [id]);
