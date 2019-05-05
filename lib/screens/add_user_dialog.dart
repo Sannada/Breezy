@@ -22,7 +22,7 @@ class AddUserDialog {
     }
 
     return new AlertDialog(
-      title: new Text(isEdit ? 'Edit' : 'Додати Подорож'),
+      title: new Text(isEdit ? 'Додати' : 'Додати Подорож'),
       content: new SingleChildScrollView(
         child: new Column(
           mainAxisSize: MainAxisSize.min,
@@ -39,7 +39,7 @@ class AddUserDialog {
               child: new Container(
                 margin: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                 child: getAppBorderButton(
-                    isEdit?"Edit":"Додати", EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0)),
+                    isEdit?"Додати":"Додати", EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0)),
               ),
             ),
           ],
