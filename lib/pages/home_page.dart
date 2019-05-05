@@ -12,6 +12,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
+
         // here we display the title corresponding to the fragment
         // you can instead choose to have a static title
       ),
