@@ -38,7 +38,7 @@ class DBProvider {
               "endPoint TEXT,"
               "minBudget TEXT,"
               "maxBudget TEXT,"
-              "numberOfGuests TEXT,"
+              "numberO/fGuests TEXT,"
               "departureDate TEXT,"
               "arriveDate TEXT,"
               ")");

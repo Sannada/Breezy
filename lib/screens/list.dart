@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'add_user_dialog.dart';
+
 import 'Histori.dart';
 import 'home_presenter.dart';
 
@@ -38,14 +38,14 @@ class HistoriList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               new Text(
-                                travelHistori[index].nameSity,
+                                travelHistori[index].startPoint,
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 20.0,
                                     color: Colors.black),
                               ),
                               new Text(
-                                " " + travelHistori[index].firstX,
+                                " " + travelHistori[index].endPoint,
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 20.0, color: Colors.black),
@@ -57,14 +57,6 @@ class HistoriList extends StatelessWidget {
                       new Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          new IconButton(
-                            icon: const Icon(
-                              Icons.edit,
-                              color: const Color(0xFF167F67),
-                            ),
-                            onPressed: () => edit(travelHistori[index], context),
-                          ),
-
                           new IconButton(
                             icon: const Icon(Icons.delete_forever,
                                 color: const Color(0xFF167F67)),
@@ -84,24 +76,6 @@ class HistoriList extends StatelessWidget {
   displayRecord() {
     homePresenter.updateScreen();
   }
-  edit(Histori histori, BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) =>
-          new AddUserDialog().buildAboutDialog(context, this, true, histori),
-    );
-    homePresenter.updateScreen();
-  }
 
-  String getShortName(Histori histori) {
-    String shortName = "";
-    if (!histori.nameSity.isEmpty) {
-      shortName = histori.nameSity.substring(0, 1) + ".";
-    }
 
-    if (!histori.firstX.isEmpty) {
-      shortName = shortName + histori.firstX.substring(0, 1);
-    }
-    return shortName;
-  }
 }

@@ -1,26 +1,49 @@
+
 class Histori {
 
   int id;
-  String _nameSity;
-  String _firstX;
+  String _startPoint;
+  String _endPoint;
+  int _minBudget;
+  int _maxBudget;
+  String _numberOfGuests;
+  String _departureDate;
+  String _arriveDate;
 
 
-  Histori(this._nameSity, this._firstX, );
+  Histori(
+      this._startPoint,
+      this._endPoint,
+      this._minBudget,
+      this._maxBudget,
+      this._numberOfGuests,
+      this._departureDate,
+      this._arriveDate,);
 
   Histori.map(dynamic obj) {
-    this._nameSity = obj["nameSity"];
-    this._firstX = obj["firstX"];
+    this._startPoint = obj["startPoint"];
+    this._endPoint = obj["endPoint"];
+    this._minBudget = obj["minBudget"];
+    this._maxBudget = obj["maxBudget"];
+    this._numberOfGuests = obj["numberOfGuests"];
+    this._departureDate = obj["departureDate"];
+    this._arriveDate = obj["arriveDate"];
 
   }
 
-  String get nameSity => _nameSity;
+  String get startPoint => _startPoint;
 
-  String get firstX => _firstX;
+  String get endPoint => _endPoint;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
-    map["nameSity"] = _nameSity;
-    map["firstX"] = _firstX;
+    map["startPoint"] = _startPoint;
+    map["endPoint"] = _endPoint;
+    map["minBudget"] = _minBudget;
+    map["maxBudget"] = _maxBudget;
+    map["numberOfGuests"] = _numberOfGuests;
+    map["departureDate"] = _departureDate;
+    map["arriveDate"] = _arriveDate;
     return map;
   }
   void setHistoriId(int id) {
