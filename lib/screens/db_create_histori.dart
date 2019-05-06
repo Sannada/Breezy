@@ -1,3 +1,4 @@
+
 import 'dart:async';
 import 'dart:io' as io;
 
@@ -44,7 +45,8 @@ class DatabaseHelper {
     List<Histori> employees = new List();
     for (int i = 0; i < list.length; i++) {
       var histori =
-      new Histori(list[i]["nameSity"], list[i]["firstX"]);
+      new Histori(list[i]["startPoint"], list[i]["endPoint"], list[i]["minBudget"], list[i]["maxBudget"],
+          list[i]["numberOfGuests"], list[i]["departureDate"], list[i]["arriveDate"]);
       histori.setHistoriId(list[i]["id"]);
       employees.add(histori);
     }
