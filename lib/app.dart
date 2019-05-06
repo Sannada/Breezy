@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
 import 'fragments/route_details.dart';
 import 'fragments/preferences.dart';
-import 'fragments/db_fragment.dart';
+import 'screens/main_histori.dart';
 
 class MyApp extends StatelessWidget {
 

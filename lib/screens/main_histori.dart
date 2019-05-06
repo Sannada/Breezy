@@ -19,3 +19,16 @@ class DBTestPage extends StatelessWidget {
     );
   }
 }
+
+class DBFragment extends StatefulWidget {
+  @override
+  _DBFragmentState createState() => _DBFragmentState();
+}
+
+class _DBFragmentState extends State<DBFragment> {
+
+  @override
+  Widget build(BuildContext context) {
+    return DBTestPage();
+  }
+}

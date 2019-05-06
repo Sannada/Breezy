@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'add_user_dialog.dart';
+
 
 import 'Histori.dart';
 import 'home_presenter.dart';
@@ -52,34 +52,14 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
     );
   }
 
-  Future _openAddUserDialog() async {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) =>
-          new AddUserDialog().buildAboutDialog(context, this, false, null),
-    );
 
-    setState(() {});
-  }
-
-  List<Widget> _buildActions() {
-    return <Widget>[
-      new IconButton(
-        icon: const Icon(
-          Icons.directions_bus,
-          color: Colors.white,
-        ),
-        onPressed: _openAddUserDialog,
-      ),
-    ];
-  }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: _buildTitle(context),
-        actions: _buildActions(),
+
       ),
       body: new FutureBuilder<List<Histori>>(
         future: homePresenter.getHistori(),
