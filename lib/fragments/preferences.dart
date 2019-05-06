@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:intl/intl.dart';
+import 'package:breezy/screens/db_create_trevel.dart';
+import 'package:breezy/screens/Trevel.dart';
+import 'dart:async';
 
 class Preferences extends StatefulWidget {
   @override
@@ -26,21 +29,18 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
   DateTime _departDate = new DateTime.now();
   DateTime _arriveDate = new DateTime.now();
 
-  String departDate = DateFormat("dd.MM.yyyy").format(DateTime.now());
-  String arriveDate = DateFormat("dd.MM.yyyy").format(DateTime.now());
-
   List<Widget> _buildRangeSliders() {
     List<Widget> children = <Widget>[];
     for (int index = 0; index < rangeSliders.length; index++) {
       children
           .add(rangeSliders[index].build(context, (double lower, double upper) {
-        // adapt the RangeSlider lowerValue and upperValue
+// adapt the RangeSlider lowerValue and upperValue
         setState(() {
           rangeSliders[index].lowerValue = lower;
           rangeSliders[index].upperValue = upper;
         });
       }));
-      // Add an extra padding at the bottom of each RangeSlider
+// Add an extra padding at the bottom of each RangeSlider
       children.add(new SizedBox(height: 8.0));
     }
 
@@ -65,7 +65,16 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
     rangeSliders = _rangeSliderDefinitions();
   }
 
-  List<String> _locations = ['1', '2', '3', '4', '5', '6', '7', '8']; // Option 2
+  List<String> _locations = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8'
+  ]; // Option 2
   String _selectedLocation;
 
   bool _value1 = false;
@@ -538,7 +547,8 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
             setState(() {
               _departDate = picked[0];
               _arriveDate = picked[1];
-              calendarField = "$_departDate, $_arriveDate";
+              calendarField = "${DateFormat.yMMMd().format(_departDate)}"
+                  " - ${DateFormat.yMMMd().format(_arriveDate)}";
             });
             print(calendarField);
           }
@@ -563,15 +573,28 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
     return RaisedButton(
       color: Colors.blue,
       child: Text('Submit'),
-      onPressed: () {
+      onPressed: () async {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
-          print(
-              'Start point: $startPoint, endpoint: $endPoint, '
-                  'min budget: ${rangeSliders[0].lowerValue.round()}, '
-                  'max budget: ${rangeSliders[0].upperValue.round()}, '
-                  'number of guests: $_selectedLocation, '
-                  'departure date: $_departDate, arrive date: $_arriveDate');
+
+          Trevel trevel = new Trevel(
+              id: 1,
+              startPoint: startPoint,
+              endPoint: endPoint,
+              minBudget: rangeSliders[0].lowerValue.round(),
+              maxBudget: rangeSliders[0].upperValue.round(),
+              numberOfGuests: numberOfGuests,
+              departureDate: DateFormat.yMMMd().format(_departDate),
+              arriveDate: DateFormat.yMMMd().format(_arriveDate));
+
+          await DBProvider.db.newTrevel(trevel);
+
+          print('Start point: $startPoint, endpoint: $endPoint, '
+              'min budget: ${rangeSliders[0].lowerValue.round()}, '
+              'max budget: ${rangeSliders[0].upperValue.round()}, '
+              'number of guests: $_selectedLocation, '
+              'departure date: ${DateFormat.yMMMd().format(_departDate)},'
+              ' arrive date: ${DateFormat.yMMMd().format(_arriveDate)}');
         }
       },
     );
@@ -648,9 +671,9 @@ class RangeSliderData {
           ),
           new Expanded(
             child: new SliderTheme(
-              // Customization of the SliderTheme
-              // based on individual definitions
-              // (see rangeSliders in _RangeSliderSampleState)
+// Customization of the SliderTheme
+// based on individual definitions
+// (see rangeSliders in _RangeSliderSampleState)
               data: SliderTheme.of(context).copyWith(
                 overlayColor: overlayColor,
                 activeTickMarkColor: activeTickMarkColor,
@@ -671,7 +694,7 @@ class RangeSliderData {
                 showValueIndicator: showValueIndicator,
                 valueIndicatorMaxDecimals: valueIndicatorMaxDecimals,
                 onChanged: (double lower, double upper) {
-                  // call
+// call
                   callback(lower, upper);
                 },
               ),
