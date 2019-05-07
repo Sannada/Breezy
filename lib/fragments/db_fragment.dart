@@ -7,6 +7,19 @@ import 'package:breezy/screens/home_presenter.dart';
 import 'package:breezy/screens/list.dart';
 import 'package:breezy/screens/add_histori_dialog.dart';
 
+class DBFragment extends StatefulWidget {
+  @override
+  _DBFragmentState createState() => _DBFragmentState();
+}
+
+class _DBFragmentState extends State<DBFragment> {
+
+  @override
+  Widget build(BuildContext context) {
+    return DBTestPage();
+  }
+}
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -99,15 +112,3 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
   }
 }
 
-class DBFragment extends StatefulWidget {
-  @override
-  _DBFragmentState createState() => _DBFragmentState();
-}
-
-class _DBFragmentState extends State<DBFragment> {
-
-  @override
-  Widget build(BuildContext context) {
-    return DBTestPage();
-  }
-}
