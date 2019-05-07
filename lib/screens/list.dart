@@ -60,7 +60,7 @@ class HistoriList extends StatelessWidget {
                                     fontSize: 20.0, color: Colors.red),
                               ),
                               new Text(
-                                "Namber: " + country[index].numberOfGuests,
+                                "Number: " + country[index].numberOfGuests,
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 20.0, color: Colors.black),
