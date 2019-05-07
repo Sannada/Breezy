@@ -5,6 +5,7 @@ import 'package:flutter_range_slider/flutter_range_slider.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:intl/intl.dart';
 
+
 class Preferences extends StatefulWidget {
   @override
   _PreferencesState createState() => _PreferencesState();

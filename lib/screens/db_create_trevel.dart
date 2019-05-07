@@ -1,3 +1,4 @@
+/*
 
 import 'dart:async';
 import 'dart:io';
@@ -10,7 +11,7 @@ import 'package:sqflite/sqflite.dart';
 /*
 Щоб працювати з базою даних преходимо на рядок -> 47!
 І читаємо коментарі до кожного методу.
- */
+*/
 
 class DBProvider {
   DBProvider._();
@@ -84,3 +85,4 @@ class DBProvider {
     db.rawDelete("Delete * from Trevel");
   }
 }
+*/

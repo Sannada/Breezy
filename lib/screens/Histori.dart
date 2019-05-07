@@ -4,8 +4,8 @@ class Histori {
   int id;
   String _startPoint;
   String _endPoint;
-  int _minBudget;
-  int _maxBudget;
+  String _minBudget;
+  String _maxBudget;
   String _numberOfGuests;
   String _departureDate;
   String _arriveDate;
