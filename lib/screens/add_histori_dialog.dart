@@ -10,6 +10,7 @@ class AddHistoriDialog {
   final teDOB = TextEditingController();
   final teMax = TextEditingController();
   final teMin = TextEditingController();
+  final teN = TextEditingController();
   final teD = TextEditingController();
   final teA = TextEditingController();
 
@@ -26,9 +27,9 @@ class AddHistoriDialog {
       this.histori=histori;
       teFirstName.text = histori.startPoint;
       teLastFirstName.text = histori.endPoint;
-      teDOB.text = histori.minBudget;
       teMin.text= histori.minBudget;
       teMax.text = histori.maxBudget;
+      teN.text = histori.numberOfGuests;
       teD.text = histori.departureDate;
       teA.text= histori.arriveDate;
     }
@@ -42,7 +43,6 @@ class AddHistoriDialog {
           children: <Widget>[
             getTextField("Точка відправлення", teFirstName),
             getTextField("Кінцева точка", teLastFirstName),
-            getTextField("Дата", teDOB),
             new GestureDetector(
               onTap: () {
                 addRecord(isEdit);
@@ -100,7 +100,7 @@ class AddHistoriDialog {
 
   Future addRecord(bool isEdit) async {
     var db = new DatabaseHelper();
-    var histori = new Histori(teFirstName.text, teLastFirstName.text, teDOB.text, teMax.text, teMin.text , teD.text ,teA.text );
+    var histori = new Histori(teFirstName.text, teLastFirstName.text,  teMax.text, teMin.text ,teN.text, teD.text ,teA.text );
 
     if (isEdit) {
       histori.setHistoriId(this.histori.id);

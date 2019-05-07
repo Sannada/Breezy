@@ -1,3 +1,4 @@
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'add_histori_dialog.dart';
@@ -39,22 +40,37 @@ class HistoriList extends StatelessWidget {
                             children: <Widget>[
                               new Text(
                                 country[index].startPoint +
-                                    " " +
+                                    "-" +
                                     country[index].endPoint,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 10.0,
+                                    fontSize: 20.0,
                                     color: Colors.lightBlueAccent),
                               ),
-
                               new Text(
-                                country[index].minBudget +
-                                    " " +
-                                    country[index].maxBudget,
+                               "Min: " + country[index].minBudget,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 10.0,
-                                    color: Colors.lightBlueAccent),
+                                    fontSize: 20.0, color: Colors.green),
+                              ),
+                              new Text(
+                                "Max: " + country[index].maxBudget,
+                                // set some style to text
+                                style: new TextStyle(
+                                    fontSize: 20.0, color: Colors.red),
+                              ),
+                              new Text(
+                                "Namber of Guests: " + country[index].numberOfGuests,
+                                // set some style to text
+                                style: new TextStyle(
+                                    fontSize: 20.0, color: Colors.black),
+                              ),
+                              new Text(
+                                "Дата: " + country[index].departureDate +
+                                     "-" + country[index].arriveDate,
+                                // set some style to text
+                                style: new TextStyle(
+                                    fontSize: 20.0, color: Colors.indigo),
                               ),
                             ],
                           ),
@@ -90,7 +106,6 @@ class HistoriList extends StatelessWidget {
   displayRecord() {
     homePresenter.updateScreen();
   }
-
   edit(Histori histori, BuildContext context) {
     showDialog(
       context: context,

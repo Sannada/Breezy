@@ -1,3 +1,4 @@
+import 'package:breezy/screens/Histori.dart';
 import 'package:flutter/material.dart';
 import '../mixins/validation_mixin.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_range_slider/flutter_range_slider.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:intl/intl.dart';
 import 'package:breezy/screens/db_create_histori.dart';
-import 'package:breezy/screens/Histori.dart';
+import 'package:breezy/screens/Trevel.dart';
 import 'dart:async';
 
 
@@ -522,6 +523,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
       onChanged: (newValue) {
         setState(() {
           _selectedLocation = newValue;
+          numberOfGuests =  _selectedLocation;
         });
       },
       items: _locations.map((location) {
@@ -582,7 +584,19 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
 
+          Histori histori = new Histori(
+              startPoint,
+              endPoint,
+              rangeSliders[0].lowerValue.round().toString(),
+              rangeSliders[0].upperValue.round().toString(),
+              numberOfGuests,
+              DateFormat.yMMMd().format(_departDate),
+              DateFormat.yMMMd().format(_arriveDate));
+          String data = "${DateFormat.yMMMd().format(_departDate)}, ${DateFormat.yMMMd().format(_arriveDate)}";
 
+          DatabaseHelper databaseHelper = new DatabaseHelper();
+
+          await databaseHelper.saveHistori(histori);
 
           print('Start point: $startPoint, endpoint: $endPoint, '
               'min budget: ${rangeSliders[0].lowerValue.round()}, '
