@@ -30,7 +30,7 @@ class DatabaseHelper {
   void _onCreate(Database db, int version) async {
     // When creating the db, create the table
     await db.execute(
-        "CREATE TABLE Histori(id INTEGER PRIMARY KEY, nameSity TEXT, firstX TEXT)");
+        "CREATE TABLE Histori(id INTEGER PRIMARY KEY, startPoint TEXT, endPoint TEXT, minBudget TEXT, maxBudget TEXT, numberOfGuests TEXT, departureDate TEXT, arriveDate TEXT)");
   }
 
   Future<int> saveHistori(Histori histori) async {

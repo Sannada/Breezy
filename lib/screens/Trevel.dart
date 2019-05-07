@@ -1,3 +1,4 @@
+/*
 import 'dart:convert';
 
 Trevel trevelFromJson(String str) {
@@ -53,3 +54,4 @@ class Trevel {
     "arriveDate": arriveDate,
   };
 }
+*/
