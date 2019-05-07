@@ -28,9 +28,6 @@ class HistoriList extends StatelessWidget {
                       new IconButton(
                         icon: const Icon(Icons.map,
                             color: const Color(0xFF167F67)),
-
-                        onPressed: () =>
-                            homePresenter.delete(country[index]),
                       ),
                       new Expanded(
                         child: new Padding(
