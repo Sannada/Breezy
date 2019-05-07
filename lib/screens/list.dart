@@ -48,19 +48,19 @@ class HistoriList extends StatelessWidget {
                                     color: Colors.lightBlueAccent),
                               ),
                               new Text(
-                               "Min: " + country[index].minBudget,
+                               "Min budget: " + country[index].minBudget,
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 20.0, color: Colors.green),
                               ),
                               new Text(
-                                "Max: " + country[index].maxBudget,
+                                "Max budget: " + country[index].maxBudget,
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 20.0, color: Colors.red),
                               ),
                               new Text(
-                                "Namber of Guests: " + country[index].numberOfGuests,
+                                "Namber: " + country[index].numberOfGuests,
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 20.0, color: Colors.black),
