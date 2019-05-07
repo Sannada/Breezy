@@ -9,6 +9,10 @@ import 'package:breezy/screens/Trevel.dart';
 import 'dart:async';
 
 
+final teFirstName = TextEditingController();
+final teLastFirstName = TextEditingController();
+final teDOB = TextEditingController();
+
 class Preferences extends StatefulWidget {
   @override
   _PreferencesState createState() => _PreferencesState();
@@ -18,7 +22,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
   final formKey = GlobalKey<FormState>();
 
   List<RangeSliderData> rangeSliders;
-
+  Histori histori;
   String calendarField = "Pick the date";
 
   String startPoint = '';
@@ -601,12 +605,34 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
     );
   }
 
+
+
+
+
+
+
+
+  Future addRecord() async {
+    Histori histori1;
+    this.histori=histori1;
+    teFirstName.text = histori1.startPoint;
+    teLastFirstName.text = histori1.endPoint;
+    teDOB.text = histori1.minBudget;
+    var db = new DatabaseHelper();
+    var histori = new Histori(startPoint, endPoint , minBudget , maxBudget , numberOfGuests,departDate,arriveDate);
+    histori.setHistoriId(this.histori.id);
+    await db.update(histori);
+
+  }
+
+
   Widget resetButton() {
     return RaisedButton(
       color: Colors.green,
       child: Text('Reset'),
       onPressed: () {
         formKey.currentState.reset();
+        addRecord();
       },
     );
   }
