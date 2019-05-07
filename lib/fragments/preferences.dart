@@ -1,3 +1,4 @@
+import 'package:breezy/screens/Histori.dart';
 import 'package:flutter/material.dart';
 import '../mixins/validation_mixin.dart';
 import 'package:flutter/cupertino.dart';
@@ -582,17 +583,19 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
 
-          Trevel trevel = new Trevel(
-              id: 1,
-              startPoint: startPoint,
-              endPoint: endPoint,
-              minBudget: rangeSliders[0].lowerValue.round(),
-              maxBudget: rangeSliders[0].upperValue.round(),
-              numberOfGuests: numberOfGuests,
-              departureDate: DateFormat.yMMMd().format(_departDate),
-              arriveDate: DateFormat.yMMMd().format(_arriveDate));
+          Histori histori = new Histori(
+              startPoint,
+              endPoint,
+              rangeSliders[0].lowerValue.round().toString(),
+              rangeSliders[0].upperValue.round().toString(),
+              numberOfGuests,
+              DateFormat.yMMMd().format(_departDate),
+              DateFormat.yMMMd().format(_arriveDate));
+          //String data = "${DateFormat.yMMMd().format(_departDate)}, ${DateFormat.yMMMd().format(_arriveDate)}";
 
-          await DBProvider.db.newTrevel(trevel);
+          DatabaseHelper databaseHelper = new DatabaseHelper();
+
+          await databaseHelper.saveHistori(histori);
 
           print('Start point: $startPoint, endpoint: $endPoint, '
               'min budget: ${rangeSliders[0].lowerValue.round()}, '
