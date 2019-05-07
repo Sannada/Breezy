@@ -4,7 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:intl/intl.dart';
+import 'package:breezy/screens/Histori.dart';
+import 'package:breezy/screens/db_create_histori.dart';
 
+final teFirstName = TextEditingController();
+final teLastFirstName = TextEditingController();
+final teDOB = TextEditingController();
 
 class Preferences extends StatefulWidget {
   @override
@@ -15,7 +20,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
   final formKey = GlobalKey<FormState>();
 
   List<RangeSliderData> rangeSliders;
-
+  Histori histori;
   String calendarField = "Pick the date";
 
   String startPoint = '';
@@ -578,12 +583,34 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
     );
   }
 
+
+
+
+
+
+
+
+  Future addRecord() async {
+    Histori histori1;
+    this.histori=histori1;
+    teFirstName.text = histori1.startPoint;
+    teLastFirstName.text = histori1.endPoint;
+    teDOB.text = histori1.minBudget;
+    var db = new DatabaseHelper();
+    var histori = new Histori(startPoint, endPoint , minBudget , maxBudget , numberOfGuests,departDate,arriveDate);
+    histori.setHistoriId(this.histori.id);
+    await db.update(histori);
+
+  }
+
+
   Widget resetButton() {
     return RaisedButton(
       color: Colors.green,
       child: Text('Reset'),
       onPressed: () {
         formKey.currentState.reset();
+        addRecord();
       },
     );
   }

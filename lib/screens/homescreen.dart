@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
-
 import 'Histori.dart';
 import 'home_presenter.dart';
 import 'list.dart';
+import 'add_histori_dialog.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -52,14 +50,34 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
     );
   }
 
+  Future _openAddHistoriDialog() async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) =>
+          new AddHistoriDialog().buildAboutDialog(context, this, false, null),
+    );
 
+    setState(() {});
+  }
+
+  List<Widget> _buildActions() {
+    return <Widget>[
+      new IconButton(
+        icon: const Icon(
+          Icons.group_add,
+          color: Colors.white,
+        ),
+        onPressed: _openAddHistoriDialog,
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: _buildTitle(context),
-
+        actions: _buildActions(),
       ),
       body: new FutureBuilder<List<Histori>>(
         future: homePresenter.getHistori(),

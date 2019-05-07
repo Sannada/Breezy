@@ -35,6 +35,8 @@ class Histori {
 
   String get endPoint => _endPoint;
 
+  String get minBudget => _minBudget;
+
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
     map["startPoint"] = _startPoint;

@@ -1,15 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'add_histori_dialog.dart';
 import 'Histori.dart';
 import 'home_presenter.dart';
 
 class HistoriList extends StatelessWidget {
-  List<Histori> travelHistori;
+  List<Histori> country;
   HomePresenter homePresenter;
 
   HistoriList(
-      List<Histori> this.travelHistori,
+      List<Histori> this.country,
       HomePresenter this.homePresenter, {
         Key key,
       }) : super(key: key);
@@ -17,7 +17,7 @@ class HistoriList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
-        itemCount: travelHistori == null ? 0 : travelHistori.length,
+        itemCount: country == null ? 0 : country.length,
         itemBuilder: (BuildContext context, int index) {
           return new Card(
             child: new Container(
@@ -29,7 +29,7 @@ class HistoriList extends StatelessWidget {
                             color: const Color(0xFF167F67)),
 
                         onPressed: () =>
-                            homePresenter.delete(travelHistori[index]),
+                            homePresenter.delete(country[index]),
                       ),
                       new Expanded(
                         child: new Padding(
@@ -38,17 +38,19 @@ class HistoriList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               new Text(
-                                travelHistori[index].startPoint,
+                                country[index].startPoint +
+                                    " " +
+                                    country[index].endPoint,
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 20.0,
-                                    color: Colors.black),
+                                    color: Colors.lightBlueAccent),
                               ),
                               new Text(
-                                " " + travelHistori[index].endPoint,
+                                "Дата: " + country[index].minBudget,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 20.0, color: Colors.black),
+                                    fontSize: 20.0, color: Colors.amber),
                               ),
                             ],
                           ),
@@ -58,10 +60,18 @@ class HistoriList extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           new IconButton(
+                            icon: const Icon(
+                              Icons.edit,
+                              color: const Color(0xFF167F67),
+                            ),
+                            onPressed: () => edit(country[index], context),
+                          ),
+
+                          new IconButton(
                             icon: const Icon(Icons.delete_forever,
                                 color: const Color(0xFF167F67)),
                             onPressed: () =>
-                                homePresenter.delete(travelHistori[index]),
+                                homePresenter.delete(country[index]),
                           ),
                         ],
                       ),
@@ -76,6 +86,24 @@ class HistoriList extends StatelessWidget {
   displayRecord() {
     homePresenter.updateScreen();
   }
+  edit(Histori histori, BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) =>
+          new AddHistoriDialog().buildAboutDialog(context, this, true, histori),
+    );
+    homePresenter.updateScreen();
+  }
 
+  String getShortName(Histori histori) {
+    String shortName = "";
+    if (!histori.startPoint.isEmpty) {
+      shortName = histori.startPoint.substring(0, 1) + ".";
+    }
 
+    if (!histori.endPoint.isEmpty) {
+      shortName = shortName + histori.endPoint.substring(0, 1);
+    }
+    return shortName;
+  }
 }
