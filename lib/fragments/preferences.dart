@@ -523,6 +523,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
       onChanged: (newValue) {
         setState(() {
           _selectedLocation = newValue;
+          numberOfGuests =  _selectedLocation;
         });
       },
       items: _locations.map((location) {
@@ -591,7 +592,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               numberOfGuests,
               DateFormat.yMMMd().format(_departDate),
               DateFormat.yMMMd().format(_arriveDate));
-          //String data = "${DateFormat.yMMMd().format(_departDate)}, ${DateFormat.yMMMd().format(_arriveDate)}";
+          String data = "${DateFormat.yMMMd().format(_departDate)}, ${DateFormat.yMMMd().format(_arriveDate)}";
 
           DatabaseHelper databaseHelper = new DatabaseHelper();
 
