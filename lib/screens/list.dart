@@ -43,14 +43,18 @@ class HistoriList extends StatelessWidget {
                                     country[index].endPoint,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 20.0,
+                                    fontSize: 10.0,
                                     color: Colors.lightBlueAccent),
                               ),
+
                               new Text(
-                                "Дата: " + country[index].minBudget,
+                                country[index].minBudget +
+                                    " " +
+                                    country[index].maxBudget,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 20.0, color: Colors.amber),
+                                    fontSize: 10.0,
+                                    color: Colors.lightBlueAccent),
                               ),
                             ],
                           ),
@@ -86,6 +90,7 @@ class HistoriList extends StatelessWidget {
   displayRecord() {
     homePresenter.updateScreen();
   }
+
   edit(Histori histori, BuildContext context) {
     showDialog(
       context: context,

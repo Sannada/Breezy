@@ -5,7 +5,7 @@ import 'package:flutter_range_slider/flutter_range_slider.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:intl/intl.dart';
 import 'package:breezy/screens/db_create_histori.dart';
-import 'package:breezy/screens/Trevel.dart';
+import 'package:breezy/screens/Histori.dart';
 import 'dart:async';
 
 
@@ -582,17 +582,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
 
-          Trevel trevel = new Trevel(
-              id: 1,
-              startPoint: startPoint,
-              endPoint: endPoint,
-              minBudget: rangeSliders[0].lowerValue.round(),
-              maxBudget: rangeSliders[0].upperValue.round(),
-              numberOfGuests: numberOfGuests,
-              departureDate: DateFormat.yMMMd().format(_departDate),
-              arriveDate: DateFormat.yMMMd().format(_arriveDate));
 
-          await DBProvider.db.newTrevel(trevel);
 
           print('Start point: $startPoint, endpoint: $endPoint, '
               'min budget: ${rangeSliders[0].lowerValue.round()}, '
