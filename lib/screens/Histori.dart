@@ -28,7 +28,6 @@ class Histori {
     this._numberOfGuests = obj["numberOfGuests"];
     this._departureDate = obj["departureDate"];
     this._arriveDate = obj["arriveDate"];
-
   }
 
   String get startPoint => _startPoint;
@@ -36,6 +35,14 @@ class Histori {
   String get endPoint => _endPoint;
 
   String get minBudget => _minBudget;
+
+  String get maxBudget => _maxBudget;
+
+  String get numberOfGuests => _numberOfGuests;
+
+  String get departureDate => _departureDate;
+
+  String get arriveDate => _arriveDate;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();

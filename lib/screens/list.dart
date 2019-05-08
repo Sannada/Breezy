@@ -1,3 +1,4 @@
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'add_histori_dialog.dart';
@@ -27,9 +28,6 @@ class HistoriList extends StatelessWidget {
                       new IconButton(
                         icon: const Icon(Icons.map,
                             color: const Color(0xFF167F67)),
-
-                        onPressed: () =>
-                            homePresenter.delete(country[index]),
                       ),
                       new Expanded(
                         child: new Padding(
@@ -39,7 +37,7 @@ class HistoriList extends StatelessWidget {
                             children: <Widget>[
                               new Text(
                                 country[index].startPoint +
-                                    " " +
+                                    "-" +
                                     country[index].endPoint,
                                 // set some style to text
                                 style: new TextStyle(
@@ -47,10 +45,29 @@ class HistoriList extends StatelessWidget {
                                     color: Colors.lightBlueAccent),
                               ),
                               new Text(
-                                "Дата: " + country[index].minBudget,
+                               "Min budget: " + country[index].minBudget,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 20.0, color: Colors.amber),
+                                    fontSize: 20.0, color: Colors.green),
+                              ),
+                              new Text(
+                                "Max budget: " + country[index].maxBudget,
+                                // set some style to text
+                                style: new TextStyle(
+                                    fontSize: 20.0, color: Colors.red),
+                              ),
+                              new Text(
+                                "Number: " + country[index].numberOfGuests,
+                                // set some style to text
+                                style: new TextStyle(
+                                    fontSize: 20.0, color: Colors.black),
+                              ),
+                              new Text(
+                                "Дата: " + country[index].departureDate +
+                                     "-" + country[index].arriveDate,
+                                // set some style to text
+                                style: new TextStyle(
+                                    fontSize: 20.0, color: Colors.indigo),
                               ),
                             ],
                           ),
