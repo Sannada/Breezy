@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'add_histori_dialog.dart';
 import 'Histori.dart';
 import 'home_presenter.dart';
+import 'db_create_histori.dart';
 
 class HistoriList extends StatelessWidget {
   List<Histori> country;
+  DatabaseHelper db = new DatabaseHelper();
   HomePresenter homePresenter;
+
 
   HistoriList(
       List<Histori> this.country,
@@ -27,47 +30,60 @@ class HistoriList extends StatelessWidget {
                     children: <Widget>[
                       new IconButton(
                         icon: const Icon(Icons.map,
+                            textDirection: TextDirection.ltr ,
                             color: const Color(0xFF167F67)),
                       ),
                       new Expanded(
                         child: new Padding(
-                          padding: EdgeInsets.all(10.0),
+                          padding: EdgeInsets.all(20.0),
                           child: new Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              new Text(
-                                country[index].startPoint +
-                                    "-" +
-                                    country[index].endPoint,
-                                // set some style to text
+                             new Text(
+                                 country[index].endPoint,
+                            textAlign: TextAlign.center,
                                 style: new TextStyle(
+                                    fontWeight: FontWeight.bold,
                                     fontSize: 20.0,
-                                    color: Colors.lightBlueAccent),
+                                    color: Colors.black),
+
                               ),
                               new Text(
-                               "Min budget: " + country[index].minBudget,
+                               "Start Point: " + country[index].startPoint,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 20.0, color: Colors.green),
+                                    fontSize: 15.0,
+                                    color: Colors.black),
                               ),
                               new Text(
-                                "Max budget: " + country[index].maxBudget,
+                                "Destination: " + country[index].endPoint,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 20.0, color: Colors.red),
+                                    fontSize: 15.0, color: Colors.black),
                               ),
                               new Text(
-                                "Number: " + country[index].numberOfGuests,
+                                "Budget: " + country[index].maxBudget,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 20.0, color: Colors.black),
+                                    fontSize: 15.0, color: Colors.black),
                               ),
                               new Text(
-                                "Дата: " + country[index].departureDate +
-                                     "-" + country[index].arriveDate,
+                                "Departure Date: " + country[index].departureDate ,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 20.0, color: Colors.indigo),
+                                    fontSize: 15.0, color: Colors.black),
+                              ),
+                              new Text(
+                                "Arrival Date: " + country[index].arriveDate,
+                                // set some style to text
+                                style: new TextStyle(
+                                    fontSize: 15.0, color: Colors.black),
+                              ),
+                              new Text(
+                                "Number Of Guests: " + country[index].numberOfGuests,
+                                // set some style to text
+                                style: new TextStyle(
+                                    fontSize: 15.0, color: Colors.black),
                               ),
                             ],
                           ),
@@ -77,16 +93,8 @@ class HistoriList extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           new IconButton(
-                            icon: const Icon(
-                              Icons.edit,
-                              color: const Color(0xFF167F67),
-                            ),
-                            onPressed: () => edit(country[index], context),
-                          ),
-
-                          new IconButton(
-                            icon: const Icon(Icons.delete_forever,
-                                color: const Color(0xFF167F67)),
+                            icon: const Icon(Icons.clear,
+                                color: const Color(0xFF757575)),
                             onPressed: () =>
                                 homePresenter.delete(country[index]),
                           ),
@@ -100,9 +108,10 @@ class HistoriList extends StatelessWidget {
         });
   }
 
-  displayRecord() {
+  displayRecord()  {
     homePresenter.updateScreen();
   }
+
   edit(Histori histori, BuildContext context) {
     showDialog(
       context: context,

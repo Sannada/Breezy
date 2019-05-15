@@ -5,6 +5,7 @@ import 'Histori.dart';
 import 'home_presenter.dart';
 import 'list.dart';
 import 'add_histori_dialog.dart';
+import 'package:breezy/pages/home_page.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
             new Text('Історія Подорожей',
               style: new TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
           ],
@@ -51,12 +52,12 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
   }
 
   Future _openAddHistoriDialog() async {
+    HomePageState homePageState = new HomePageState();
     showDialog(
       context: context,
-      builder: (BuildContext context) =>
-          new AddHistoriDialog().buildAboutDialog(context, this, false, null),
+ //     builder: (BuildContext context) =>
+//
     );
-
     setState(() {});
   }
 
@@ -64,8 +65,8 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
     return <Widget>[
       new IconButton(
         icon: const Icon(
-          Icons.group_add,
-          color: Colors.white,
+          Icons.menu,
+          color: Colors.black26,
         ),
         onPressed: _openAddHistoriDialog,
       ),

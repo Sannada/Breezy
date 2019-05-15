@@ -11,7 +11,7 @@ class DBTestPage extends StatelessWidget {
       title: 'Flutter Database',
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
-        primaryColor:  const Color(0xFF1B5E20),
+        primaryColor:  const Color(0xFFFAFAFA),
         primaryColorDark: const Color(0xFF212121),
         accentColor: const Color(0xFF212121),
       ),
