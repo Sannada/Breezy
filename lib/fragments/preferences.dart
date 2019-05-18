@@ -1,4 +1,7 @@
+import 'package:breezy/fragments/map_fragment.dart';
+import 'package:breezy/pages/home_page.dart';
 import 'package:breezy/screens/Histori.dart';
+import 'package:breezy/screens/new_drawer.dart';
 import 'package:flutter/material.dart';
 import '../mixins/validation_mixin.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,12 +12,15 @@ import 'package:breezy/screens/db_create_histori.dart';
 import 'package:breezy/screens/Trevel.dart';
 import 'dart:async';
 
-
 final teFirstName = TextEditingController();
 final teLastFirstName = TextEditingController();
 final teDOB = TextEditingController();
 
 class Preferences extends StatefulWidget {
+  final String userName;
+
+  Preferences({this.userName});
+
   @override
   _PreferencesState createState() => _PreferencesState();
 }
@@ -28,9 +34,12 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
 
   String startPoint = '';
   String endPoint = '';
+
   String minBudget = '';
   String maxBudget = '';
   String numberOfGuests = '';
+
+  HouseType houseType;
 
   DateTime _departDate = new DateTime.now();
   DateTime _arriveDate = new DateTime.now();
@@ -285,202 +294,220 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
 
   void _value67Changed(bool value) => setState(() => _value67 = value);
 
+  double _value = 0.0;
+
+  void _setvalue(double value) => setState(() => _value = value);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Preferences"),
+        title: Text("Filter"),
       ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-              margin: EdgeInsets.all(20.0),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: <Widget>[
-                    startPointField(),
-                    Container(margin: EdgeInsets.only(top: 10.0)),
-                    endPointField(),
-                    Container(margin: EdgeInsets.only(top: 10.0)),
-                    budgetSlider(),
-                    Container(margin: EdgeInsets.only(top: 10.0)),
-                    numberOfGuestsField(),
-                    Container(margin: EdgeInsets.only(top: 10.0)),
-                    calendar(),
-                    Container(margin: EdgeInsets.only(top: 25.0)),
-                    ExpansionTile(
-                      title: Container(
-                        child: Text("Home type"),
-                      ),
-                      children: <Widget>[
-                        buildCheckbox(_value2, _value2Changed, "Entire place"),
-                        buildCheckbox(_value3, _value3Changed, "Private room"),
-                        buildCheckbox(_value4, _value4Changed, "Hotel room"),
-                        buildCheckbox(_value5, _value5Changed, "Shared room"),
-                      ],
-                    ),
-                    ExpansionTile(
-                      title: Container(
-                        child: Text("Amenities"),
-                      ),
-                      children: <Widget>[
-                        buildCheckbox(_value7, _value7Changed, "Kitchen"),
-                        buildCheckbox(_value8, _value8Changed, "Shampoo"),
-                        buildCheckbox(_value9, _value9Changed, "Heating"),
-                        buildCheckbox(
-                            _value10, _value10Changed, "Air conditioning"),
-                        buildCheckbox(_value11, _value11Changed, "Washer"),
-                        buildCheckbox(_value12, _value12Changed, "Dryer"),
-                        buildCheckbox(_value13, _value13Changed, "Wifi"),
-                        buildCheckbox(_value14, _value14Changed, "Breakfast"),
-                        buildCheckbox(
-                            _value15, _value15Changed, "Indoor fireplace"),
-                        buildCheckbox(_value16, _value16Changed, "Hangers"),
-                        buildCheckbox(_value17, _value17Changed, "Iron"),
-                        buildCheckbox(_value18, _value18Changed, "Hair dryer"),
-                        buildCheckbox(_value19, _value19Changed,
-                            "Laptop friendly workspace"),
-                        buildCheckbox(_value20, _value20Changed, "TV"),
-                        buildCheckbox(_value21, _value21Changed, "Crib"),
-                        buildCheckbox(_value22, _value22Changed, "High chair"),
-                        buildCheckbox(
-                            _value23, _value23Changed, "Self check-in"),
-                        buildCheckbox(
-                            _value24, _value24Changed, "Smoke detector"),
-                        buildCheckbox(_value25, _value25Changed,
-                            "Carbon monoxide detector"),
-                        buildCheckbox(
-                            _value26, _value26Changed, "Private bathroom"),
-                      ],
-                    ),
-                    ExpansionTile(
-                      title: Container(
-                        child: Text("Facilities"),
-                      ),
-                      children: <Widget>[
-                        buildCheckbox(_value28, _value28Changed,
-                            "Free parking on premises"),
-                        buildCheckbox(_value29, _value29Changed, "Gym"),
-                        buildCheckbox(_value30, _value30Changed, "Hot tub"),
-                        buildCheckbox(_value31, _value31Changed, "Pool"),
-                      ],
-                    ),
-                    ExpansionTile(
-                      title: Container(
-                        child: Text("Property type"),
-                      ),
-                      children: <Widget>[
-                        buildCheckbox(_value33, _value33Changed, "House"),
-                        buildCheckbox(_value34, _value34Changed, "Apartment"),
-                        buildCheckbox(
-                            _value35, _value35Changed, "Bed and breakfast"),
-                        buildCheckbox(
-                            _value36, _value36Changed, "Boutique hotel"),
-                        buildCheckbox(_value37, _value37Changed, "Bungalow"),
-                        buildCheckbox(_value38, _value38Changed, "Cabin"),
-                        buildCheckbox(_value39, _value39Changed, "Chalet"),
-                        buildCheckbox(_value40, _value40Changed, "Cottage"),
-                        buildCheckbox(_value41, _value41Changed, "Guest suite"),
-                        buildCheckbox(_value42, _value42Changed, "Guesthouse"),
-                        buildCheckbox(_value43, _value43Changed, "Hostel"),
-                        buildCheckbox(_value44, _value44Changed, "Hotel"),
-                        buildCheckbox(_value45, _value45Changed, "Loft"),
-                        buildCheckbox(_value46, _value46Changed, "Resort"),
-                        buildCheckbox(_value47, _value47Changed, "Townhouse"),
-                        buildCheckbox(_value48, _value48Changed, "Villa"),
-                      ],
-                    ),
-                    ExpansionTile(
-                      title: Container(
-                        child: Text("House rules"),
-                      ),
-                      children: <Widget>[
-                        buildCheckbox(
-                            _value50, _value50Changed, "Suitable for events"),
-                        buildCheckbox(
-                            _value51, _value51Changed, "Pets allowed"),
-                        buildCheckbox(
-                            _value52, _value52Changed, "Smoking allowed"),
-                      ],
-                    ),
-                    ExpansionTile(
-                      title: Container(
-                        child: Text("Accessibility"),
-                      ),
-                      children: <Widget>[
-                        Text(
-                          'Entering the home',
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+      endDrawer: NewDrawer(),
+      body: Container(
+        decoration: BoxDecoration(color: Colors.grey),
+        child: ListView(
+          children: <Widget>[
+            Container(
+                margin: EdgeInsets.all(20.0),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: <Widget>[
+                      startPointField(),
+                      Container(margin: EdgeInsets.only(top: 10.0)),
+                      endPointField(),
+                      Container(margin: EdgeInsets.only(top: 10.0)),
+                      budgetSlider(),
+                      Container(margin: EdgeInsets.only(top: 10.0)),
+                      new Text('Value: ${(_value * 100).round()}'),
+                      new Slider(value: _value, onChanged: _setvalue),
+                      buildHouseTypeBar(),
+                      Container(margin: EdgeInsets.only(top: 10.0)),
+                      numberOfGuestsField(),
+                      Container(margin: EdgeInsets.only(top: 10.0)),
+                      calendar(),
+                      Container(margin: EdgeInsets.only(top: 25.0)),
+                      ExpansionTile(
+                        title: Container(
+                          child: Text("Home type"),
                         ),
-                        buildCheckbox(
-                            _value53, _value50Changed, "Step-free access"),
-                        buildCheckbox(_value54, _value51Changed,
-                            "Well-lit path to entrance"),
-                        buildCheckbox(
-                            _value55, _value52Changed, "Wide doorway"),
-                        buildCheckbox(_value56, _value52Changed,
-                            "Flat path to front door"),
-                        Text(
-                          'Entering the home',
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        children: <Widget>[
+                          buildCheckbox(
+                              _value2, _value2Changed, "Entire place"),
+                          buildCheckbox(
+                              _value3, _value3Changed, "Private room"),
+                          buildCheckbox(_value4, _value4Changed, "Hotel room"),
+                          buildCheckbox(_value5, _value5Changed, "Shared room"),
+                        ],
+                      ),
+                      ExpansionTile(
+                        title: Container(
+                          child: Text("Amenities"),
                         ),
-                        buildCheckbox(
-                            _value57, _value57Changed, "Step-free access"),
-                        buildCheckbox(_value58, _value58Changed,
-                            "Well-lit path to entrance"),
-                        buildCheckbox(
-                            _value59, _value59Changed, "Wide doorway"),
-                        buildCheckbox(_value60, _value60Changed,
-                            "Flat path to front door"),
-                        Text(
-                          'Getting around',
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        children: <Widget>[
+                          buildCheckbox(_value7, _value7Changed, "Kitchen"),
+                          buildCheckbox(_value8, _value8Changed, "Shampoo"),
+                          buildCheckbox(_value9, _value9Changed, "Heating"),
+                          buildCheckbox(
+                              _value10, _value10Changed, "Air conditioning"),
+                          buildCheckbox(_value11, _value11Changed, "Washer"),
+                          buildCheckbox(_value12, _value12Changed, "Dryer"),
+                          buildCheckbox(_value13, _value13Changed, "Wifi"),
+                          buildCheckbox(_value14, _value14Changed, "Breakfast"),
+                          buildCheckbox(
+                              _value15, _value15Changed, "Indoor fireplace"),
+                          buildCheckbox(_value16, _value16Changed, "Hangers"),
+                          buildCheckbox(_value17, _value17Changed, "Iron"),
+                          buildCheckbox(
+                              _value18, _value18Changed, "Hair dryer"),
+                          buildCheckbox(_value19, _value19Changed,
+                              "Laptop friendly workspace"),
+                          buildCheckbox(_value20, _value20Changed, "TV"),
+                          buildCheckbox(_value21, _value21Changed, "Crib"),
+                          buildCheckbox(
+                              _value22, _value22Changed, "High chair"),
+                          buildCheckbox(
+                              _value23, _value23Changed, "Self check-in"),
+                          buildCheckbox(
+                              _value24, _value24Changed, "Smoke detector"),
+                          buildCheckbox(_value25, _value25Changed,
+                              "Carbon monoxide detector"),
+                          buildCheckbox(
+                              _value26, _value26Changed, "Private bathroom"),
+                        ],
+                      ),
+                      ExpansionTile(
+                        title: Container(
+                          child: Text("Facilities"),
                         ),
-                        buildCheckbox(_value61, _value61Changed,
-                            "Wide hallway clearance"),
-                        buildCheckbox(_value62, _value62Changed, "Elevator"),
-                        Text(
-                          'Bedroom',
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        children: <Widget>[
+                          buildCheckbox(_value28, _value28Changed,
+                              "Free parking on premises"),
+                          buildCheckbox(_value29, _value29Changed, "Gym"),
+                          buildCheckbox(_value30, _value30Changed, "Hot tub"),
+                          buildCheckbox(_value31, _value31Changed, "Pool"),
+                        ],
+                      ),
+                      ExpansionTile(
+                        title: Container(
+                          child: Text("Property type"),
                         ),
-                        buildCheckbox(
-                            _value63, _value63Changed, "Step-free access"),
-                        buildCheckbox(
-                            _value64, _value64Changed, "Wide doorway"),
-                        buildCheckbox(
-                            _value65, _value65Changed, "Accessible-height bed"),
-                        buildCheckbox(
-                            _value66, _value65Changed, "Wide clearance to bed"),
-                        buildCheckbox(_value67, _value65Changed,
-                            "Electric profiling bed"),
-                        Text(
-                          'Bedroom',
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        children: <Widget>[
+                          buildCheckbox(_value33, _value33Changed, "House"),
+                          buildCheckbox(_value34, _value34Changed, "Apartment"),
+                          buildCheckbox(
+                              _value35, _value35Changed, "Bed and breakfast"),
+                          buildCheckbox(
+                              _value36, _value36Changed, "Boutique hotel"),
+                          buildCheckbox(_value37, _value37Changed, "Bungalow"),
+                          buildCheckbox(_value38, _value38Changed, "Cabin"),
+                          buildCheckbox(_value39, _value39Changed, "Chalet"),
+                          buildCheckbox(_value40, _value40Changed, "Cottage"),
+                          buildCheckbox(
+                              _value41, _value41Changed, "Guest suite"),
+                          buildCheckbox(
+                              _value42, _value42Changed, "Guesthouse"),
+                          buildCheckbox(_value43, _value43Changed, "Hostel"),
+                          buildCheckbox(_value44, _value44Changed, "Hotel"),
+                          buildCheckbox(_value45, _value45Changed, "Loft"),
+                          buildCheckbox(_value46, _value46Changed, "Resort"),
+                          buildCheckbox(_value47, _value47Changed, "Townhouse"),
+                          buildCheckbox(_value48, _value48Changed, "Villa"),
+                        ],
+                      ),
+                      ExpansionTile(
+                        title: Container(
+                          child: Text("House rules"),
                         ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        submitButton(),
-                        Container(margin: EdgeInsets.only(left: 25.0)),
-                        resetButton(),
-                      ],
-                    ),
-                  ],
-                ),
-              ))
-        ],
+                        children: <Widget>[
+                          buildCheckbox(
+                              _value50, _value50Changed, "Suitable for events"),
+                          buildCheckbox(
+                              _value51, _value51Changed, "Pets allowed"),
+                          buildCheckbox(
+                              _value52, _value52Changed, "Smoking allowed"),
+                        ],
+                      ),
+                      ExpansionTile(
+                        title: Container(
+                          child: Text("Accessibility"),
+                        ),
+                        children: <Widget>[
+                          Text(
+                            'Entering the home',
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          buildCheckbox(
+                              _value53, _value50Changed, "Step-free access"),
+                          buildCheckbox(_value54, _value51Changed,
+                              "Well-lit path to entrance"),
+                          buildCheckbox(
+                              _value55, _value52Changed, "Wide doorway"),
+                          buildCheckbox(_value56, _value52Changed,
+                              "Flat path to front door"),
+                          Text(
+                            'Entering the home',
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          buildCheckbox(
+                              _value57, _value57Changed, "Step-free access"),
+                          buildCheckbox(_value58, _value58Changed,
+                              "Well-lit path to entrance"),
+                          buildCheckbox(
+                              _value59, _value59Changed, "Wide doorway"),
+                          buildCheckbox(_value60, _value60Changed,
+                              "Flat path to front door"),
+                          Text(
+                            'Getting around',
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          buildCheckbox(_value61, _value61Changed,
+                              "Wide hallway clearance"),
+                          buildCheckbox(_value62, _value62Changed, "Elevator"),
+                          Text(
+                            'Bedroom',
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          buildCheckbox(
+                              _value63, _value63Changed, "Step-free access"),
+                          buildCheckbox(
+                              _value64, _value64Changed, "Wide doorway"),
+                          buildCheckbox(_value65, _value65Changed,
+                              "Accessible-height bed"),
+                          buildCheckbox(_value66, _value65Changed,
+                              "Wide clearance to bed"),
+                          buildCheckbox(_value67, _value65Changed,
+                              "Electric profiling bed"),
+                          Text(
+                            'Bedroom',
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          submitButton(),
+                          Container(margin: EdgeInsets.only(left: 25.0)),
+                          resetButton(),
+                        ],
+                      ),
+                    ],
+                  ),
+                ))
+          ],
+        ),
       ),
     );
   }
@@ -511,7 +538,6 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
 
   Widget budgetSlider() {
     return new Container(
-      padding: const EdgeInsets.only(top: 50.0, left: 10.0, right: 10.0),
       child: new Column(children: <Widget>[]..addAll(_buildRangeSliders())),
     );
   }
@@ -523,7 +549,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
       onChanged: (newValue) {
         setState(() {
           _selectedLocation = newValue;
-          numberOfGuests =  _selectedLocation;
+          numberOfGuests = _selectedLocation;
         });
       },
       items: _locations.map((location) {
@@ -576,6 +602,46 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
     );
   }
 
+  var tab1 = GlobalKey();
+  var tab2 = GlobalKey();
+  var tab3 = GlobalKey();
+
+  Widget buildHouseTypeBar() {
+    final _kTapPages = <Widget>[
+      Tab(
+          icon: Icon(Icons.cloud, size: 35.0, color: Colors.teal),
+          text: "All",
+        key: tab1,
+      ),
+      Tab(
+        icon: Icon(Icons.alarm, size: 35.0, color: Colors.cyan),
+        text: "Houses",
+        key: tab2,
+
+      ),
+      Tab(
+        icon: Icon(Icons.forum, size: 35.0, color: Colors.blue),
+        text: "Hotels",
+        key: tab3,
+
+      ),
+    ];
+    return Container(
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
+        child: DefaultTabController(
+          length: _kTapPages.length,
+          child: TabBar(
+              onTap: (houseType) {},
+              tabs: _kTapPages,
+              labelPadding: EdgeInsets.all(10.0),
+              indicator: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10.0),
+              )),
+        ));
+  }
+
   Widget submitButton() {
     return RaisedButton(
       color: Colors.blue,
@@ -592,7 +658,8 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               numberOfGuests,
               DateFormat.yMMMd().format(_departDate),
               DateFormat.yMMMd().format(_arriveDate));
-          String data = "${DateFormat.yMMMd().format(_departDate)}, ${DateFormat.yMMMd().format(_arriveDate)}";
+          String data =
+              "${DateFormat.yMMMd().format(_departDate)}, ${DateFormat.yMMMd().format(_arriveDate)}";
 
           DatabaseHelper databaseHelper = new DatabaseHelper();
 
@@ -684,12 +751,12 @@ class RangeSliderData {
 // based on individual definitions
 // (see rangeSliders in _RangeSliderSampleState)
               data: SliderTheme.of(context).copyWith(
-                overlayColor: overlayColor,
-                activeTickMarkColor: activeTickMarkColor,
-                activeTrackColor: activeTrackColor,
-                inactiveTrackColor: inactiveTrackColor,
-                thumbColor: thumbColor,
-                valueIndicatorColor: valueIndicatorColor,
+                overlayColor: Colors.green,
+                activeTickMarkColor: Colors.green,
+                activeTrackColor: Colors.green,
+                inactiveTrackColor: Colors.green,
+                thumbColor: Colors.green,
+                valueIndicatorColor: Colors.green,
                 showValueIndicator: showValueIndicator
                     ? ShowValueIndicator.always
                     : ShowValueIndicator.onlyForDiscrete,
@@ -721,3 +788,5 @@ class RangeSliderData {
     );
   }
 }
+
+enum HouseType { All, Houses, Hotels }
