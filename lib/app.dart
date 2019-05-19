@@ -11,6 +11,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      theme: new ThemeData(
+        primaryColor:  Colors.white,
+        primaryColorDark: Colors.black,
+        accentColor: Colors.black,
+
+      ),
       onGenerateRoute: (RouteSettings settings) {
         switch (settings.name) {
           case '/preferences':

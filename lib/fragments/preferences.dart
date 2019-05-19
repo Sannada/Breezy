@@ -17,10 +17,6 @@ final teLastFirstName = TextEditingController();
 final teDOB = TextEditingController();
 
 class Preferences extends StatefulWidget {
-  final String userName;
-
-  Preferences({this.userName});
-
   @override
   _PreferencesState createState() => _PreferencesState();
 }
@@ -39,7 +35,8 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
   String maxBudget = '';
   String numberOfGuests = '';
 
-  HouseType houseType;
+  int houseTypeInt;
+  String houseType;
 
   DateTime _departDate = new DateTime.now();
   DateTime _arriveDate = new DateTime.now();
@@ -74,10 +71,30 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
     ];
   }
 
+  Color color1 = Color.fromRGBO(2, 94, 231, 1);
+  Color color2 = Colors.white;
+
+  Color mainColor1;
+  Color mainColor2;
+  Color mainColor3;
+
   @override
   void initState() {
     super.initState();
     rangeSliders = _rangeSliderDefinitions();
+    if (houseTypeInt == 0) {
+      mainColor1 = color1;
+      mainColor2 = color2;
+      mainColor3 = color2;
+    } else if (houseTypeInt == 1) {
+      mainColor1 = color2;
+      mainColor2 = color1;
+      mainColor3 = color2;
+    } else if (houseTypeInt == 2) {
+      mainColor1 = color2;
+      mainColor2 = color2;
+      mainColor3 = color1;
+    }
   }
 
   List<String> _locations = [
@@ -306,7 +323,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
       ),
       endDrawer: NewDrawer(),
       body: Container(
-        decoration: BoxDecoration(color: Colors.grey),
+        decoration: BoxDecoration(color: Color.fromRGBO(241, 241, 245, 1)),
         child: ListView(
           children: <Widget>[
             Container(
@@ -602,41 +619,79 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
     );
   }
 
-  var tab1 = GlobalKey();
-  var tab2 = GlobalKey();
-  var tab3 = GlobalKey();
-
   Widget buildHouseTypeBar() {
     final _kTapPages = <Widget>[
       Tab(
-          icon: Icon(Icons.cloud, size: 35.0, color: Colors.teal),
-          text: "All",
-        key: tab1,
+        icon: Icon(Icons.cloud,
+            size: 35.0,
+            color: mainColor1),
+        text: "All",
       ),
       Tab(
-        icon: Icon(Icons.alarm, size: 35.0, color: Colors.cyan),
+        icon: Icon(Icons.alarm,
+            size: 35.0,
+            color: mainColor2),
         text: "Houses",
-        key: tab2,
-
       ),
       Tab(
-        icon: Icon(Icons.forum, size: 35.0, color: Colors.blue),
+        icon: Icon(Icons.forum,
+            size: 35.0,
+            color: mainColor3),
         text: "Hotels",
-        key: tab3,
-
       ),
     ];
     return Container(
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+              color: Colors.grey[350],
+              blurRadius: 5.0, // has the effect of softening the shadow
+              spreadRadius: 0.1, // has the effect of extending the shadow
+              offset: Offset(
+                0.0, // horizontal, move right 10
+                0.3, // vertical, move down 10
+              ))
+        ], color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
         child: DefaultTabController(
           length: _kTapPages.length,
           child: TabBar(
-              onTap: (houseType) {},
+              onTap: (value) {
+                houseTypeInt = value;
+                print(houseTypeInt);
+                switch (houseTypeInt) {
+                  case 0: {
+                    houseType = "All";
+                  }
+                  break;
+
+                  case 1: {
+                    houseType = "Houses";
+                  }
+                  break;
+
+                  case 2: {
+                    houseType = "Hotels";
+                  }
+                  break;
+                }
+              },
               tabs: _kTapPages,
               labelPadding: EdgeInsets.all(10.0),
+              labelColor: Colors.white,
+              unselectedLabelColor: Color.fromRGBO(2, 94, 231, 1),
               indicator: BoxDecoration(
-                color: Colors.blue,
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(2, 94, 231, 1),
+                      blurRadius: 5.0,
+                      // has the effect of softening the shadow
+                      spreadRadius: 0.1,
+                      // has the effect of extending the shadow
+                      offset: Offset(
+                        0.0, // horizontal, move right 10
+                        0.3, // vertical, move down 10
+                      ))
+                ],
+                color: Color.fromRGBO(2, 94, 231, 1),
                 borderRadius: BorderRadius.circular(10.0),
               )),
         ));
@@ -669,8 +724,9 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               'min budget: ${rangeSliders[0].lowerValue.round()}, '
               'max budget: ${rangeSliders[0].upperValue.round()}, '
               'number of guests: $_selectedLocation, '
-              'departure date: ${DateFormat.yMMMd().format(_departDate)},'
-              ' arrive date: ${DateFormat.yMMMd().format(_arriveDate)}');
+              'type of house: $houseType, '
+              'departure date: ${DateFormat.yMMMd().format(_departDate)}, '
+              'arrive date: ${DateFormat.yMMMd().format(_arriveDate)}');
         }
       },
     );
@@ -788,5 +844,3 @@ class RangeSliderData {
     );
   }
 }
-
-enum HouseType { All, Houses, Hotels }

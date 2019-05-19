@@ -1,0 +1,143 @@
+{
+  "players": [{
+    "keyword": "Lviv",
+    "id": 1,
+    "autocompleteTerm": "Lviv, Ukraine",
+    "country": "Ukraine",
+    "lat": 49.8383,
+    "lng": 24.0232
+  }, {
+    "keyword": "Kyiv",
+    "id": 2,
+    "autocompleteTerm": "Kyiv, Ukraine",
+    "country": "Ukraine",
+    "lat": 50.4547,
+    "lng": 30.5238
+  }, {
+    "keyword": "Kharkiv",
+    "id": 3,
+    "autocompleteTerm": "Kharkiv, Ukraine",
+    "country": "Ukraine",
+    "lat": 49.98081,
+    "lng": 36.25272
+  }, {
+    "keyword": "Madrid",
+    "id": 4,
+    "autocompleteTerm": "Madrid, Spain",
+    "country": "Spain",
+    "lat": 40.416775,
+    "lng": -3.703790
+  }, {
+    "keyword": "Rome",
+    "id": 5,
+    "autocompleteTerm": "Rome, Italy",
+    "country": "Italy",
+    "lat": 41.890251,
+    "lng": 12.492373
+  }, {
+    "keyword": "Paris",
+    "id": 6,
+    "autocompleteTerm": "Paris, France",
+    "country": "France",
+    "lat": 48.864716,
+    "lng": 2.349014
+  }, {
+    "keyword": "Krakow",
+    "id": 7,
+    "autocompleteTerm": "Krakow, Poland",
+    "country": "Poland",
+    "lat": 50.049683,
+    "lng": 19.944544
+  }, {
+    "keyword": "Warsaw",
+    "id": 8,
+    "autocompleteTerm": "Warsaw, Poland",
+    "country": "Poland",
+    "lat": 52.237049,
+    "lng": 21.017532
+  }, {
+    "keyword": "Lublin",
+    "id": 9,
+    "autocompleteTerm": "Lublin, Poland",
+    "country": "Poland",
+    "lat": 51.246452,
+    "lng": 22.568445
+  }, {
+    "keyword": "Katowice",
+    "id": 10,
+    "autocompleteTerm": "Katowice, Poland",
+    "country": "Poland",
+    "lat": 50.270908,
+    "lng": 19.039993
+  }, {
+    "keyword": "Bratislava",
+    "id": 11,
+    "autocompleteTerm": "Bratislava, Slovakia",
+    "country": "Slovakia",
+    "lat": 48.148598,
+    "lng": 17.107748
+  }, {
+    "keyword": "Budapest",
+    "id": 12,
+    "autocompleteTerm": "Budapest, Hungary",
+    "country": "Hungary",
+    "lat": 47.497913,
+    "lng": 19.040236
+  }, {
+    "keyword": "Bucharest",
+    "id": 13,
+    "autocompleteTerm": "Bucharest, Romania",
+    "country": "Romania",
+    "lat": 44.439663,
+    "lng": 26.096306
+  }, {
+    "keyword": "Moscow",
+    "id": 14,
+    "autocompleteTerm": "Moscow, Russia",
+    "country": "Russia",
+    "lat": 55.751244,
+    "lng": 37.618423
+  }, {
+    "keyword": "London",
+    "id": 15,
+    "autocompleteTerm": "London, England",
+    "country": "England",
+    "lat": 51.509865,
+    "lng": -0.118092
+  }, {
+    "keyword": "Berlin",
+    "id": 16,
+    "autocompleteTerm": "Berlin, Germany",
+    "country": "Germany",
+    "lat": 52.520008,
+    "lng": 13.404954
+  }, {
+    "keyword": "Hamburg",
+    "id": 17,
+    "autocompleteTerm": "Hamburg, Germany",
+    "country": "Germany",
+    "lat": 53.551086,
+    "lng": 9.993682
+  }, {
+    "keyword": "Frankfurt",
+    "id": 18,
+    "autocompleteTerm": "Frankfurt, Germany",
+    "country": "Germany",
+    "lat": 50.110924,
+    "lng": 8.682127
+  }, {
+    "keyword": "Amsterdam",
+    "id": 19,
+    "autocompleteTerm": "Amsterdam, Netherlands",
+    "country": "Netherlands",
+    "lat": 52.37795,
+    "lng": 4.897070
+  }, {
+    "keyword": "Minsk",
+    "id": 20,
+    "autocompleteTerm": "Minsk, Belarus",
+    "country": "Belarus",
+    "lat": 53.893009,
+    "lng": 27.567444
+  }]
+}

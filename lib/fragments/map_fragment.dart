@@ -4,9 +4,9 @@ import 'package:breezy/screens/new_drawer.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_google_places/flutter_google_places.dart';
-import 'package:google_maps_webservice/places.dart';
-import '../pages/home_page.dart';
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+import 'package:breezy/screens/players.dart';
+import 'package:flutter/services.dart';
 
 class MapFragment extends StatefulWidget {
   @override
@@ -17,9 +17,13 @@ class MapFragment extends StatefulWidget {
 
 class _MapFragmentState extends State<MapFragment> with ValidationMixin {
   Completer<GoogleMapController> _controller = Completer();
+  GoogleMapController mapController;
 
   static const LatLng _center = const LatLng(49.8450449, 24.0361399);
-  Set<Marker> markers = Set();
+
+  LatLng currentPosition = _center;
+
+  Set<Marker> _markers;
   MapType _currentMapType = MapType.normal;
   LatLng centerPosition;
 
@@ -32,6 +36,22 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
+  AutoCompleteTextField searchTextField;
+
+  TextEditingController controller = new TextEditingController();
+
+  GlobalKey<AutoCompleteTextFieldState<Players>> key = new GlobalKey();
+
+  void _loadData() async {
+    await PlayersViewModel.loadPlayers();
+  }
+
+  @override
+  void initState() {
+    _loadData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,16 +61,17 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
         child: Stack(
           children: <Widget>[
             GoogleMap(
+              myLocationButtonEnabled: false,
               myLocationEnabled: true,
               mapType: _currentMapType,
-              markers: markers,
+              markers: _markers,
               onCameraMove: _onCameraMove,
               initialCameraPosition: CameraPosition(
                 target: _center,
                 zoom: 14.4746,
               ),
               onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
+                mapController = controller;
               },
             ),
             endPointField(),
@@ -60,8 +81,6 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
       ),
     );
   }
-
-  final data = Data(endPoint: "123");
 
   Widget buildRouteButton() {
     return Align(
@@ -80,10 +99,14 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
               Expanded(
                 flex: 5,
                 child: RaisedButton(
-                  child: Text(
-                    'Let\'s go',
-                    style: TextStyle(color: Colors.white),
-                    textAlign: TextAlign.left,
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        'Let\'s go',
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.left,
+                      )
+                    ],
                   ),
                   color: Colors.black,
                   onPressed: () {
@@ -92,14 +115,15 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
                 ),
               ),
               Expanded(
-                child: RaisedButton(
-                  child: Icon(
-                    Icons.near_me,
-                    color: Colors.white,
-                  ),
-                  color: Colors.black,
-                  onPressed: () {},
-                ),
+                  child: RaisedButton(
+                      child: Icon(
+                        Icons.near_me,
+                        color: Colors.white,
+                      ),
+                      color: Colors.black,
+                      onPressed: () {
+                        setState(() {});
+                      })
               ),
             ],
           ),
@@ -108,13 +132,25 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
     );
   }
 
+  bool isVisible = true;
+
   Widget endPointField() {
     return Positioned(
       top: 36.0,
       left: 0.0,
       right: 0.0,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
+        margin: EdgeInsets.symmetric(horizontal: 10.0),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+              color: Colors.grey[350],
+              blurRadius: 5.0, // has the effect of softening the shadow
+              spreadRadius: 0.1, // has the effect of extending the shadow
+              offset: Offset(
+                0.0, // horizontal, move right 10
+                0.3, // vertical, move down 10
+              ))
+        ]),
         child: DecoratedBox(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
@@ -130,16 +166,61 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
                 ),
               ),
               Expanded(
-                child: TextFormField(
-                  validator: validateDestination,
-                  onSaved: (String value) {
-                    endPoint = value;
+                child: searchTextField = AutoCompleteTextField<Players>(
+                  key: key,
+                  suggestions: PlayersViewModel.players,
+                  clearOnSubmit: false,
+                  submitOnSuggestionTap: true,
+                  suggestionsAmount: 4,
+                  itemBuilder: (context, item) {
+                    return Visibility(
+                        visible: isVisible,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              item.autocompleteterm,
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(20.0),
+                            ),
+                            Text(
+                              item.country,
+                            )
+                          ],
+                        ));
                   },
-                  style: new TextStyle(
-                      height: 0.8,
-                  ),
-                  decoration: InputDecoration(
-                    hintText: "Search",
+                  itemFilter: (item, query) {
+                    return item.autocompleteterm
+                        .toLowerCase()
+                        .startsWith(query.toLowerCase());
+                  },
+                  itemSorter: (a, b) {
+                    setState(() {
+                      isVisible = !isVisible;
+                    });
+                    return a.autocompleteterm.compareTo(b.autocompleteterm);
+                  },
+                  itemSubmitted: (item) {
+                    setState(() {
+                      searchTextField.textField.controller.text =
+                          item.autocompleteterm;
+                      isVisible = !isVisible;
+                      currentPosition = LatLng(item.lat, item.lng);
+                    });
+                    mapController.moveCamera(CameraUpdate.newCameraPosition(
+                        CameraPosition(target: currentPosition, zoom: 10)));
+                  },
+                  style: new TextStyle(color: Colors.black, fontSize: 16.0),
+                  decoration: new InputDecoration(
+                    suffixIcon: Container(
+                      padding: EdgeInsets.all(50.0),
+                      width: 50.0,
+                      height: 50.0,
+                    ),
+                    contentPadding: EdgeInsets.fromLTRB(10.0, 19.0, 10.0, 20.0),
+                    hintText: 'Search Player Name',
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 0,

@@ -4,18 +4,21 @@ class NewDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+        child: Container(
+          color: Colors.white,
       child: new Column(
         children: <Widget>[
           UserAccountsDrawerHeader(
+            decoration: BoxDecoration(
+              border: Border.all(width: 0.0, color: Colors.white)
+            ),
             accountName: Text("Maksym Levytskyi"),
             accountEmail: Text("mr.lewmax@gmail.com"),
             currentAccountPicture: CircleAvatar(
-              backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
-                  ? Colors.blue
-                  : Colors.white,
+              backgroundColor: Color.fromRGBO(2, 94, 231, 1),
               child: Text(
                 "M",
-                style: TextStyle(fontSize: 40.0),
+                style: TextStyle(fontSize: 40.0, color: Colors.white),
               ),
             ),
           ),
@@ -23,21 +26,21 @@ class NewDrawer extends StatelessWidget {
             children: <Widget>[
               new ListTile(
                   title: new Text("Filter"),
-                  trailing: new Icon(Icons.check_circle),
+                  leading: new Icon(Icons.filter_list),
                   onTap: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).pushNamed('/preferences');
                   }),
               new ListTile(
                   title: new Text("Route details"),
-                  trailing: new Icon(Icons.filter_list),
+                  leading: new Icon(Icons.location_on),
                   onTap: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).pushNamed('/route_details');
                   }),
               new ListTile(
                   title: new Text("Travel History"),
-                  trailing: new Icon(Icons.history),
+                  leading: new Icon(Icons.access_time),
                   onTap: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).pushNamed('/db_fragment');
@@ -46,6 +49,6 @@ class NewDrawer extends StatelessWidget {
           )
         ],
       ),
-    );
+    ));
   }
 }
