@@ -27,7 +27,7 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
   MapType _currentMapType = MapType.normal;
   LatLng centerPosition;
 
-  String endPoint = '';
+  String pointOfEnd = '';
   final formKey = GlobalKey<FormState>();
 
   void _onCameraMove(CameraPosition position) {
@@ -110,7 +110,9 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
                   ),
                   color: Colors.black,
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/preferences');
+                    Navigator.push(context, new MaterialPageRoute(
+                      builder: (BuildContext context) => new Preferences(pointOfEnd),
+                    ));
                   },
                 ),
               ),
@@ -122,7 +124,7 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
                       ),
                       color: Colors.black,
                       onPressed: () {
-                        setState(() {});
+
                       })
               ),
             ],
@@ -171,7 +173,7 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
                   suggestions: PlayersViewModel.players,
                   clearOnSubmit: false,
                   submitOnSuggestionTap: true,
-                  suggestionsAmount: 4,
+                  suggestionsAmount: 5,
                   itemBuilder: (context, item) {
                     return Visibility(
                         visible: isVisible,
@@ -206,6 +208,7 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
                     setState(() {
                       searchTextField.textField.controller.text =
                           item.autocompleteterm;
+                      pointOfEnd = item.autocompleteterm;
                       isVisible = !isVisible;
                       currentPosition = LatLng(item.lat, item.lng);
                     });
@@ -245,10 +248,4 @@ class _MapFragmentState extends State<MapFragment> with ValidationMixin {
       ),
     );
   }
-}
-
-class Data {
-  String endPoint;
-
-  Data({this.endPoint});
 }

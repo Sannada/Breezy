@@ -16,9 +16,10 @@ class NewDrawer extends StatelessWidget {
             accountEmail: Text("mr.lewmax@gmail.com"),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Color.fromRGBO(2, 94, 231, 1),
+              radius: 100.0,
               child: Text(
                 "M",
-                style: TextStyle(fontSize: 40.0, color: Colors.white),
+                style: TextStyle(fontSize: 30.0, color: Colors.white),
               ),
             ),
           ),

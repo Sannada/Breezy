@@ -6,6 +6,8 @@ import 'package:breezy/fragments/db_fragment.dart';
 
 class MyApp extends StatelessWidget {
 
+  String endPoint = "";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (RouteSettings settings) {
         switch (settings.name) {
           case '/preferences':
-            return SlideRightRoute(widget:Preferences());
+            return SlideRightRoute(widget:Preferences(endPoint));
             break;
           case '/route_details':
             return SlideRightRoute(widget:RouteDetails());

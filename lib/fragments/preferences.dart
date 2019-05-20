@@ -17,6 +17,9 @@ final teLastFirstName = TextEditingController();
 final teDOB = TextEditingController();
 
 class Preferences extends StatefulWidget {
+  const Preferences(this.pointOfEnd);
+  final String pointOfEnd;
+
   @override
   _PreferencesState createState() => _PreferencesState();
 }
@@ -95,6 +98,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
       mainColor2 = color2;
       mainColor3 = color1;
     }
+    _controller.text = widget.pointOfEnd;
   }
 
   List<String> _locations = [
@@ -539,11 +543,22 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
         hintText: 'Start point',
       ),
     );
+
+  }
+
+  final _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    // other dispose methods
+    _controller.dispose();
+    super.dispose();
   }
 
   Widget endPointField() {
     return TextFormField(
       validator: validateDestination,
+      controller: _controller,
       onSaved: (String value) {
         endPoint = value;
       },
