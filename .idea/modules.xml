@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/breez.iml" filepath="$PROJECT_DIR$/breez.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/breez_android.iml" filepath="$PROJECT_DIR$/android/breez_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/flutterlocation-master.iml" filepath="$PROJECT_DIR$/.idea/flutterlocation-master.iml" />
     </modules>
   </component>
 </project>

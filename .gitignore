@@ -1,13 +1,23 @@
-# See https://www.dartlang.org/guides/libraries/private-files
-
-# Files and directories created by pub
-.dart_tool/
+.DS_Store
+.atom/
+.idea
 .packages
+.dart_tool/
 .pub/
 build/
-# If you're building an application, you may want to check-in your pubspec.lock
+ios/.generated/
+packages
 pubspec.lock
+.vscode/launch.json
+example/ios/.symlinks
+example/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+.gitignore
+example/ios/ServiceDefinitions.json
 
-# Directory created by dartdoc
-# If you don't generate documentation locally you can remove this line.
-doc/api/
+
+example/ios/Flutter/
+example/ios/Pods/
+example/ios/Runner/Info.plist
+example/ios/Runner.xcodeproj/project.pbxproj
+android/.classpath
+example/android/.gradle/*
