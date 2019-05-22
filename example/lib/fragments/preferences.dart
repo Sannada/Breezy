@@ -1,7 +1,12 @@
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location_example/fragments/route_details.dart';
+import 'package:location_example/screens/players.dart';
+
+import '../app.dart';
 import '../screens/Histori.dart';
 import '../screens/new_drawer.dart';
 import 'package:flutter/material.dart';
-import '../mixins/validation_mixin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
@@ -13,22 +18,24 @@ final teLastFirstName = TextEditingController();
 final teDOB = TextEditingController();
 
 class Preferences extends StatefulWidget {
-  const Preferences(this.pointOfEnd);
-  final String pointOfEnd;
-
   @override
   _PreferencesState createState() => _PreferencesState();
 }
 
-class _PreferencesState extends State<Preferences> with ValidationMixin {
+class _PreferencesState extends State<Preferences> {
   final formKey = GlobalKey<FormState>();
 
   List<RangeSliderData> rangeSliders;
 
-  String calendarField = "Pick the date";
+  String calendarData = "Pick the date";
 
   String startPoint = '';
   String endPoint = '';
+
+  String startPointLat = '';
+  String startPointLng = '';
+  String endPointLat = '';
+  String endPointLng = '';
 
   String minBudget = '';
   String maxBudget = '';
@@ -61,10 +68,10 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
   List<RangeSliderData> _rangeSliderDefinitions() {
     return <RangeSliderData>[
       RangeSliderData(
-          min: 0.0,
-          max: 100.0,
-          lowerValue: 10.0,
-          upperValue: 30.0,
+          min: 100.0,
+          max: 2000.0,
+          lowerValue: 300.0,
+          upperValue: 500.0,
           showValueIndicator: false,
           valueIndicatorMaxDecimals: 0),
     ];
@@ -94,7 +101,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
       mainColor2 = color2;
       mainColor3 = color1;
     }
-    _controller.text = widget.pointOfEnd;
+    _loadData();
   }
 
   List<String> _locations = [
@@ -338,8 +345,6 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                       Container(margin: EdgeInsets.only(top: 10.0)),
                       budgetSlider(),
                       Container(margin: EdgeInsets.only(top: 10.0)),
-                      new Text('Value: ${(_value * 100).round()}'),
-                      new Slider(value: _value, onChanged: _setvalue),
                       buildHouseTypeBar(),
                       Container(margin: EdgeInsets.only(top: 10.0)),
                       numberOfGuestsField(),
@@ -348,7 +353,8 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                       Container(margin: EdgeInsets.only(top: 25.0)),
                       ExpansionTile(
                         title: Container(
-                          child: Text("Home type"),
+                          child: Text("Home type",
+                              style: TextStyle(fontSize: 18.0)),
                         ),
                         children: <Widget>[
                           buildCheckbox(
@@ -361,7 +367,8 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                       ),
                       ExpansionTile(
                         title: Container(
-                          child: Text("Amenities"),
+                          child: Text("Amenities",
+                              style: TextStyle(fontSize: 18.0)),
                         ),
                         children: <Widget>[
                           buildCheckbox(_value7, _value7Changed, "Kitchen"),
@@ -397,7 +404,8 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                       ),
                       ExpansionTile(
                         title: Container(
-                          child: Text("Facilities"),
+                          child: Text("Facilities",
+                              style: TextStyle(fontSize: 18.0)),
                         ),
                         children: <Widget>[
                           buildCheckbox(_value28, _value28Changed,
@@ -409,7 +417,8 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                       ),
                       ExpansionTile(
                         title: Container(
-                          child: Text("Property type"),
+                          child: Text("Property type",
+                              style: TextStyle(fontSize: 18.0)),
                         ),
                         children: <Widget>[
                           buildCheckbox(_value33, _value33Changed, "House"),
@@ -436,7 +445,8 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                       ),
                       ExpansionTile(
                         title: Container(
-                          child: Text("House rules"),
+                          child: Text("House rules",
+                              style: TextStyle(fontSize: 18.0)),
                         ),
                         children: <Widget>[
                           buildCheckbox(
@@ -449,7 +459,8 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                       ),
                       ExpansionTile(
                         title: Container(
-                          child: Text("Accessibility"),
+                          child: Text("Accessibility",
+                              style: TextStyle(fontSize: 18.0)),
                         ),
                         children: <Widget>[
                           Text(
@@ -459,12 +470,12 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           buildCheckbox(
-                              _value53, _value50Changed, "Step-free access"),
-                          buildCheckbox(_value54, _value51Changed,
+                              _value53, _value53Changed, "Step-free access"),
+                          buildCheckbox(_value54, _value54Changed,
                               "Well-lit path to entrance"),
                           buildCheckbox(
-                              _value55, _value52Changed, "Wide doorway"),
-                          buildCheckbox(_value56, _value52Changed,
+                              _value55, _value55Changed, "Wide doorway"),
+                          buildCheckbox(_value56, _value56Changed,
                               "Flat path to front door"),
                           Text(
                             'Entering the home',
@@ -501,9 +512,9 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                               _value64, _value64Changed, "Wide doorway"),
                           buildCheckbox(_value65, _value65Changed,
                               "Accessible-height bed"),
-                          buildCheckbox(_value66, _value65Changed,
+                          buildCheckbox(_value66, _value66Changed,
                               "Wide clearance to bed"),
-                          buildCheckbox(_value67, _value65Changed,
+                          buildCheckbox(_value67, _value67Changed,
                               "Electric profiling bed"),
                           Text(
                             'Bedroom',
@@ -513,13 +524,7 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                           ),
                         ],
                       ),
-                      Row(
-                        children: <Widget>[
-                          submitButton(),
-                          Container(margin: EdgeInsets.only(left: 25.0)),
-                          resetButton(),
-                        ],
-                      ),
+                      submitButton(),
                     ],
                   ),
                 ))
@@ -529,8 +534,102 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
     );
   }
 
+  AutoCompleteTextField searchStartPoint;
+  TextEditingController controller = new TextEditingController();
+  GlobalKey<AutoCompleteTextFieldState<Players>> keyStart = new GlobalKey();
+
+  bool isVisibleForStart = true;
+
+  void _loadData() async {
+    await PlayersViewModel.loadPlayers();
+  }
+
   Widget startPointField() {
-    return TextFormField(
+    return Container(
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+            color: Colors.grey[350],
+            blurRadius: 5.0, // has the effect of softening the shadow
+            spreadRadius: 0.1, // has the effect of extending the shadow
+            offset: Offset(
+              0.0, // horizontal, move right 10
+              0.3, // vertical, move down 10
+            ))
+      ]),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            border: Border.all(
+                color: Colors.grey, width: 0.0, style: BorderStyle.none),
+            color: Colors.white),
+        child: searchStartPoint = AutoCompleteTextField<Players>(
+          key: keyStart,
+          suggestions: PlayersViewModel.players,
+          clearOnSubmit: false,
+          submitOnSuggestionTap: true,
+          suggestionsAmount: 5,
+          itemBuilder: (context, item) {
+            return Visibility(
+                visible: isVisibleForStart,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      item.autocompleteterm,
+                      style: TextStyle(fontSize: 16.0),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(20.0),
+                    ),
+                    Text(
+                      item.country,
+                    )
+                  ],
+                ));
+          },
+          onFocusChanged: (boolVar) {
+            setState(() {
+              isVisibleForStart = boolVar;
+            });
+          },
+          itemFilter: (item, query) {
+            return item.autocompleteterm
+                .toLowerCase()
+                .startsWith(query.toLowerCase());
+          },
+          itemSorter: (a, b) {
+            return a.autocompleteterm.compareTo(b.autocompleteterm);
+          },
+          itemSubmitted: (item) async {
+            setState(() {
+              searchStartPoint.textField.controller.text =
+                  item.autocompleteterm;
+              startPoint = item.autocompleteterm;
+
+              startPointLat = item.lat.toString();
+              startPointLng = item.lng.toString();
+            });
+          },
+          style: new TextStyle(color: Colors.black, fontSize: 16.0),
+          decoration: new InputDecoration(
+            suffixIcon: Container(
+              padding: EdgeInsets.all(50.0),
+              width: 50.0,
+              height: 50.0,
+            ),
+            contentPadding: EdgeInsets.fromLTRB(10.0, 19.0, 10.0, 20.0),
+            hintText: 'Start point',
+            border: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 0,
+                style: BorderStyle.none,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    /*TextFormField(
       validator: validateDestination,
       onSaved: (String value) {
         startPoint = value;
@@ -538,28 +637,96 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
       decoration: InputDecoration(
         hintText: 'Start point',
       ),
-    );
-
+    );*/
   }
 
-  final _controller = TextEditingController();
+  AutoCompleteTextField searchEndPoint;
+  GlobalKey<AutoCompleteTextFieldState<Players>> keyEnd = new GlobalKey();
 
-  @override
-  void dispose() {
-    // other dispose methods
-    _controller.dispose();
-    super.dispose();
-  }
+  bool isVisibleForEnd = true;
 
   Widget endPointField() {
-    return TextFormField(
-      validator: validateDestination,
-      controller: _controller,
-      onSaved: (String value) {
-        endPoint = value;
-      },
-      decoration: InputDecoration(
-        hintText: 'End point',
+    return Container(
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+            color: Colors.grey[350],
+            blurRadius: 5.0, // has the effect of softening the shadow
+            spreadRadius: 0.1, // has the effect of extending the shadow
+            offset: Offset(
+              0.0, // horizontal, move right 10
+              0.3, // vertical, move down 10
+            ))
+      ]),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            border: Border.all(
+                color: Colors.grey, width: 0.0, style: BorderStyle.none),
+            color: Colors.white),
+        child: searchEndPoint = AutoCompleteTextField<Players>(
+          key: keyEnd,
+          suggestions: PlayersViewModel.players,
+          clearOnSubmit: false,
+          submitOnSuggestionTap: true,
+          suggestionsAmount: 5,
+          itemBuilder: (context, item) {
+            return Visibility(
+                visible: isVisibleForEnd,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      item.autocompleteterm,
+                      style: TextStyle(fontSize: 16.0),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(20.0),
+                    ),
+                    Text(
+                      item.country,
+                    )
+                  ],
+                ));
+          },
+          onFocusChanged: (boolVar) {
+            setState(() {
+              isVisibleForEnd = boolVar;
+            });
+          },
+          itemFilter: (item, query) {
+            return item.autocompleteterm
+                .toLowerCase()
+                .startsWith(query.toLowerCase());
+          },
+          itemSorter: (a, b) {
+            return a.autocompleteterm.compareTo(b.autocompleteterm);
+          },
+          itemSubmitted: (item) async {
+            setState(() {
+              searchEndPoint.textField.controller.text = item.autocompleteterm;
+              endPoint = item.autocompleteterm;
+
+              endPointLat = item.lat.toString();
+              endPointLng = item.lng.toString();
+            });
+          },
+          style: new TextStyle(color: Colors.black, fontSize: 16.0),
+          decoration: new InputDecoration(
+            suffixIcon: Container(
+              padding: EdgeInsets.all(50.0),
+              width: 50.0,
+              height: 50.0,
+            ),
+            contentPadding: EdgeInsets.fromLTRB(10.0, 19.0, 10.0, 20.0),
+            hintText: 'End point',
+            border: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 0,
+                style: BorderStyle.none,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -572,7 +739,9 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
 
   Widget numberOfGuestsField() {
     return DropdownButton(
-      hint: Text('Number of guests'), // Not necessary for Option 1
+      style: TextStyle(color: Colors.black),
+      iconEnabledColor: Color.fromRGBO(2, 94, 231, 1),
+      hint: Text('Number of guests'),
       value: _selectedLocation,
       onChanged: (newValue) {
         setState(() {
@@ -592,8 +761,9 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
   Widget calendar() {
     return MaterialButton(
         shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(20.0)),
-        color: Colors.blue,
+            borderRadius: new BorderRadius.circular(10.0)),
+        minWidth: double.infinity,
+        color: Color.fromRGBO(2, 94, 231, 1),
         textColor: Colors.white,
         height: 50.0,
         onPressed: () async {
@@ -608,46 +778,43 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
             setState(() {
               _departDate = picked[0];
               _arriveDate = picked[1];
-              calendarField = "${DateFormat.yMMMd().format(_departDate)}"
+              calendarData = "${DateFormat.yMMMd().format(_departDate)}"
                   " - ${DateFormat.yMMMd().format(_arriveDate)}";
             });
-            print(calendarField);
+            print(calendarData);
           }
         },
         child: new Text(
-          calendarField,
-          style: new TextStyle(fontFamily: 'Dokdo', fontSize: 25.0),
+          calendarData,
+          style: new TextStyle(fontFamily: 'Dokdo', fontSize: 20.0),
         ));
   }
 
   Widget buildCheckbox(value, valueChanged, title) {
-    return new CheckboxListTile(
-      value: value,
-      onChanged: valueChanged,
-      title: new Text(title),
-      controlAffinity: ListTileControlAffinity.leading,
-      activeColor: Colors.red,
-    );
+    return new Padding(
+        padding: EdgeInsets.only(left: 15.0),
+        child: CheckboxListTile(
+          value: value,
+          onChanged: valueChanged,
+          title: new Text(title,
+              style: TextStyle(fontSize: 15.0, color: Colors.grey[600])),
+          controlAffinity: ListTileControlAffinity.trailing,
+          activeColor: Color.fromRGBO(2, 94, 231, 1),
+        ));
   }
 
   Widget buildHouseTypeBar() {
     final _kTapPages = <Widget>[
       Tab(
-        icon: Icon(Icons.cloud,
-            size: 35.0,
-            color: mainColor1),
+        icon: Icon(Icons.cloud, size: 35.0, color: mainColor1),
         text: "All",
       ),
       Tab(
-        icon: Icon(Icons.alarm,
-            size: 35.0,
-            color: mainColor2),
+        icon: Icon(Icons.alarm, size: 35.0, color: mainColor2),
         text: "Houses",
       ),
       Tab(
-        icon: Icon(Icons.forum,
-            size: 35.0,
-            color: mainColor3),
+        icon: Icon(Icons.forum, size: 35.0, color: mainColor3),
         text: "Hotels",
       ),
     ];
@@ -669,20 +836,23 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
                 houseTypeInt = value;
                 print(houseTypeInt);
                 switch (houseTypeInt) {
-                  case 0: {
-                    houseType = "All";
-                  }
-                  break;
+                  case 0:
+                    {
+                      houseType = "All";
+                    }
+                    break;
 
-                  case 1: {
-                    houseType = "Houses";
-                  }
-                  break;
+                  case 1:
+                    {
+                      houseType = "Houses";
+                    }
+                    break;
 
-                  case 2: {
-                    houseType = "Hotels";
-                  }
-                  break;
+                  case 2:
+                    {
+                      houseType = "Hotels";
+                    }
+                    break;
                 }
               },
               tabs: _kTapPages,
@@ -710,8 +880,10 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
 
   Widget submitButton() {
     return RaisedButton(
-      color: Colors.blue,
-      child: Text('Submit'),
+      shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(10.0)),
+      color: Color.fromRGBO(2, 94, 231, 1),
+      child: Text('Submit', style: TextStyle(color: Colors.white)),
       onPressed: () async {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
@@ -724,8 +896,6 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               numberOfGuests,
               DateFormat.yMMMd().format(_departDate),
               DateFormat.yMMMd().format(_arriveDate));
-          String data =
-              "${DateFormat.yMMMd().format(_departDate)}, ${DateFormat.yMMMd().format(_arriveDate)}";
 
           DatabaseHelper databaseHelper = new DatabaseHelper();
 
@@ -737,18 +907,23 @@ class _PreferencesState extends State<Preferences> with ValidationMixin {
               'number of guests: $_selectedLocation, '
               'type of house: $houseType, '
               'departure date: ${DateFormat.yMMMd().format(_departDate)}, '
-              'arrive date: ${DateFormat.yMMMd().format(_arriveDate)}');
-        }
-      },
-    );
-  }
+              'arrive date: ${DateFormat.yMMMd().format(_arriveDate)}'
+          );
 
-  Widget resetButton() {
-    return RaisedButton(
-      color: Colors.green,
-      child: Text('Reset'),
-      onPressed: () {
-        formKey.currentState.reset();
+          Navigator.push(
+              context,
+              SlideRightRoute(
+                  widget: RouteDetails(
+                      startPoint: startPoint,
+                      startPointLat: startPointLat,
+                      startPointLng: startPointLng,
+                      endPoint: endPoint,
+                      endPointLat: endPointLat,
+                      endPointLng: endPointLng
+                  )
+              )
+          );
+        }
       },
     );
   }
@@ -801,57 +976,40 @@ class RangeSliderData {
       upperValue.toStringAsFixed(valueIndicatorMaxDecimals);
 
   Widget build(BuildContext context, RangeSliderCallback callback) {
-    return new Container(
-      width: double.infinity,
-      child: new Row(
-        children: <Widget>[
-          new Container(
-            constraints: new BoxConstraints(
-              minWidth: 40.0,
-              maxWidth: 40.0,
+    return new Column(
+      children: <Widget>[
+        new Container(
+          child: new SliderTheme(
+            data: SliderTheme.of(context).copyWith(
+              overlayColor: Color.fromRGBO(2, 94, 231, 1),
+              activeTickMarkColor: Color.fromRGBO(2, 94, 231, 1),
+              activeTrackColor: Color.fromRGBO(2, 94, 231, 1),
+              inactiveTrackColor: Color.fromRGBO(2, 94, 231, 1),
+              thumbColor: Color.fromRGBO(2, 94, 231, 1),
+              valueIndicatorColor: Color.fromRGBO(2, 94, 231, 1),
+              showValueIndicator: showValueIndicator
+                  ? ShowValueIndicator.always
+                  : ShowValueIndicator.onlyForDiscrete,
             ),
-            child: new Text(lowerValueText),
-          ),
-          new Expanded(
-            child: new SliderTheme(
-// Customization of the SliderTheme
-// based on individual definitions
-// (see rangeSliders in _RangeSliderSampleState)
-              data: SliderTheme.of(context).copyWith(
-                overlayColor: Colors.green,
-                activeTickMarkColor: Colors.green,
-                activeTrackColor: Colors.green,
-                inactiveTrackColor: Colors.green,
-                thumbColor: Colors.green,
-                valueIndicatorColor: Colors.green,
-                showValueIndicator: showValueIndicator
-                    ? ShowValueIndicator.always
-                    : ShowValueIndicator.onlyForDiscrete,
-              ),
-              child: new RangeSlider(
-                min: min,
-                max: max,
-                lowerValue: lowerValue,
-                upperValue: upperValue,
-                divisions: divisions,
-                showValueIndicator: showValueIndicator,
-                valueIndicatorMaxDecimals: valueIndicatorMaxDecimals,
-                onChanged: (double lower, double upper) {
+            child: new RangeSlider(
+              min: min,
+              max: max,
+              lowerValue: lowerValue,
+              upperValue: upperValue,
+              divisions: divisions,
+              showValueIndicator: showValueIndicator,
+              valueIndicatorMaxDecimals: valueIndicatorMaxDecimals,
+              onChanged: (double lower, double upper) {
 // call
-                  callback(lower, upper);
-                },
-              ),
+                callback(lower, upper);
+              },
             ),
           ),
-          new Container(
-            constraints: new BoxConstraints(
-              minWidth: 40.0,
-              maxWidth: 40.0,
-            ),
-            child: new Text(upperValueText),
-          ),
-        ],
-      ),
+        ),
+        new Container(
+          child: new Text("$lowerValueText - $upperValueText\$"),
+        ),
+      ],
     );
   }
 }
