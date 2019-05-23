@@ -1,15 +1,11 @@
 import 'dart:math';
-
 import 'package:location/location.dart';
-
 import '../app.dart';
 import '../fragments/preferences.dart';
 import '../screens/new_drawer.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:autocomplete_textfield/autocomplete_textfield.dart';
-import '../screens/players.dart';
 import 'package:flutter/services.dart';
 
 class MapFragment extends StatefulWidget {

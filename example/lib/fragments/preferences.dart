@@ -1,8 +1,6 @@
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location_example/fragments/route_details.dart';
+import 'route_details.dart';
 import 'package:location_example/screens/players.dart';
-
 import '../app.dart';
 import '../screens/Histori.dart';
 import '../screens/new_drawer.dart';
@@ -740,7 +738,7 @@ class _PreferencesState extends State<Preferences> {
   Widget numberOfGuestsField() {
     return DropdownButton(
       style: TextStyle(color: Colors.black),
-      iconEnabledColor: Color.fromRGBO(2, 94, 231, 1),
+      //iconEnabledColor: Color.fromRGBO(2, 94, 231, 1),
       hint: Text('Number of guests'),
       value: _selectedLocation,
       onChanged: (newValue) {

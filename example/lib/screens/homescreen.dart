@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:location_example/pages/home_page.dart';
 import 'new_drawer.dart';
 import 'package:flutter/material.dart';
 import 'Histori.dart';
 import 'home_presenter.dart';
 import 'list.dart';
-import 'add_histori_dialog.dart';
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -42,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
             new Text('Історія Подорожей',
               style: new TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
           ],
@@ -52,12 +53,12 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
   }
 
   Future _openAddHistoriDialog() async {
+    HomePageState homePageState = new HomePageState();
     showDialog(
       context: context,
-      builder: (BuildContext context) =>
-          new AddHistoriDialog().buildAboutDialog(context, this, false, null),
+ //     builder: (BuildContext context) =>
+//
     );
-
     setState(() {});
   }
 
@@ -65,8 +66,8 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
     return <Widget>[
       new IconButton(
         icon: const Icon(
-          Icons.group_add,
-          color: Colors.white,
+          Icons.menu,
+          color: Colors.black26,
         ),
         onPressed: _openAddHistoriDialog,
       ),
@@ -79,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
       appBar: new AppBar(
         title: Text("Travel History"),
       ),
-      endDrawer: NewDrawer(),
+      drawer: NewDrawer(),
       body: new FutureBuilder<List<Histori>>(
         future: homePresenter.getHistori(),
         builder: (context, snapshot) {

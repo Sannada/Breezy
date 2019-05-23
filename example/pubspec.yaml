@@ -47,6 +47,7 @@ flutter:
   #
   assets:
     - assets/players1.json
+    - assets/image/trevel.png
   # assets:
   #  - packages/PACKAGE_NAME/path/to/asset
 

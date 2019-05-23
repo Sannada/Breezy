@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class NewDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,13 @@ class NewDrawer extends StatelessWidget {
           ),
           new Column(
             children: <Widget>[
+              new ListTile(
+                  title: new Text("Map"),
+                  leading: new Icon(Icons.map),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pushNamed('/map_fragment');
+                  }),
               new ListTile(
                   title: new Text("Filter"),
                   leading: new Icon(Icons.filter_list),
