@@ -28,11 +28,11 @@ class HistoriList extends StatelessWidget {
                 child: new Center(
                   child: new Row(
                     children: <Widget>[
-                      new IconButton(
-                        icon: const Icon(Icons.map,
-                            textDirection: TextDirection.ltr ,
-                            color: const Color(0xFF167F67)),
-                      ),
+                          new Image.asset(
+                            'assets/image/trevel.png',
+                            height: 45,
+                            width: 45,
+                          ),
                       new Expanded(
                         child: new Padding(
                           padding: EdgeInsets.all(20.0),

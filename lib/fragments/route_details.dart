@@ -1,3 +1,4 @@
+import 'package:breezy/screens/new_drawer.dart';
 import 'package:flutter/material.dart';
 
 class RouteDetails extends StatefulWidget {
@@ -14,6 +15,7 @@ class _RouteDetailState extends State<RouteDetails> {
           child: Text('Route Details'),
         ),
       ),
+      drawer: NewDrawer(),
       body: new ListView.builder(
         itemBuilder: (BuildContext context, int index) {
           return new StuffInTiles(listOfTiles[index]);

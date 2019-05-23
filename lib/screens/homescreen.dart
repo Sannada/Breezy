@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:breezy/screens/new_drawer.dart';
 import 'package:flutter/material.dart';
 import 'Histori.dart';
 import 'home_presenter.dart';
@@ -77,9 +78,9 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: _buildTitle(context),
-        actions: _buildActions(),
+        title: Text("Travel History"),
       ),
+      drawer: NewDrawer(),
       body: new FutureBuilder<List<Histori>>(
         future: homePresenter.getHistori(),
         builder: (context, snapshot) {

@@ -3,18 +3,30 @@ import 'pages/home_page.dart';
 import 'fragments/route_details.dart';
 import 'fragments/preferences.dart';
 import 'package:breezy/fragments/db_fragment.dart';
+import 'fragments/map_fragment.dart';
 
 class MyApp extends StatelessWidget {
+
+  String endPoint = "";
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      theme: new ThemeData(
+        primaryColor:  Colors.white,
+        primaryColorDark: Colors.black,
+        accentColor: Colors.black,
+
+      ),
       onGenerateRoute: (RouteSettings settings) {
         switch (settings.name) {
+          case '/map_fragment':
+            return SlideRightRoute(widget:MapFragment());
+            break;
           case '/preferences':
-            return SlideRightRoute(widget:Preferences());
+            return SlideRightRoute(widget:Preferences(endPoint));
             break;
           case '/route_details':
             return SlideRightRoute(widget:RouteDetails());

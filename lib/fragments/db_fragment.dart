@@ -1,4 +1,4 @@
-import 'package:breezy/screens/main_histori.dart';
+import 'package:breezy/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 
 class DBFragment extends StatefulWidget {
@@ -10,7 +10,7 @@ class _DBFragmentState extends State<DBFragment> {
 
   @override
   Widget build(BuildContext context) {
-    return DBTestPage();
+    return new MyHomePage(title: 'Flutter Database');
   }
 }
 
