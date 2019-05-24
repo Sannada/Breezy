@@ -44,7 +44,9 @@ class _MapFragmentState extends State<MapFragment> {
   void initState() {
     super.initState();
 
-    initPlatformState();
+    widget.isChangeText
+        ? print('hi')
+        : initPlatformState();
 
     isSeeable = !widget.isChangeText;
 
@@ -60,7 +62,7 @@ class _MapFragmentState extends State<MapFragment> {
           zoom: 10);
     } else {
       _initialCamera = CameraPosition(target: _center, zoom: 4);
-      print("No markers were set");
+      print('No markers were set');
     }
   }
 
