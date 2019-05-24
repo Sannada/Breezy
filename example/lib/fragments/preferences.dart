@@ -114,12 +114,12 @@ class _PreferencesState extends State<Preferences> {
   ]; // Option 2
   String _selectedLocation;
 
-  bool _value1 = false;
+  //bool _value1 = false;
   bool _value2 = false;
   bool _value3 = false;
   bool _value4 = false;
   bool _value5 = false;
-  bool _value6 = false;
+  //bool _value6 = false;
   bool _value7 = false;
   bool _value8 = false;
   bool _value9 = false;
@@ -140,12 +140,12 @@ class _PreferencesState extends State<Preferences> {
   bool _value24 = false;
   bool _value25 = false;
   bool _value26 = false;
-  bool _value27 = false;
+  //bool _value27 = false;
   bool _value28 = false;
   bool _value29 = false;
   bool _value30 = false;
   bool _value31 = false;
-  bool _value32 = false;
+  //bool _value32 = false;
   bool _value33 = false;
   bool _value34 = false;
   bool _value35 = false;
@@ -162,7 +162,7 @@ class _PreferencesState extends State<Preferences> {
   bool _value46 = false;
   bool _value47 = false;
   bool _value48 = false;
-  bool _value49 = false;
+  //bool _value49 = false;
   bool _value50 = false;
   bool _value51 = false;
   bool _value52 = false;
@@ -182,7 +182,7 @@ class _PreferencesState extends State<Preferences> {
   bool _value66 = false;
   bool _value67 = false;
 
-  void _value1Changed(bool value) => setState(() => _value1 = value);
+  //void _value1Changed(bool value) => setState(() => _value1 = value);
 
   void _value2Changed(bool value) => setState(() => _value2 = value);
 
@@ -192,7 +192,7 @@ class _PreferencesState extends State<Preferences> {
 
   void _value5Changed(bool value) => setState(() => _value5 = value);
 
-  void _value6Changed(bool value) => setState(() => _value6 = value);
+  //void _value6Changed(bool value) => setState(() => _value6 = value);
 
   void _value7Changed(bool value) => setState(() => _value7 = value);
 
@@ -234,7 +234,7 @@ class _PreferencesState extends State<Preferences> {
 
   void _value26Changed(bool value) => setState(() => _value26 = value);
 
-  void _value27Changed(bool value) => setState(() => _value27 = value);
+  //void _value27Changed(bool value) => setState(() => _value27 = value);
 
   void _value28Changed(bool value) => setState(() => _value28 = value);
 
@@ -244,7 +244,7 @@ class _PreferencesState extends State<Preferences> {
 
   void _value31Changed(bool value) => setState(() => _value31 = value);
 
-  void _value32Changed(bool value) => setState(() => _value32 = value);
+  //void _value32Changed(bool value) => setState(() => _value32 = value);
 
   void _value33Changed(bool value) => setState(() => _value33 = value);
 
@@ -278,7 +278,7 @@ class _PreferencesState extends State<Preferences> {
 
   void _value48Changed(bool value) => setState(() => _value48 = value);
 
-  void _value49Changed(bool value) => setState(() => _value49 = value);
+  //void _value49Changed(bool value) => setState(() => _value49 = value);
 
   void _value50Changed(bool value) => setState(() => _value50 = value);
 
@@ -316,17 +316,14 @@ class _PreferencesState extends State<Preferences> {
 
   void _value67Changed(bool value) => setState(() => _value67 = value);
 
-  double _value = 0.0;
-
-  void _setvalue(double value) => setState(() => _value = value);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Filter"),
       ),
-      endDrawer: NewDrawer(),
+      drawer: NewDrawer(),
+      floatingActionButton: submitButton(),
       body: Container(
         decoration: BoxDecoration(color: Color.fromRGBO(241, 241, 245, 1)),
         child: ListView(
@@ -522,7 +519,6 @@ class _PreferencesState extends State<Preferences> {
                           ),
                         ],
                       ),
-                      submitButton(),
                     ],
                   ),
                 ))
@@ -738,7 +734,7 @@ class _PreferencesState extends State<Preferences> {
   Widget numberOfGuestsField() {
     return DropdownButton(
       style: TextStyle(color: Colors.black),
-      //iconEnabledColor: Color.fromRGBO(2, 94, 231, 1),
+      iconEnabledColor: Color.fromRGBO(2, 94, 231, 1),
       hint: Text('Number of guests'),
       value: _selectedLocation,
       onChanged: (newValue) {
@@ -877,53 +873,51 @@ class _PreferencesState extends State<Preferences> {
   }
 
   Widget submitButton() {
-    return RaisedButton(
-      shape: new RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(10.0)),
-      color: Color.fromRGBO(2, 94, 231, 1),
-      child: Text('Submit', style: TextStyle(color: Colors.white)),
-      onPressed: () async {
-        if (formKey.currentState.validate()) {
-          formKey.currentState.save();
+    return Align(
+        alignment: Alignment.bottomRight,
+        child: FloatingActionButton(
+          shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(10.0)),
+          backgroundColor: Color.fromRGBO(2, 94, 231, 1),
+          child: Text('Submit', style: TextStyle(color: Colors.white)),
+          onPressed: () async {
+            if (formKey.currentState.validate()) {
+              formKey.currentState.save();
 
-          Histori histori = new Histori(
-              startPoint,
-              endPoint,
-              rangeSliders[0].lowerValue.round().toString(),
-              rangeSliders[0].upperValue.round().toString(),
-              numberOfGuests,
-              DateFormat.yMMMd().format(_departDate),
-              DateFormat.yMMMd().format(_arriveDate));
+              Histori histori = new Histori(
+                  startPoint,
+                  endPoint,
+                  rangeSliders[0].lowerValue.round().toString(),
+                  rangeSliders[0].upperValue.round().toString(),
+                  numberOfGuests,
+                  DateFormat.yMMMd().format(_departDate),
+                  DateFormat.yMMMd().format(_arriveDate));
 
-          DatabaseHelper databaseHelper = new DatabaseHelper();
+              DatabaseHelper databaseHelper = new DatabaseHelper();
 
-          await databaseHelper.saveHistori(histori);
+              await databaseHelper.saveHistori(histori);
 
-          print('Start point: $startPoint, endpoint: $endPoint, '
-              'min budget: ${rangeSliders[0].lowerValue.round()}, '
-              'max budget: ${rangeSliders[0].upperValue.round()}, '
-              'number of guests: $_selectedLocation, '
-              'type of house: $houseType, '
-              'departure date: ${DateFormat.yMMMd().format(_departDate)}, '
-              'arrive date: ${DateFormat.yMMMd().format(_arriveDate)}'
-          );
+              print('Start point: $startPoint, endpoint: $endPoint, '
+                  'min budget: ${rangeSliders[0].lowerValue.round()}, '
+                  'max budget: ${rangeSliders[0].upperValue.round()}, '
+                  'number of guests: $_selectedLocation, '
+                  'type of house: $houseType, '
+                  'departure date: ${DateFormat.yMMMd().format(_departDate)}, '
+                  'arrive date: ${DateFormat.yMMMd().format(_arriveDate)}');
 
-          Navigator.push(
-              context,
-              SlideRightRoute(
-                  widget: RouteDetails(
-                      startPoint: startPoint,
-                      startPointLat: startPointLat,
-                      startPointLng: startPointLng,
-                      endPoint: endPoint,
-                      endPointLat: endPointLat,
-                      endPointLng: endPointLng
-                  )
-              )
-          );
-        }
-      },
-    );
+              Navigator.push(
+                  context,
+                  SlideRightRoute(
+                      widget: RouteDetails(
+                          startPoint: startPoint,
+                          startPointLat: startPointLat,
+                          startPointLng: startPointLng,
+                          endPoint: endPoint,
+                          endPointLat: endPointLat,
+                          endPointLng: endPointLng)));
+            }
+          },
+        ));
   }
 }
 

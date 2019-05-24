@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:io';
-import 'package:location_example/pages/home_page.dart';
 import 'new_drawer.dart';
 import 'package:flutter/material.dart';
 import 'Histori.dart';
@@ -29,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
     setState(() {});
   }
 
-  Widget _buildTitle(BuildContext context) {
+  /*Widget _buildTitle(BuildContext context) {
     var horizontalTitleAlignment =
     Platform.isIOS ? CrossAxisAlignment.center : CrossAxisAlignment.center;
 
@@ -50,19 +47,19 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
         ),
       ),
     );
-  }
+  }*/
 
-  Future _openAddHistoriDialog() async {
-    HomePageState homePageState = new HomePageState();
+  /*Future _openAddHistoriDialog() async {
+    //HomePageState homePageState = new HomePageState();
     showDialog(
       context: context,
  //     builder: (BuildContext context) =>
 //
     );
     setState(() {});
-  }
+  }*/
 
-  List<Widget> _buildActions() {
+  /*List<Widget> _buildActions() {
     return <Widget>[
       new IconButton(
         icon: const Icon(
@@ -72,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
         onPressed: _openAddHistoriDialog,
       ),
     ];
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'map_fragment.dart';
 
 class RouteDetails extends StatefulWidget {
   const RouteDetails({this.startPoint, this.startPointLat, this.startPointLng,
-      this.endPoint, this.endPointLat, this.endPointLng});
+    this.endPoint, this.endPointLat, this.endPointLng});
 
   final String startPoint;
   final String startPointLat;
@@ -27,7 +27,7 @@ class _RouteDetailState extends State<RouteDetails> {
           child: Text('Route Details'),
         ),
       ),
-      endDrawer: NewDrawer(),
+      drawer: NewDrawer(),
       floatingActionButton: goToMapButton(),
       body: new ListView.builder(
         itemBuilder: (BuildContext context, int index) {
@@ -40,10 +40,11 @@ class _RouteDetailState extends State<RouteDetails> {
 
   Widget goToMapButton() {
     return FloatingActionButton(
+      backgroundColor: Colors.black,
       shape: new RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(10.0)),
       child: Container(
-        child: Text("Show Map", textAlign: TextAlign.center),
+        child: Text("Show Map", textAlign: TextAlign.center, style: TextStyle(color: Colors.white),),
       ),
       onPressed: () {
         Navigator.push(
@@ -56,7 +57,7 @@ class _RouteDetailState extends State<RouteDetails> {
                     widget.endPoint,
                     widget.endPointLat,
                     widget.endPointLng,
-                  false
+                    false
                 )
             )
         );

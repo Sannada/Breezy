@@ -14,6 +14,7 @@ dependencies:
   intl: ^0.15.8
   autocomplete_textfield: ^1.6.4
 
+  font_awesome_flutter: ^8.2.0
   cupertino_icons: ^0.1.2
 
   sqflite: ^ 0.11.0
@@ -46,7 +47,7 @@ flutter:
   # Here is an example:
   #
   assets:
-    - assets/players1.json
+    - assets/cities.json
     - assets/image/trevel.png
   # assets:
   #  - packages/PACKAGE_NAME/path/to/asset

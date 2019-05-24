@@ -36,7 +36,7 @@ class PlayersViewModel {
   static Future loadPlayers() async {
     try {
       players = new List<Players>();
-      String jsonString = await rootBundle.loadString('assets/players1.json');
+      String jsonString = await rootBundle.loadString('assets/cities.json');
       Map parsedJson = json.decode(jsonString);
       var categoryJson = parsedJson['players'] as List;
       for (int i = 0; i < categoryJson.length; i++) {

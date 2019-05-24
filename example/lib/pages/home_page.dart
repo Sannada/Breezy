@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:location_example/fragments/preferences.dart';
 import '../fragments/map_fragment.dart';
 
 class HomePage extends StatefulWidget {
