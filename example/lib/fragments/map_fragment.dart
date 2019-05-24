@@ -44,11 +44,7 @@ class _MapFragmentState extends State<MapFragment> {
   void initState() {
     super.initState();
 
-    widget.isChangeText
-        ? print('hi')
-        : initPlatformState();
-
-    isSeeable = !widget.isChangeText;
+    initPlatformState();
 
     if (!widget.isChangeText) {
       _add(double.parse(widget.startPointLat),
@@ -192,49 +188,49 @@ class _MapFragmentState extends State<MapFragment> {
       key: _scaffoldKey,
       drawer: Drawer(
           child: Container(
-            color: Colors.white,
-            child: new Column(
-              children: <Widget>[
-                UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 0.0, color: Colors.white)),
-                  accountName: Text("Maksym Levytskyi"),
-                  accountEmail: Text("mr.lewmax@gmail.com"),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundColor: Color.fromRGBO(2, 94, 231, 1),
-                    radius: 100.0,
-                    child: Text(
-                      "M",
-                      style: TextStyle(fontSize: 30.0, color: Colors.white),
-                    ),
-                  ),
+        color: Colors.white,
+        child: new Column(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                  border: Border.all(width: 0.0, color: Colors.white)),
+              accountName: Text("Maksym Levytskyi"),
+              accountEmail: Text("mr.lewmax@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Color.fromRGBO(2, 94, 231, 1),
+                radius: 100.0,
+                child: Text(
+                  "M",
+                  style: TextStyle(fontSize: 30.0, color: Colors.white),
                 ),
-                new Column(
-                  children: <Widget>[
-                    new ListTile(
-                        title: new Text("Filter"),
-                        trailing: new Icon(Icons.filter_list),
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pushNamed('/preferences');
-                        }),
-                    new ListTile(
-                        title: new Text("Trip details"),
-                        trailing: new Icon(Icons.location_on),
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pushNamed('/route_details');
-                        }),
-                    new ListTile(
-                        title: new Text("Travel History"),
-                        trailing: new Icon(Icons.access_time),
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pushNamed('/db_fragment');
-                        }),
-                    widget.isChangeText
-                        ? Text("")
-                        : new ListTile(
+              ),
+            ),
+            new Column(
+              children: <Widget>[
+                new ListTile(
+                    title: new Text("Filter"),
+                    trailing: new Icon(Icons.filter_list),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed('/preferences');
+                    }),
+                new ListTile(
+                    title: new Text("Trip details"),
+                    trailing: new Icon(Icons.location_on),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed('/route_details');
+                    }),
+                new ListTile(
+                    title: new Text("Travel History"),
+                    trailing: new Icon(Icons.access_time),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed('/db_fragment');
+                    }),
+                widget.isChangeText
+                    ? Text("")
+                    : new ListTile(
                         title: new Text("Show Details"),
                         trailing: new Icon(Icons.details),
                         onTap: () {
@@ -243,11 +239,11 @@ class _MapFragmentState extends State<MapFragment> {
                             isSeeable = true;
                           });
                         })
-                  ],
-                )
               ],
-            ),
-          )),
+            )
+          ],
+        ),
+      )),
       body: Container(
         child: Stack(
           children: <Widget>[
@@ -267,13 +263,13 @@ class _MapFragmentState extends State<MapFragment> {
             Align(
                 alignment: Alignment.topLeft,
                 child: Container(
-                    margin: EdgeInsets.only(top: 23.0),
+                    margin: EdgeInsets.only(top: 33.0, left: 10),
                     child: SizedBox(
-                      width: 65,
+                      width: 50,
                       child: MaterialButton(
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(10.0)),
-                        height: 65,
+                        height: 50,
                         color: Colors.black,
                         child: Icon(Icons.format_list_bulleted,
                             color: Colors.white),
@@ -289,85 +285,87 @@ class _MapFragmentState extends State<MapFragment> {
   }
 
   Widget buildRouteButton() {
-    return Align(
-      alignment: Alignment.bottomRight,
-      child: Container(
-        margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-        height: 60,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(
-                  color: Colors.grey, width: 0.0, style: BorderStyle.none),
-              color: Colors.black),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Expanded(
-                flex: 5,
-                child: RaisedButton(
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0)),
-                  child: SizedBox(
-                      width: double.infinity,
-                      child: Row(
-                        children: <Widget>[
-                          widget.isChangeText
-                              ? Text('')
-                              : Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            widget.isChangeText
-                                ? "Plan a Trip"
-                                : "Back to Route Details",
-                            style: TextStyle(color: Colors.white),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      )),
-                  color: Colors.black,
-                  onPressed: () {
-                    widget.isChangeText
-                        ? Navigator.push(
-                        context, SlideRightRoute(widget: Preferences()))
-                        : Navigator.pop(context);
-                  },
-                ),
-              ),
-              Expanded(
-                  child: RaisedButton(
+    return Visibility(
+        visible: !isSeeable,
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: Container(
+            margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            height: 60,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  border: Border.all(
+                      color: Colors.grey, width: 0.0, style: BorderStyle.none),
+                  color: Colors.black),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Expanded(
+                    flex: 5,
+                    child: RaisedButton(
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0)),
-                      child: Icon(
-                        Icons.near_me,
-                        color: Colors.white,
-                      ),
+                      child: SizedBox(
+                          width: double.infinity,
+                          child: Row(
+                            children: <Widget>[
+                              widget.isChangeText
+                                  ? Text('')
+                                  : Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.white,
+                                    ),
+                              Text(
+                                widget.isChangeText
+                                    ? "Plan a Trip"
+                                    : "Back to Route Details",
+                                style: TextStyle(color: Colors.white),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          )),
                       color: Colors.black,
-                      onPressed: () async {
-                        if (_currentLocation.latitude.toString() != null) {
-                          final GoogleMapController controller =
-                          await _controller.future;
-                          controller.animateCamera(
-                              CameraUpdate.newCameraPosition(CameraPosition(
-                                  target: LatLng(_currentLocation.latitude,
-                                      _currentLocation.longitude),
-                                  zoom: 16)));
-                        } else {
-                          print("Current location is not available!");
-                        }
-                      })),
-            ],
+                      onPressed: () {
+                        widget.isChangeText
+                            ? Navigator.push(
+                                context, SlideRightRoute(widget: Preferences()))
+                            : Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                  Expanded(
+                      child: RaisedButton(
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(10.0)),
+                          child: Icon(
+                            Icons.near_me,
+                            color: Colors.white,
+                          ),
+                          color: Colors.black,
+                          onPressed: () async {
+                            if (_currentLocation.latitude.toString() != null) {
+                              final GoogleMapController controller =
+                                  await _controller.future;
+                              controller.animateCamera(
+                                  CameraUpdate.newCameraPosition(CameraPosition(
+                                      target: LatLng(_currentLocation.latitude,
+                                          _currentLocation.longitude),
+                                      zoom: 16)));
+                            } else {
+                              print("Current location is not available!");
+                            }
+                          })),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   var containerHeight = 145.0; //48
-  bool isSeeable;
+  bool isSeeable = false;
 
   Widget detailsField() {
     return Visibility(
@@ -375,7 +373,7 @@ class _MapFragmentState extends State<MapFragment> {
         child: Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: EdgeInsets.only(left: 10, right: 10, bottom: 75), //75
+              margin: EdgeInsets.only(left: 10, right: 10), //75
               height: containerHeight,
               child: Padding(
                 padding: EdgeInsets.only(bottom: 5.0),
@@ -449,15 +447,18 @@ class _MapFragmentState extends State<MapFragment> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Container(margin: EdgeInsets.only(top: 2)),
+                                Container(margin: EdgeInsets.only(top: 5)),
                                 Text("Lviv",
-                                    style: TextStyle(color: Colors.white)),
-                                Container(margin: EdgeInsets.only(top: 11)),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16)),
+                                Container(margin: EdgeInsets.only(top: 9)),
                                 Text("Berlin",
-                                    style: TextStyle(color: Colors.white)),
-                                Container(margin: EdgeInsets.only(top: 11)),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16)),
+                                Container(margin: EdgeInsets.only(top: 9)),
                                 Text("Amsterdam",
-                                    style: TextStyle(color: Colors.white)),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16)),
                               ],
                             ),
                           ),
@@ -481,24 +482,28 @@ class _MapFragmentState extends State<MapFragment> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Container(margin: EdgeInsets.only(top: 8)),
+                                Container(margin: EdgeInsets.only(top: 6)),
                                 Row(
                                   children: <Widget>[
                                     Text("4",
-                                        style: TextStyle(color: Colors.white)),
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 16)),
                                     Text(" guests",
-                                        style:
-                                        TextStyle(color: Colors.grey[500]))
+                                        style: TextStyle(
+                                            color: Colors.grey[500],
+                                            fontSize: 14))
                                   ],
                                 ),
                                 Container(margin: EdgeInsets.only(top: 10)),
                                 Row(
                                   children: <Widget>[
                                     Text("2350",
-                                        style: TextStyle(color: Colors.white)),
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 16)),
                                     Text("\$",
-                                        style:
-                                        TextStyle(color: Colors.grey[500])),
+                                        style: TextStyle(
+                                            color: Colors.grey[500],
+                                            fontSize: 14)),
                                   ],
                                 ),
                                 Container(margin: EdgeInsets.only(bottom: 30)),
@@ -523,7 +528,7 @@ class _MapFragmentState extends State<MapFragment> {
                             child: Column(
                               children: <Widget>[
                                 Icon(Icons.check,
-                                    size: 15.0, color: Colors.white),
+                                    size: 14.0, color: Colors.white),
                                 Container(margin: EdgeInsets.only(top: 13)),
                                 Icon(Icons.check,
                                     size: 15.0, color: Colors.white),
@@ -538,4 +543,5 @@ class _MapFragmentState extends State<MapFragment> {
                 ),
               ),
             )));
-  }}
+  }
+}

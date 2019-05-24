@@ -1,6 +1,7 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../fragments/preferences.dart';
+import '../app.dart';
 import 'add_histori_dialog.dart';
 import 'Histori.dart';
 import 'home_presenter.dart';
@@ -11,12 +12,11 @@ class HistoriList extends StatelessWidget {
   DatabaseHelper db = new DatabaseHelper();
   HomePresenter homePresenter;
 
-
   HistoriList(
-      List<Histori> this.country,
-      HomePresenter this.homePresenter, {
-        Key key,
-      }) : super(key: key);
+    List<Histori> this.country,
+    HomePresenter this.homePresenter, {
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,36 +24,50 @@ class HistoriList extends StatelessWidget {
         itemCount: country == null ? 0 : country.length,
         itemBuilder: (BuildContext context, int index) {
           return new Card(
+              child: MaterialButton(
+            color: Colors.white,
+            splashColor: Colors.white,
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  SlideRightRoute(
+                      widget: Preferences(
+                          startPoint: country[index].startPoint,
+                          endPoint: country[index].endPoint,
+                          budget: country[index].maxBudget,
+                          numberOfGuests: country[index].numberOfGuests,
+                          departureDate: country[index].departureDate,
+                          arivalDate: country[index].arriveDate)));
+            },
             child: new Container(
+                color: Colors.white,
                 child: new Center(
                   child: new Row(
                     children: <Widget>[
-                          new Image.asset(
-                            'assets/image/trevel.png',
-                            height: 45,
-                            width: 45,
-                          ),
+                      new Image.asset(
+                        'assets/image/trevel.png',
+                        height: 45,
+                        width: 45,
+                      ),
                       new Expanded(
                         child: new Padding(
                           padding: EdgeInsets.all(20.0),
                           child: new Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                             new Text(
-                                 country[index].endPoint,
-                            textAlign: TextAlign.center,
+                              new Text(
+                                country[index].endPoint,
+                                textAlign: TextAlign.center,
                                 style: new TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20.0,
                                     color: Colors.black),
-
                               ),
                               new Text(
-                               "Start Point: " + country[index].startPoint,
+                                "Start Point: " + country[index].startPoint,
                                 // set some style to text
                                 style: new TextStyle(
-                                    fontSize: 15.0,
-                                    color: Colors.black),
+                                    fontSize: 15.0, color: Colors.black),
                               ),
                               new Text(
                                 "Destination: " + country[index].endPoint,
@@ -68,7 +82,8 @@ class HistoriList extends StatelessWidget {
                                     fontSize: 15.0, color: Colors.black),
                               ),
                               new Text(
-                                "Departure Date: " + country[index].departureDate ,
+                                "Departure Date: " +
+                                    country[index].departureDate,
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 15.0, color: Colors.black),
@@ -80,7 +95,8 @@ class HistoriList extends StatelessWidget {
                                     fontSize: 15.0, color: Colors.black),
                               ),
                               new Text(
-                                "Number Of Guests: " + country[index].numberOfGuests,
+                                "Number Of Guests: " +
+                                    country[index].numberOfGuests,
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 15.0, color: Colors.black),
@@ -104,11 +120,11 @@ class HistoriList extends StatelessWidget {
                   ),
                 ),
                 padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
-          );
+          ));
         });
   }
 
-  displayRecord()  {
+  displayRecord() {
     homePresenter.updateScreen();
   }
 
