@@ -10,6 +10,8 @@ import 'package:flutter_range_slider/flutter_range_slider.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:intl/intl.dart';
 import '../screens/db_create_histori.dart';
+import 'package:flutter_xlider/flutter_xlider.dart';
+import 'package:intl/intl.dart' as intl;
 
 final teFirstName = TextEditingController();
 final teLastFirstName = TextEditingController();
@@ -19,6 +21,7 @@ class Preferences extends StatefulWidget {
   const Preferences(
       {this.startPoint,
       this.endPoint,
+      //this.minBudget,
       this.budget,
       this.numberOfGuests,
       this.departureDate,
@@ -26,6 +29,7 @@ class Preferences extends StatefulWidget {
 
   final String startPoint;
   final String endPoint;
+  //final String minBudget;
   final String budget;
   final String numberOfGuests;
   final String departureDate;
@@ -50,8 +54,6 @@ class _PreferencesState extends State<Preferences> {
   String endPointLat = '';
   String endPointLng = '';
 
-  String minBudget = '';
-  String maxBudget = '';
   String numberOfGuests = '';
 
   int houseTypeInt;
@@ -105,9 +107,13 @@ class _PreferencesState extends State<Preferences> {
       controllerStart.text = widget.startPoint;
       controllerEnd.text = widget.endPoint;
       _selectedLocation = widget.numberOfGuests;
-      //rangeSliders[0].upperValue = double.parse(widget.budget);
+      //_lowerValue = double.parse(widget.minBudget);
+      _upperValue = double.parse(widget.budget);//змінити на maxBudget
       calendarData = "${widget.departureDate} - ${widget.arivalDate}";
     }
+
+    minBudget = _lowerValue.toInt();
+    maxBudget = _upperValue.toInt();
 
     rangeSliders = _rangeSliderDefinitions();
     if (houseTypeInt == 0) {
@@ -771,18 +777,97 @@ class _PreferencesState extends State<Preferences> {
     );
   }
 
+  double _lowerValue = 500;
+  double _upperValue = 800;
+
+  int minBudget;
+  int maxBudget;
+
   Widget budgetSlider() {
-    return new Container(
-      child:
-      new Column(children: <Widget>[]..addAll(_buildRangeSliders())),
-    );
+    return Container(
+        width: double.infinity,
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text("Budget:", style: TextStyle(color: Colors.grey)),
+                Text("\$${minBudget.toString()} - ${maxBudget.toString()}",
+                    style: TextStyle(color: Colors.grey)),
+              ],
+            ),
+            FlutterSlider(
+              values: [500, 800],
+              rangeSlider: true,
+              //maximumDistance: 1000,
+              max: 3000,
+              min: 100,
+              step: 10,
+              jump: true,
+              //minimumDistance: 20,
+              trackBar: FlutterSliderTrackBar(
+                  activeTrackBarColor: Color.fromRGBO(171, 201, 248, 1),
+                  activeTrackBarHeight: 25,
+                  inactiveTrackBarColor: Colors.white,
+                  inactiveTrackBarHeight: 25),
+              tooltip: FlutterSliderTooltip(
+                textStyle: TextStyle(
+                    fontSize: 17, color: Color.fromRGBO(2, 94, 231, 1)),
+                numberFormat: intl.NumberFormat(),
+              ),
+              handler: FlutterSliderHandler(
+                decoration: BoxDecoration(),
+                child: Material(
+                  borderRadius: BorderRadius.circular(10.0),
+                  type: MaterialType.canvas,
+                  color: Color.fromRGBO(2, 94, 231, 1),
+                  elevation: 10,
+                  child: Container(
+                      padding: EdgeInsets.all(5),
+                      child: Icon(
+                        Icons.adjust,
+                        size: 30,
+                        color: Color.fromRGBO(2, 94, 231, 1),
+                      )),
+                ),
+              ),
+              rightHandler: FlutterSliderHandler(
+                child: Material(
+                  borderRadius: new BorderRadius.circular(10.0),
+                  type: MaterialType.canvas,
+                  color: Color.fromRGBO(2, 94, 231, 1),
+                  elevation: 10,
+                  child: Container(
+                      padding: EdgeInsets.all(5),
+                      child: Icon(
+                        Icons.adjust,
+                        size: 30,
+                        color: Color.fromRGBO(2, 94, 231, 1),
+                      )),
+                ),
+              ),
+              disabled: false,
+              onDragging: (handlerIndex, lowerValue, upperValue) {
+                _lowerValue = lowerValue;
+                _upperValue = upperValue;
+                setState(() {
+                  minBudget = _lowerValue.toInt();
+                  maxBudget = _upperValue.toInt();
+                });
+              },
+            ),
+          ],
+        ));
   }
 
   Widget numberOfGuestsField() {
     return DropdownButton(
       style: TextStyle(color: Colors.black),
       iconEnabledColor: Color.fromRGBO(2, 94, 231, 1),
-      hint: Text('Number of guests'),
+      hint: Text(
+        'Number of guests',
+        style: TextStyle(color: Colors.grey),
+      ),
       value: _selectedLocation,
       onChanged: (newValue) {
         setState(() {
@@ -934,7 +1019,6 @@ class _PreferencesState extends State<Preferences> {
                 if (isFilledStart && isFilledEnd) {
                   formKey.currentState.save();
 
-
                   //Розкоментити коли клас History і базу буде змінено під структуру яка знизу
                   Histori histori = new Histori(
                     startPoint,
@@ -943,9 +1027,10 @@ class _PreferencesState extends State<Preferences> {
                     endPoint,
                     //endPointLat,
                     //endPointLng,
-                    rangeSliders[0].lowerValue.round().toString(),
-                    rangeSliders[0].upperValue.round().toString(),
+                    minBudget.toString(),
+                    maxBudget.toString(),
                     numberOfGuests,
+                    //houseType,
                     DateFormat.yMMMd().format(_departDate),
                     DateFormat.yMMMd().format(_arriveDate),
                   );
@@ -955,9 +1040,9 @@ class _PreferencesState extends State<Preferences> {
                   await databaseHelper.saveHistori(histori);
 
                   print('Start point: $startPoint, endpoint: $endPoint, '
-                      'min budget: ${rangeSliders[0].lowerValue.round()}, '
-                      'max budget: ${rangeSliders[0].upperValue.round()}, '
-                      'number of guests: $_selectedLocation, '
+                      'min budget: ${minBudget.toString()}, '
+                      'max budget: ${maxBudget.toString()}, '
+                      'number of guests: $numberOfGuests, '
                       'type of house: $houseType, '
                       'departure date: ${DateFormat.yMMMd().format(_departDate)}, '
                       'arrive date: ${DateFormat.yMMMd().format(_arriveDate)}');

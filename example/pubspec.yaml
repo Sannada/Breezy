@@ -13,6 +13,7 @@ dependencies:
   date_format: ^1.0.6
   intl: ^0.15.8
   autocomplete_textfield: ^1.6.4
+  flutter_xlider: ^2.4.3
 
   font_awesome_flutter: ^8.2.0
   cupertino_icons: ^0.1.2
