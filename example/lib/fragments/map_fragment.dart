@@ -9,8 +9,16 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart';
 
 class MapFragment extends StatefulWidget {
-  const MapFragment(this.startPoint, this.startPointLat, this.startPointLng,
-      this.endPoint, this.endPointLat, this.endPointLng, this.isChangeText);
+  const MapFragment(
+      this.startPoint,
+      this.startPointLat,
+      this.startPointLng,
+      this.endPoint,
+      this.endPointLat,
+      this.endPointLng,
+      this.numberOfGuests,
+      this.budget,
+      this.isChangeText);
 
   final String startPoint;
   final String startPointLat;
@@ -18,6 +26,8 @@ class MapFragment extends StatefulWidget {
   final String endPoint;
   final String endPointLat;
   final String endPointLng;
+  final String numberOfGuests;
+  final String budget;
   final bool isChangeText;
 
   @override
@@ -49,6 +59,8 @@ class _MapFragmentState extends State<MapFragment> {
     if (!widget.isChangeText) {
       _add(double.parse(widget.startPointLat),
           double.parse(widget.startPointLng), widget.startPoint);
+      _add(double.parse('52.52437'),
+          double.parse('13.41053'), 'Berlin');
       _add(double.parse(widget.endPointLat), double.parse(widget.endPointLng),
           widget.endPoint);
 
@@ -194,13 +206,13 @@ class _MapFragmentState extends State<MapFragment> {
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(
                   border: Border.all(width: 0.0, color: Colors.white)),
-              accountName: Text("Maksym Levytskyi"),
-              accountEmail: Text("mr.lewmax@gmail.com"),
+              accountName: Text("Elon Musk"),
+              accountEmail: Text("elonmusk@gmail.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Color.fromRGBO(2, 94, 231, 1),
                 radius: 100.0,
                 child: Text(
-                  "M",
+                  "E",
                   style: TextStyle(fontSize: 30.0, color: Colors.white),
                 ),
               ),
@@ -208,26 +220,21 @@ class _MapFragmentState extends State<MapFragment> {
             new Column(
               children: <Widget>[
                 new ListTile(
-                    title: new Text("Filter"),
-                    trailing: new Icon(Icons.filter_list),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed('/preferences');
-                    }),
-                new ListTile(
-                    title: new Text("Trip details"),
-                    trailing: new Icon(Icons.location_on),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed('/route_details');
-                    }),
-                new ListTile(
                     title: new Text("Travel History"),
                     trailing: new Icon(Icons.access_time),
                     onTap: () {
                       Navigator.of(context).pop();
                       Navigator.of(context).pushNamed('/db_fragment');
                     }),
+                new ListTile(
+                    title: new Text("Settings"),
+                    trailing: new Icon(Icons.settings),
+                    onTap: () {}),
+                Divider(),
+                new ListTile(
+                    title: new Text("Sing In"),
+                    trailing: new Icon(FontAwesomeIcons.signInAlt),
+                    onTap: () {}),
                 widget.isChangeText
                     ? Text("")
                     : new ListTile(
@@ -248,7 +255,7 @@ class _MapFragmentState extends State<MapFragment> {
         child: Stack(
           children: <Widget>[
             googleMap = GoogleMap(
-              myLocationButtonEnabled: true,
+              myLocationButtonEnabled: false,
               myLocationEnabled: true,
               mapType: _currentMapType,
               markers: Set<Marker>.of(markers.values),
@@ -318,9 +325,7 @@ class _MapFragmentState extends State<MapFragment> {
                                       color: Colors.white,
                                     ),
                               Text(
-                                widget.isChangeText
-                                    ? "Plan a Trip"
-                                    : "Back to Route Details",
+                                widget.isChangeText ? "Plan a Trip" : "Back",
                                 style: TextStyle(color: Colors.white),
                                 textAlign: TextAlign.left,
                               ),
@@ -448,7 +453,7 @@ class _MapFragmentState extends State<MapFragment> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Container(margin: EdgeInsets.only(top: 5)),
-                                Text("Lviv",
+                                Text(widget.startPoint,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16)),
                                 Container(margin: EdgeInsets.only(top: 9)),
@@ -456,7 +461,7 @@ class _MapFragmentState extends State<MapFragment> {
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16)),
                                 Container(margin: EdgeInsets.only(top: 9)),
-                                Text("Amsterdam",
+                                Text(widget.endPoint,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16)),
                               ],
@@ -485,7 +490,7 @@ class _MapFragmentState extends State<MapFragment> {
                                 Container(margin: EdgeInsets.only(top: 6)),
                                 Row(
                                   children: <Widget>[
-                                    Text("4",
+                                    Text(widget.numberOfGuests,
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 16)),
                                     Text(" guests",
@@ -497,7 +502,7 @@ class _MapFragmentState extends State<MapFragment> {
                                 Container(margin: EdgeInsets.only(top: 10)),
                                 Row(
                                   children: <Widget>[
-                                    Text("2350",
+                                    Text(widget.budget,
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 16)),
                                     Text("\$",

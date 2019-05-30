@@ -8,6 +8,8 @@ class HomePage extends StatefulWidget {
   final String endPoint = '';
   final String endPointLat = '';
   final String endPointLng = '';
+  final String budget = '';
+  final String numberOfGuests = '';
   final bool isChangeText = true;
 
   @override
@@ -27,6 +29,8 @@ class HomePageState extends State<HomePage> {
           widget.endPoint,
           widget.endPointLat,
           widget.endPointLng,
+          widget.numberOfGuests,
+          widget.budget,
           widget.isChangeText
       ),
     );

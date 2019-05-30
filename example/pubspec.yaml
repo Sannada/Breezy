@@ -50,6 +50,7 @@ flutter:
   assets:
     - assets/cities.json
     - assets/image/trevel.png
+    - assets/image/1.1.jpeg
   # assets:
   #  - packages/PACKAGE_NAME/path/to/asset
 
