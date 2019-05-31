@@ -1,4 +1,5 @@
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'route_details.dart';
 import 'package:location_example/screens/players.dart';
 import '../app.dart';
@@ -321,10 +322,6 @@ class _PreferencesState extends State<Preferences> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Filter"),
-      ),
-      drawer: NewDrawer(),
       floatingActionButton: submitButton(),
       body: Container(
         decoration: BoxDecoration(color: Color.fromRGBO(241, 241, 245, 1)),
@@ -890,15 +887,15 @@ class _PreferencesState extends State<Preferences> {
   Widget buildHouseTypeBar() {
     final _kTapPages = <Widget>[
       Tab(
-        icon: Icon(Icons.cloud, size: 35.0, color: mainColor1),
+        icon: Icon(Icons.business, size: 35.0, color: mainColor1),
         text: "All",
       ),
       Tab(
-        icon: Icon(Icons.alarm, size: 35.0, color: mainColor2),
+        icon: Icon(FontAwesomeIcons.home, size: 35.0, color: mainColor2),
         text: "Houses",
       ),
       Tab(
-        icon: Icon(Icons.forum, size: 35.0, color: mainColor3),
+        icon: Icon(FontAwesomeIcons.building, size: 35.0, color: mainColor3),
         text: "Hotels",
       ),
     ];
@@ -980,11 +977,11 @@ class _PreferencesState extends State<Preferences> {
                 //Розкоментити коли клас History і базу буде змінено під структуру яка знизу
                 Histori histori = new Histori(
                   startPoint,
-                  startPointLat,
-                  startPointLng,
+                  //startPointLat,
+                  //startPointLng,
                   endPoint,
-                  endPointLat,
-                  endPointLng,
+                  //endPointLat,
+                  //endPointLng,
                   minBudget.toString(),
                   maxBudget.toString(),
                   numberOfGuests,
@@ -1016,10 +1013,7 @@ class _PreferencesState extends State<Preferences> {
                             endPointLat: endPointLat,
                             endPointLng: endPointLng,
                             budget: maxBudget.toString(),
-                            numberOfGuests: numberOfGuests
-                        )
-                    )
-                );
+                            numberOfGuests: numberOfGuests)));
               },
             )));
   }

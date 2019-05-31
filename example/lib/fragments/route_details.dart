@@ -31,10 +31,6 @@ class _RouteDetailsState extends State<RouteDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("hi"),
-        ),
-        drawer: NewDrawer(),
         floatingActionButton: goToMapButton(),
         body: Container(
           decoration: BoxDecoration(color: Color.fromRGBO(241, 241, 245, 1)),

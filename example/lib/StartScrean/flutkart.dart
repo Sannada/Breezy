@@ -10,7 +10,7 @@ class Flutkart {
   static const String wt3 = "Editing the route";
   static const String wc3 =
       "While building the route AnyWay\nwill suggestoptimal route\ntaking into account your budget and time";
-  static const String wt4 = "Travel around the world";
+  static const String wt4 = "Подорожуй по всьому світу";
   static const String wc4 =
       "The AnyWay build route according to your preferences and budget\nThat saves your time and money";
   static const String skip = "Skip";

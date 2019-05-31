@@ -29,7 +29,7 @@ class DatabaseHelper {
   void _onCreate(Database db, int version) async {
     // When creating the db, create the table
     await db.execute(
-        "CREATE TABLE Histori(id INTEGER PRIMARY KEY, startPoint TEXT, startPointLat TEXT, startPointLng TEXT, endPoint TEXT, endPointLat TEXT, endPointLng TEXT, minBudget TEXT, maxBudget TEXT, numberOfGuests TEXT, departureDate TEXT, arriveDate TEXT)");
+        "CREATE TABLE Histori(id INTEGER PRIMARY KEY, startPoint TEXT, endPoint TEXT, minBudget TEXT, maxBudget TEXT, numberOfGuests TEXT, departureDate TEXT, arriveDate TEXT)");
   }
 
   Future<int> saveHistori(Histori histori) async {
@@ -44,7 +44,7 @@ class DatabaseHelper {
     List<Histori> employees = new List();
     for (int i = 0; i < list.length; i++) {
       var histori =
-      new Histori(list[i]["startPoint"], list[i]["startPointLat"], list[i]["startPointLng"], list[i]["endPoint"], list[i]["endPointLat"], list[i]["endPointLng"], list[i]["minBudget"], list[i]["maxBudget"],
+      new Histori(list[i]["startPoint"], list[i]["endPoint"], list[i]["minBudget"], list[i]["maxBudget"],
           list[i]["numberOfGuests"], list[i]["departureDate"], list[i]["arriveDate"]);
       histori.setHistoriId(list[i]["id"]);
       employees.add(histori);
