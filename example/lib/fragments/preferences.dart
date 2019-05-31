@@ -10,12 +10,31 @@ import 'package:flutter_range_slider/flutter_range_slider.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:intl/intl.dart';
 import '../screens/db_create_histori.dart';
+import 'package:flutter_xlider/flutter_xlider.dart';
+import 'package:intl/intl.dart' as intl;
 
 final teFirstName = TextEditingController();
 final teLastFirstName = TextEditingController();
 final teDOB = TextEditingController();
 
 class Preferences extends StatefulWidget {
+  const Preferences(
+      {this.startPoint,
+      this.endPoint,
+      //this.minBudget,
+      this.budget,
+      this.numberOfGuests,
+      this.departureDate,
+      this.arivalDate});
+
+  final String startPoint;
+  final String endPoint;
+  //final String minBudget;
+  final String budget;
+  final String numberOfGuests;
+  final String departureDate;
+  final String arivalDate;
+
   @override
   _PreferencesState createState() => _PreferencesState();
 }
@@ -35,8 +54,6 @@ class _PreferencesState extends State<Preferences> {
   String endPointLat = '';
   String endPointLng = '';
 
-  String minBudget = '';
-  String maxBudget = '';
   String numberOfGuests = '';
 
   int houseTypeInt;
@@ -85,6 +102,19 @@ class _PreferencesState extends State<Preferences> {
   @override
   void initState() {
     super.initState();
+    //rangeSliders[0].setUpperText(300.0);
+    if (widget.startPoint != null && widget.endPoint != null) {
+      controllerStart.text = widget.startPoint;
+      controllerEnd.text = widget.endPoint;
+      _selectedLocation = widget.numberOfGuests;
+      //_lowerValue = double.parse(widget.minBudget);
+      _upperValue = double.parse(widget.budget);//змінити на maxBudget
+      calendarData = "${widget.departureDate} - ${widget.arivalDate}";
+    }
+
+    minBudget = _lowerValue.toInt();
+    maxBudget = _upperValue.toInt();
+
     rangeSliders = _rangeSliderDefinitions();
     if (houseTypeInt == 0) {
       mainColor1 = color1;
@@ -114,12 +144,13 @@ class _PreferencesState extends State<Preferences> {
   ]; // Option 2
   String _selectedLocation;
 
-  bool _value1 = false;
+  //bool _value1 = false;
   bool _value2 = false;
   bool _value3 = false;
   bool _value4 = false;
   bool _value5 = false;
-  bool _value6 = false;
+
+  //bool _value6 = false;
   bool _value7 = false;
   bool _value8 = false;
   bool _value9 = false;
@@ -140,12 +171,14 @@ class _PreferencesState extends State<Preferences> {
   bool _value24 = false;
   bool _value25 = false;
   bool _value26 = false;
-  bool _value27 = false;
+
+  //bool _value27 = false;
   bool _value28 = false;
   bool _value29 = false;
   bool _value30 = false;
   bool _value31 = false;
-  bool _value32 = false;
+
+  //bool _value32 = false;
   bool _value33 = false;
   bool _value34 = false;
   bool _value35 = false;
@@ -162,7 +195,8 @@ class _PreferencesState extends State<Preferences> {
   bool _value46 = false;
   bool _value47 = false;
   bool _value48 = false;
-  bool _value49 = false;
+
+  //bool _value49 = false;
   bool _value50 = false;
   bool _value51 = false;
   bool _value52 = false;
@@ -182,7 +216,7 @@ class _PreferencesState extends State<Preferences> {
   bool _value66 = false;
   bool _value67 = false;
 
-  void _value1Changed(bool value) => setState(() => _value1 = value);
+  //void _value1Changed(bool value) => setState(() => _value1 = value);
 
   void _value2Changed(bool value) => setState(() => _value2 = value);
 
@@ -192,7 +226,7 @@ class _PreferencesState extends State<Preferences> {
 
   void _value5Changed(bool value) => setState(() => _value5 = value);
 
-  void _value6Changed(bool value) => setState(() => _value6 = value);
+  //void _value6Changed(bool value) => setState(() => _value6 = value);
 
   void _value7Changed(bool value) => setState(() => _value7 = value);
 
@@ -234,7 +268,7 @@ class _PreferencesState extends State<Preferences> {
 
   void _value26Changed(bool value) => setState(() => _value26 = value);
 
-  void _value27Changed(bool value) => setState(() => _value27 = value);
+  //void _value27Changed(bool value) => setState(() => _value27 = value);
 
   void _value28Changed(bool value) => setState(() => _value28 = value);
 
@@ -244,7 +278,7 @@ class _PreferencesState extends State<Preferences> {
 
   void _value31Changed(bool value) => setState(() => _value31 = value);
 
-  void _value32Changed(bool value) => setState(() => _value32 = value);
+  //void _value32Changed(bool value) => setState(() => _value32 = value);
 
   void _value33Changed(bool value) => setState(() => _value33 = value);
 
@@ -278,7 +312,7 @@ class _PreferencesState extends State<Preferences> {
 
   void _value48Changed(bool value) => setState(() => _value48 = value);
 
-  void _value49Changed(bool value) => setState(() => _value49 = value);
+  //void _value49Changed(bool value) => setState(() => _value49 = value);
 
   void _value50Changed(bool value) => setState(() => _value50 = value);
 
@@ -316,17 +350,14 @@ class _PreferencesState extends State<Preferences> {
 
   void _value67Changed(bool value) => setState(() => _value67 = value);
 
-  double _value = 0.0;
-
-  void _setvalue(double value) => setState(() => _value = value);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Filter"),
       ),
-      endDrawer: NewDrawer(),
+      drawer: NewDrawer(),
+      floatingActionButton: submitButton(),
       body: Container(
         decoration: BoxDecoration(color: Color.fromRGBO(241, 241, 245, 1)),
         child: ListView(
@@ -522,7 +553,6 @@ class _PreferencesState extends State<Preferences> {
                           ),
                         ],
                       ),
-                      submitButton(),
                     ],
                   ),
                 ))
@@ -532,8 +562,17 @@ class _PreferencesState extends State<Preferences> {
     );
   }
 
+  @override
+  void dispose() {
+    // Clean up the controller when the Widget is removed from the Widget tree
+    controllerStart.dispose();
+    controllerEnd.dispose();
+    super.dispose();
+  }
+
   AutoCompleteTextField searchStartPoint;
-  TextEditingController controller = new TextEditingController();
+  TextEditingController controllerStart = new TextEditingController();
+  TextEditingController controllerEnd = new TextEditingController();
   GlobalKey<AutoCompleteTextFieldState<Players>> keyStart = new GlobalKey();
 
   bool isVisibleForStart = true;
@@ -541,6 +580,9 @@ class _PreferencesState extends State<Preferences> {
   void _loadData() async {
     await PlayersViewModel.loadPlayers();
   }
+
+  bool isFilledStart = false;
+  bool isFilledEnd = false;
 
   Widget startPointField() {
     return Container(
@@ -562,6 +604,7 @@ class _PreferencesState extends State<Preferences> {
             color: Colors.white),
         child: searchStartPoint = AutoCompleteTextField<Players>(
           key: keyStart,
+          controller: controllerStart,
           suggestions: PlayersViewModel.players,
           clearOnSubmit: false,
           submitOnSuggestionTap: true,
@@ -596,6 +639,7 @@ class _PreferencesState extends State<Preferences> {
                 .startsWith(query.toLowerCase());
           },
           itemSorter: (a, b) {
+            isFilledStart = false;
             return a.autocompleteterm.compareTo(b.autocompleteterm);
           },
           itemSubmitted: (item) async {
@@ -606,6 +650,7 @@ class _PreferencesState extends State<Preferences> {
 
               startPointLat = item.lat.toString();
               startPointLng = item.lng.toString();
+              isFilledStart = true;
             });
           },
           style: new TextStyle(color: Colors.black, fontSize: 16.0),
@@ -663,6 +708,7 @@ class _PreferencesState extends State<Preferences> {
             color: Colors.white),
         child: searchEndPoint = AutoCompleteTextField<Players>(
           key: keyEnd,
+          controller: controllerEnd,
           suggestions: PlayersViewModel.players,
           clearOnSubmit: false,
           submitOnSuggestionTap: true,
@@ -697,6 +743,7 @@ class _PreferencesState extends State<Preferences> {
                 .startsWith(query.toLowerCase());
           },
           itemSorter: (a, b) {
+            isFilledEnd = false;
             return a.autocompleteterm.compareTo(b.autocompleteterm);
           },
           itemSubmitted: (item) async {
@@ -706,6 +753,7 @@ class _PreferencesState extends State<Preferences> {
 
               endPointLat = item.lat.toString();
               endPointLng = item.lng.toString();
+              isFilledEnd = true;
             });
           },
           style: new TextStyle(color: Colors.black, fontSize: 16.0),
@@ -729,17 +777,97 @@ class _PreferencesState extends State<Preferences> {
     );
   }
 
+  double _lowerValue = 500;
+  double _upperValue = 800;
+
+  int minBudget;
+  int maxBudget;
+
   Widget budgetSlider() {
-    return new Container(
-      child: new Column(children: <Widget>[]..addAll(_buildRangeSliders())),
-    );
+    return Container(
+        width: double.infinity,
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text("Budget:", style: TextStyle(color: Colors.grey)),
+                Text("\$${minBudget.toString()} - ${maxBudget.toString()}",
+                    style: TextStyle(color: Colors.grey)),
+              ],
+            ),
+            FlutterSlider(
+              values: [500, 800],
+              rangeSlider: true,
+              //maximumDistance: 1000,
+              max: 3000,
+              min: 100,
+              step: 10,
+              jump: true,
+              //minimumDistance: 20,
+              trackBar: FlutterSliderTrackBar(
+                  activeTrackBarColor: Color.fromRGBO(171, 201, 248, 1),
+                  activeTrackBarHeight: 25,
+                  inactiveTrackBarColor: Colors.white,
+                  inactiveTrackBarHeight: 25),
+              tooltip: FlutterSliderTooltip(
+                textStyle: TextStyle(
+                    fontSize: 17, color: Color.fromRGBO(2, 94, 231, 1)),
+                numberFormat: intl.NumberFormat(),
+              ),
+              handler: FlutterSliderHandler(
+                decoration: BoxDecoration(),
+                child: Material(
+                  borderRadius: BorderRadius.circular(10.0),
+                  type: MaterialType.canvas,
+                  color: Color.fromRGBO(2, 94, 231, 1),
+                  elevation: 10,
+                  child: Container(
+                      padding: EdgeInsets.all(5),
+                      child: Icon(
+                        Icons.adjust,
+                        size: 30,
+                        color: Color.fromRGBO(2, 94, 231, 1),
+                      )),
+                ),
+              ),
+              rightHandler: FlutterSliderHandler(
+                child: Material(
+                  borderRadius: new BorderRadius.circular(10.0),
+                  type: MaterialType.canvas,
+                  color: Color.fromRGBO(2, 94, 231, 1),
+                  elevation: 10,
+                  child: Container(
+                      padding: EdgeInsets.all(5),
+                      child: Icon(
+                        Icons.adjust,
+                        size: 30,
+                        color: Color.fromRGBO(2, 94, 231, 1),
+                      )),
+                ),
+              ),
+              disabled: false,
+              onDragging: (handlerIndex, lowerValue, upperValue) {
+                _lowerValue = lowerValue;
+                _upperValue = upperValue;
+                setState(() {
+                  minBudget = _lowerValue.toInt();
+                  maxBudget = _upperValue.toInt();
+                });
+              },
+            ),
+          ],
+        ));
   }
 
   Widget numberOfGuestsField() {
     return DropdownButton(
       style: TextStyle(color: Colors.black),
-      //iconEnabledColor: Color.fromRGBO(2, 94, 231, 1),
-      hint: Text('Number of guests'),
+
+      hint: Text(
+        'Number of guests',
+        style: TextStyle(color: Colors.grey),
+      ),
       value: _selectedLocation,
       onChanged: (newValue) {
         setState(() {
@@ -877,53 +1005,61 @@ class _PreferencesState extends State<Preferences> {
   }
 
   Widget submitButton() {
-    return RaisedButton(
-      shape: new RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(10.0)),
-      color: Color.fromRGBO(2, 94, 231, 1),
-      child: Text('Submit', style: TextStyle(color: Colors.white)),
-      onPressed: () async {
-        if (formKey.currentState.validate()) {
-          formKey.currentState.save();
+    return Align(
+        alignment: Alignment.bottomRight,
+        child: SizedBox(
+            width: 70,
+            height: 50,
+            child: FloatingActionButton(
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0)),
+              backgroundColor: Color.fromRGBO(2, 94, 231, 1),
+              child: Text('Submit', style: TextStyle(color: Colors.white)),
+              onPressed: () async {
+                if (isFilledStart && isFilledEnd) {
+                  formKey.currentState.save();
 
-          Histori histori = new Histori(
-              startPoint,
-              endPoint,
-              rangeSliders[0].lowerValue.round().toString(),
-              rangeSliders[0].upperValue.round().toString(),
-              numberOfGuests,
-              DateFormat.yMMMd().format(_departDate),
-              DateFormat.yMMMd().format(_arriveDate));
+                  //Розкоментити коли клас History і базу буде змінено під структуру яка знизу
+                  Histori histori = new Histori(
+                    startPoint,
+                    //startPointLat,
+                    //startPointLng,
+                    endPoint,
+                    //endPointLat,
+                    //endPointLng,
+                    minBudget.toString(),
+                    maxBudget.toString(),
+                    numberOfGuests,
+                    //houseType,
+                    DateFormat.yMMMd().format(_departDate),
+                    DateFormat.yMMMd().format(_arriveDate),
+                  );
 
-          DatabaseHelper databaseHelper = new DatabaseHelper();
+                  DatabaseHelper databaseHelper = new DatabaseHelper();
 
-          await databaseHelper.saveHistori(histori);
+                  await databaseHelper.saveHistori(histori);
 
-          print('Start point: $startPoint, endpoint: $endPoint, '
-              'min budget: ${rangeSliders[0].lowerValue.round()}, '
-              'max budget: ${rangeSliders[0].upperValue.round()}, '
-              'number of guests: $_selectedLocation, '
-              'type of house: $houseType, '
-              'departure date: ${DateFormat.yMMMd().format(_departDate)}, '
-              'arrive date: ${DateFormat.yMMMd().format(_arriveDate)}'
-          );
+                  print('Start point: $startPoint, endpoint: $endPoint, '
+                      'min budget: ${minBudget.toString()}, '
+                      'max budget: ${maxBudget.toString()}, '
+                      'number of guests: $numberOfGuests, '
+                      'type of house: $houseType, '
+                      'departure date: ${DateFormat.yMMMd().format(_departDate)}, '
+                      'arrive date: ${DateFormat.yMMMd().format(_arriveDate)}');
 
-          Navigator.push(
-              context,
-              SlideRightRoute(
-                  widget: RouteDetails(
-                      startPoint: startPoint,
-                      startPointLat: startPointLat,
-                      startPointLng: startPointLng,
-                      endPoint: endPoint,
-                      endPointLat: endPointLat,
-                      endPointLng: endPointLng
-                  )
-              )
-          );
-        }
-      },
-    );
+                  Navigator.push(
+                      context,
+                      SlideRightRoute(
+                          widget: RouteDetails(
+                              startPoint: startPoint,
+                              startPointLat: startPointLat,
+                              startPointLng: startPointLng,
+                              endPoint: endPoint,
+                              endPointLat: endPointLat,
+                              endPointLng: endPointLng)));
+                }
+              },
+            )));
   }
 }
 
@@ -970,8 +1106,16 @@ class RangeSliderData {
   String get lowerValueText =>
       lowerValue.toStringAsFixed(valueIndicatorMaxDecimals);
 
+  setLowerText(double text) {
+    this.lowerValue = text;
+  }
+
   String get upperValueText =>
       upperValue.toStringAsFixed(valueIndicatorMaxDecimals);
+
+  setUpperText(double text) {
+    this.upperValue = text;
+  }
 
   Widget build(BuildContext context, RangeSliderCallback callback) {
     return new Column(

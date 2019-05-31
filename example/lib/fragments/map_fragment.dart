@@ -1,8 +1,8 @@
 import 'dart:math';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:location/location.dart';
 import '../app.dart';
 import '../fragments/preferences.dart';
-import '../screens/new_drawer.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -38,31 +38,28 @@ class _MapFragmentState extends State<MapFragment> {
   Completer<GoogleMapController> _controller = Completer();
   CameraPosition _initialCamera;
 
-  CameraPosition _currentCameraPosition;
-
   GoogleMap googleMap;
 
   @override
   void initState() {
     super.initState();
+
     initPlatformState();
-    if (widget.isChangeText) {
-      print("No markers were set");
-    } else {
+
+    if (!widget.isChangeText) {
       _add(double.parse(widget.startPointLat),
           double.parse(widget.startPointLng), widget.startPoint);
       _add(double.parse(widget.endPointLat), double.parse(widget.endPointLng),
           widget.endPoint);
+
+      _initialCamera = CameraPosition(
+          target: LatLng(double.parse(widget.startPointLat),
+              double.parse(widget.startPointLng)),
+          zoom: 10);
+    } else {
+      _initialCamera = CameraPosition(target: _center, zoom: 4);
+      print('No markers were set');
     }
-    widget.isChangeText
-        ? _initialCamera = CameraPosition(
-            target:
-                _center,
-            zoom: 4)
-        : _initialCamera = CameraPosition(
-            target: LatLng(double.parse(widget.startPointLat),
-                double.parse(widget.startPointLng)),
-            zoom: 10);
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -177,19 +174,76 @@ class _MapFragmentState extends State<MapFragment> {
     });
   }
 
-  void _remove() {
+  /*void _remove() {
     setState(() {
       if (markers.containsKey(selectedMarker)) {
         markers.remove(selectedMarker);
       }
     });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: NewDrawer(),
+      drawer: Drawer(
+          child: Container(
+        color: Colors.white,
+        child: new Column(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                  border: Border.all(width: 0.0, color: Colors.white)),
+              accountName: Text("Maksym Levytskyi"),
+              accountEmail: Text("mr.lewmax@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Color.fromRGBO(2, 94, 231, 1),
+                radius: 100.0,
+                child: Text(
+                  "M",
+                  style: TextStyle(fontSize: 30.0, color: Colors.white),
+                ),
+              ),
+            ),
+            new Column(
+              children: <Widget>[
+                new ListTile(
+                    title: new Text("Filter"),
+                    trailing: new Icon(Icons.filter_list),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed('/preferences');
+                    }),
+                new ListTile(
+                    title: new Text("Trip details"),
+                    trailing: new Icon(Icons.location_on),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed('/route_details');
+                    }),
+                new ListTile(
+                    title: new Text("Travel History"),
+                    trailing: new Icon(Icons.access_time),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed('/db_fragment');
+                    }),
+                widget.isChangeText
+                    ? Text("")
+                    : new ListTile(
+                        title: new Text("Show Details"),
+                        trailing: new Icon(Icons.details),
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          setState(() {
+                            isSeeable = true;
+                          });
+                        })
+              ],
+            )
+          ],
+        ),
+      )),
       body: Container(
         child: Stack(
           children: <Widget>[
@@ -204,7 +258,26 @@ class _MapFragmentState extends State<MapFragment> {
                 _controller.complete(controller);
               },
             ),
+            detailsField(),
             buildRouteButton(),
+            Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                    margin: EdgeInsets.only(top: 33.0, left: 10),
+                    child: SizedBox(
+                      width: 50,
+                      child: MaterialButton(
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(10.0)),
+                        height: 50,
+                        color: Colors.black,
+                        child: Icon(Icons.format_list_bulleted,
+                            color: Colors.white),
+                        onPressed: () {
+                          _scaffoldKey.currentState.openDrawer();
+                        },
+                      ),
+                    )))
           ],
         ),
       ),
@@ -212,76 +285,263 @@ class _MapFragmentState extends State<MapFragment> {
   }
 
   Widget buildRouteButton() {
-    return Align(
-      alignment: Alignment.bottomRight,
-      child: Container(
-        margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-        height: 60,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(
-                  color: Colors.grey, width: 0.0, style: BorderStyle.none),
-              color: Colors.black),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Expanded(
-                flex: 5,
-                child: RaisedButton(
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0)),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Text(
-                      widget.isChangeText
-                          ? "Plan a Trip"
-                          : "Back to Route Details",
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  color: Colors.black,
-                  onPressed: () {
-                    widget.isChangeText
-                        ? Navigator.push(
-                            context, SlideRightRoute(widget: Preferences()))
-                        : Navigator.pop(context);
-                  },
-                ),
-              ),
-              Expanded(
-                  child: RaisedButton(
+    return Visibility(
+        visible: !isSeeable,
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: Container(
+            margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            height: 60,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  border: Border.all(
+                      color: Colors.grey, width: 0.0, style: BorderStyle.none),
+                  color: Colors.black),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Expanded(
+                    flex: 5,
+                    child: RaisedButton(
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0)),
-                      child: Icon(
-                        Icons.near_me,
-                        color: Colors.white,
-                      ),
+                      child: SizedBox(
+                          width: double.infinity,
+                          child: Row(
+                            children: <Widget>[
+                              widget.isChangeText
+                                  ? Text('')
+                                  : Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.white,
+                                    ),
+                              Text(
+                                widget.isChangeText
+                                    ? "Plan a Trip"
+                                    : "Back to Route Details",
+                                style: TextStyle(color: Colors.white),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          )),
                       color: Colors.black,
-                      onPressed: () async {
-                        _currentCameraPosition = CameraPosition(
-                            target: LatLng(_currentLocation.latitude,
-                                _currentLocation.longitude),
-                            zoom: 16);
-
-                        final GoogleMapController controller =
-                            await _controller.future;
-                        controller.animateCamera(CameraUpdate.newCameraPosition(
-                            _currentCameraPosition));
-                      })),
-            ],
+                      onPressed: () {
+                        widget.isChangeText
+                            ? Navigator.push(
+                                context, SlideRightRoute(widget: Preferences()))
+                            : Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                  Expanded(
+                      child: RaisedButton(
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(10.0)),
+                          child: Icon(
+                            Icons.near_me,
+                            color: Colors.white,
+                          ),
+                          color: Colors.black,
+                          onPressed: () async {
+                            if (_currentLocation.latitude.toString() != null) {
+                              final GoogleMapController controller =
+                                  await _controller.future;
+                              controller.animateCamera(
+                                  CameraUpdate.newCameraPosition(CameraPosition(
+                                      target: LatLng(_currentLocation.latitude,
+                                          _currentLocation.longitude),
+                                      zoom: 16)));
+                            } else {
+                              print("Current location is not available!");
+                            }
+                          })),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
-//currentPosition = LatLng(item.lat, item.lng);
+  var containerHeight = 145.0; //48
+  bool isSeeable = false;
 
-//final GoogleMapController controller = await _controller.future;
-//controller.animateCamera(CameraUpdate.newCameraPosition(
-//                      CameraPosition(target: currentPosition, zoom: 10)));
+  Widget detailsField() {
+    return Visibility(
+        visible: isSeeable,
+        child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              margin: EdgeInsets.only(left: 10, right: 10), //75
+              height: containerHeight,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 5.0),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                          color: Colors.grey,
+                          width: 0.0,
+                          style: BorderStyle.none),
+                      color: Colors.black),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            child: RaisedButton(
+                              color: Colors.black,
+                              // Text: Route Details
+                              child: SizedBox(
+                                  width: double.infinity,
+                                  child: Text(
+                                    'Details',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                    textAlign: TextAlign.left,
+                                  )),
+                              onPressed: () {},
+                            ),
+                          ),
+                          Expanded(
+                            child: MaterialButton(
+                              //dropdown menu
+                              child: Icon(
+                                Icons.close,
+                                color: Colors.white,
+                              ),
+                              color: Colors.black,
 
+                              onPressed: () {
+                                setState(() {
+                                  isSeeable = false;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Expanded(
+                            flex: 1,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Icon(FontAwesomeIcons.mapMarkerAlt,
+                                    color: Color.fromRGBO(2, 94, 231, 1)),
+                                Container(margin: EdgeInsets.only(top: 4)),
+                                Icon(FontAwesomeIcons.mapMarkerAlt,
+                                    color: Color.fromRGBO(2, 94, 231, 1)),
+                                Container(margin: EdgeInsets.only(top: 4)),
+                                Icon(FontAwesomeIcons.mapMarkerAlt,
+                                    color: Color.fromRGBO(2, 94, 231, 1)),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(margin: EdgeInsets.only(top: 5)),
+                                Text("Lviv",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16)),
+                                Container(margin: EdgeInsets.only(top: 9)),
+                                Text("Berlin",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16)),
+                                Container(margin: EdgeInsets.only(top: 9)),
+                                Text("Amsterdam",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16)),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Column(
+                              children: <Widget>[
+                                Icon(FontAwesomeIcons.child,
+                                    color: Color.fromRGBO(2, 94, 231, 1),
+                                    size: 22),
+                                Container(margin: EdgeInsets.only(top: 4)),
+                                Icon(FontAwesomeIcons.dollarSign,
+                                    color: Color.fromRGBO(2, 94, 231, 1),
+                                    size: 22),
+                                Container(margin: EdgeInsets.only(bottom: 25)),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(margin: EdgeInsets.only(top: 6)),
+                                Row(
+                                  children: <Widget>[
+                                    Text("4",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 16)),
+                                    Text(" guests",
+                                        style: TextStyle(
+                                            color: Colors.grey[500],
+                                            fontSize: 14))
+                                  ],
+                                ),
+                                Container(margin: EdgeInsets.only(top: 10)),
+                                Row(
+                                  children: <Widget>[
+                                    Text("2350",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 16)),
+                                    Text("\$",
+                                        style: TextStyle(
+                                            color: Colors.grey[500],
+                                            fontSize: 14)),
+                                  ],
+                                ),
+                                Container(margin: EdgeInsets.only(bottom: 30)),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Column(
+                              children: <Widget>[
+                                Icon(Icons.directions_car,
+                                    color: Color.fromRGBO(2, 94, 231, 1)),
+                                Container(margin: EdgeInsets.only(top: 4)),
+                                Icon(Icons.home,
+                                    color: Color.fromRGBO(2, 94, 231, 1)),
+                                Container(margin: EdgeInsets.only(bottom: 25)),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Column(
+                              children: <Widget>[
+                                Icon(Icons.check,
+                                    size: 14.0, color: Colors.white),
+                                Container(margin: EdgeInsets.only(top: 13)),
+                                Icon(Icons.check,
+                                    size: 15.0, color: Colors.white),
+                                Container(margin: EdgeInsets.only(bottom: 25)),
+                              ],
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )));
+  }
 }

@@ -3,6 +3,8 @@ import 'pages/home_page.dart';
 import 'fragments/route_details.dart';
 import 'fragments/preferences.dart';
 import 'fragments/db_fragment.dart';
+import 'package:location_example/StartScrean/splash_screen.dart';
+import 'package:location_example/StartScrean/intro_screen.dart';
 
 class MyApp extends StatelessWidget {
   final String startPoint = '';
@@ -14,9 +16,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return new MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: new ThemeData(
         primaryColor: Colors.white,
         primaryColorDark: Colors.black,
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: (RouteSettings settings) {
         switch (settings.name) {
+          case '/intro':
+            return SlideRightRoute(widget: IntroScreen());
+            break;
           case '/preferences':
             return SlideRightRoute(widget: Preferences());
             break;
@@ -42,7 +46,7 @@ class MyApp extends StatelessWidget {
             break;
         }
       },
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }
