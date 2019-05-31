@@ -33,6 +33,13 @@ class NewDrawer extends StatelessWidget {
                     Navigator.of(context).pushNamed('/db_fragment');
                   }),
               new ListTile(
+                  title: new Text("Filtring"),
+                  trailing: new Icon(Icons.filter_list),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pushNamed('/preferences');
+                  }),
+              new ListTile(
                   title: new Text("Settings"),
                   trailing: new Icon(Icons.settings),
                   onTap: () {}),

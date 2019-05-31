@@ -97,9 +97,11 @@ class AddHistoriDialog {
     return loginBtn;
   }
 
+
+
   Future addRecord(bool isEdit) async {
     var db = new DatabaseHelper();
-    var histori = new Histori(teFirstName.text, teLastFirstName.text,  teMax.text, teMin.text ,teN.text, teD.text ,teA.text );
+    var histori = new Histori(teFirstName.text, null, null, null, null, teLastFirstName.text,  teMax.text, teMin.text ,teN.text, teD.text ,teA.text );
 
     if (isEdit) {
       histori.setHistoriId(this.histori.id);

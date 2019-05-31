@@ -980,11 +980,11 @@ class _PreferencesState extends State<Preferences> {
                 //Розкоментити коли клас History і базу буде змінено під структуру яка знизу
                 Histori histori = new Histori(
                   startPoint,
-                  //startPointLat,
-                  //startPointLng,
+                  startPointLat,
+                  startPointLng,
                   endPoint,
-                  //endPointLat,
-                  //endPointLng,
+                  endPointLat,
+                  endPointLng,
                   minBudget.toString(),
                   maxBudget.toString(),
                   numberOfGuests,

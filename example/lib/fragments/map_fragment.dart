@@ -206,8 +206,10 @@ class _MapFragmentState extends State<MapFragment> {
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(
                   border: Border.all(width: 0.0, color: Colors.white)),
-              accountName: Text("Elon Musk"),
-              accountEmail: Text("elonmusk@gmail.com"),
+              //accountName: Text("Elon Musk"),
+             //accountEmail: Text("elonmusk@gmail.com"),
+              accountName: Text("Maksym Levytskyi"),
+              accountEmail: Text("mr.lewmax@gmail.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Color.fromRGBO(2, 94, 231, 1),
                 radius: 100.0,
@@ -345,7 +347,7 @@ class _MapFragmentState extends State<MapFragment> {
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(10.0)),
                           child: Icon(
-                            Icons.near_me,
+                            Icons.location_on,
                             color: Colors.white,
                           ),
                           color: Colors.black,
