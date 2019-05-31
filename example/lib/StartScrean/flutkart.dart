@@ -1,19 +1,19 @@
 class Flutkart {
-  static const String name = "Breezy";
-  static const String store = "Загрузка...\nБудь-ласка почекайте!";
-  static const String wt1 = "Вітаємо";
+  static const String name = "AnyWay";
+  static const String store = "Loading...\nPlease wait!";
+  static const String wt1 = "Welcome";
   static const String wc1 =
-      "Breezy цей додаток допоможе вам\n у виборі маршуту";
-  static const String wt2 = "Подоружуй у любу точку світу!";
+      "AnyWay - application that will help you\n to plan your trip";
+  static const String wt2 = "Travel in any point of the world!";
   static const String wc2 =
-      "Наш додаток допоможе тобі у виборі самого найкрощого маршуту\nУ будь-якій точці світу";
-  static const String wt3 = "Коригування маршуту";
+      "Our app will help you to build the best route\naround the world";
+  static const String wt3 = "Editing the route";
   static const String wc3 =
-      "Прокладаючи маршут наш додаток підскаже\n самий оптимальний маршут по часу подорожі і по грошах";
-  static const String wt4 = "Подорожуй по всьому світу";
+      "While building the route AnyWay\nwill suggestoptimal route\ntaking into account your budget and time";
+  static const String wt4 = "Travel around the world";
   static const String wc4 =
-      "Додаток Breezy обере маршут по вашим подобанням і вашим бюджетом \nЩо економіть ваш час і гроші";
-  static const String skip = "Пропустити";
-  static const String next = "Дальше";
-  static const String gotIt = "Почати подорож!";
+      "The AnyWay build route according to your preferences and budget\nThat saves your time and money";
+  static const String skip = "Skip";
+  static const String next = "Next";
+  static const String gotIt = "Start traveling!";
 }

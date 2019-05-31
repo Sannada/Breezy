@@ -29,6 +29,7 @@ class Preferences extends StatefulWidget {
 
   final String startPoint;
   final String endPoint;
+
   //final String minBudget;
   final String budget;
   final String numberOfGuests;
@@ -41,8 +42,6 @@ class Preferences extends StatefulWidget {
 
 class _PreferencesState extends State<Preferences> {
   final formKey = GlobalKey<FormState>();
-
-  List<RangeSliderData> rangeSliders;
 
   String calendarData = "Pick the date";
 
@@ -62,36 +61,6 @@ class _PreferencesState extends State<Preferences> {
   DateTime _departDate = new DateTime.now();
   DateTime _arriveDate = new DateTime.now();
 
-  List<Widget> _buildRangeSliders() {
-    List<Widget> children = <Widget>[];
-    for (int index = 0; index < rangeSliders.length; index++) {
-      children
-          .add(rangeSliders[index].build(context, (double lower, double upper) {
-// adapt the RangeSlider lowerValue and upperValue
-        setState(() {
-          rangeSliders[index].lowerValue = lower;
-          rangeSliders[index].upperValue = upper;
-        });
-      }));
-// Add an extra padding at the bottom of each RangeSlider
-      children.add(new SizedBox(height: 8.0));
-    }
-
-    return children;
-  }
-
-  List<RangeSliderData> _rangeSliderDefinitions() {
-    return <RangeSliderData>[
-      RangeSliderData(
-          min: 100.0,
-          max: 2000.0,
-          lowerValue: 300.0,
-          upperValue: 500.0,
-          showValueIndicator: false,
-          valueIndicatorMaxDecimals: 0),
-    ];
-  }
-
   Color color1 = Color.fromRGBO(2, 94, 231, 1);
   Color color2 = Colors.white;
 
@@ -108,14 +77,13 @@ class _PreferencesState extends State<Preferences> {
       controllerEnd.text = widget.endPoint;
       _selectedLocation = widget.numberOfGuests;
       //_lowerValue = double.parse(widget.minBudget);
-      _upperValue = double.parse(widget.budget);//змінити на maxBudget
+      _upperValue = double.parse(widget.budget); //змінити на maxBudget
       calendarData = "${widget.departureDate} - ${widget.arivalDate}";
     }
 
     minBudget = _lowerValue.toInt();
     maxBudget = _upperValue.toInt();
 
-    rangeSliders = _rangeSliderDefinitions();
     if (houseTypeInt == 0) {
       mainColor1 = color1;
       mainColor2 = color2;
@@ -672,15 +640,6 @@ class _PreferencesState extends State<Preferences> {
         ),
       ),
     );
-    /*TextFormField(
-      validator: validateDestination,
-      onSaved: (String value) {
-        startPoint = value;
-      },
-      decoration: InputDecoration(
-        hintText: 'Start point',
-      ),
-    );*/
   }
 
   AutoCompleteTextField searchEndPoint;
@@ -863,7 +822,6 @@ class _PreferencesState extends State<Preferences> {
   Widget numberOfGuestsField() {
     return DropdownButton(
       style: TextStyle(color: Colors.black),
-
       hint: Text(
         'Number of guests',
         style: TextStyle(color: Colors.grey),
@@ -1016,142 +974,53 @@ class _PreferencesState extends State<Preferences> {
               backgroundColor: Color.fromRGBO(2, 94, 231, 1),
               child: Text('Submit', style: TextStyle(color: Colors.white)),
               onPressed: () async {
-                if (isFilledStart && isFilledEnd) {
-                  formKey.currentState.save();
+                //if (isFilledStart && isFilledEnd) {
+                formKey.currentState.save();
 
-                  //Розкоментити коли клас History і базу буде змінено під структуру яка знизу
-                  Histori histori = new Histori(
-                    startPoint,
-                    //startPointLat,
-                    //startPointLng,
-                    endPoint,
-                    //endPointLat,
-                    //endPointLng,
-                    minBudget.toString(),
-                    maxBudget.toString(),
-                    numberOfGuests,
-                    //houseType,
-                    DateFormat.yMMMd().format(_departDate),
-                    DateFormat.yMMMd().format(_arriveDate),
-                  );
+                //Розкоментити коли клас History і базу буде змінено під структуру яка знизу
+                Histori histori = new Histori(
+                  startPoint,
+                  startPointLat,
+                  startPointLng,
+                  endPoint,
+                  endPointLat,
+                  endPointLng,
+                  minBudget.toString(),
+                  maxBudget.toString(),
+                  numberOfGuests,
+                  //houseType,
+                  DateFormat.yMMMd().format(_departDate),
+                  DateFormat.yMMMd().format(_arriveDate),
+                );
 
-                  DatabaseHelper databaseHelper = new DatabaseHelper();
+                DatabaseHelper databaseHelper = new DatabaseHelper();
 
-                  await databaseHelper.saveHistori(histori);
+                await databaseHelper.saveHistori(histori);
 
-                  print('Start point: $startPoint, endpoint: $endPoint, '
-                      'min budget: ${minBudget.toString()}, '
-                      'max budget: ${maxBudget.toString()}, '
-                      'number of guests: $numberOfGuests, '
-                      'type of house: $houseType, '
-                      'departure date: ${DateFormat.yMMMd().format(_departDate)}, '
-                      'arrive date: ${DateFormat.yMMMd().format(_arriveDate)}');
+                print('Start point: $startPoint, endpoint: $endPoint, '
+                    'min budget: ${minBudget.toString()}, '
+                    'max budget: ${maxBudget.toString()}, '
+                    'number of guests: $numberOfGuests, '
+                    'type of house: $houseType, '
+                    'departure date: ${DateFormat.yMMMd().format(_departDate)}, '
+                    'arrive date: ${DateFormat.yMMMd().format(_arriveDate)}');
 
-                  Navigator.push(
-                      context,
-                      SlideRightRoute(
-                          widget: RouteDetails(
-                              startPoint: startPoint,
-                              startPointLat: startPointLat,
-                              startPointLng: startPointLng,
-                              endPoint: endPoint,
-                              endPointLat: endPointLat,
-                              endPointLng: endPointLng)));
-                }
+                Navigator.push(
+                    context,
+                    SlideRightRoute(
+                        widget: RouteDetails(
+                            startPoint: startPoint,
+                            startPointLat: startPointLat,
+                            startPointLng: startPointLng,
+                            endPoint: endPoint,
+                            endPointLat: endPointLat,
+                            endPointLng: endPointLng,
+                            budget: maxBudget.toString(),
+                            numberOfGuests: numberOfGuests
+                        )
+                    )
+                );
               },
             )));
-  }
-}
-
-class RangeSliderData {
-  double min;
-  double max;
-  double lowerValue;
-  double upperValue;
-  int divisions;
-  bool showValueIndicator;
-  int valueIndicatorMaxDecimals;
-  bool forceValueIndicator;
-  Color overlayColor;
-  Color activeTrackColor;
-  Color inactiveTrackColor;
-  Color thumbColor;
-  Color valueIndicatorColor;
-  Color activeTickMarkColor;
-
-  static const Color defaultActiveTrackColor = const Color(0xFF0175c2);
-  static const Color defaultInactiveTrackColor = const Color(0x3d0175c2);
-  static const Color defaultActiveTickMarkColor = const Color(0x8a0175c2);
-  static const Color defaultThumbColor = const Color(0xFF0175c2);
-  static const Color defaultValueIndicatorColor = const Color(0xFF0175c2);
-  static const Color defaultOverlayColor = const Color(0x290175c2);
-
-  RangeSliderData({
-    this.min,
-    this.max,
-    this.lowerValue,
-    this.upperValue,
-    this.divisions,
-    this.showValueIndicator: true,
-    this.valueIndicatorMaxDecimals: 1,
-    this.forceValueIndicator: false,
-    this.overlayColor: defaultOverlayColor,
-    this.activeTrackColor: defaultActiveTrackColor,
-    this.inactiveTrackColor: defaultInactiveTrackColor,
-    this.thumbColor: defaultThumbColor,
-    this.valueIndicatorColor: defaultValueIndicatorColor,
-    this.activeTickMarkColor: defaultActiveTickMarkColor,
-  });
-
-  String get lowerValueText =>
-      lowerValue.toStringAsFixed(valueIndicatorMaxDecimals);
-
-  setLowerText(double text) {
-    this.lowerValue = text;
-  }
-
-  String get upperValueText =>
-      upperValue.toStringAsFixed(valueIndicatorMaxDecimals);
-
-  setUpperText(double text) {
-    this.upperValue = text;
-  }
-
-  Widget build(BuildContext context, RangeSliderCallback callback) {
-    return new Column(
-      children: <Widget>[
-        new Container(
-          child: new SliderTheme(
-            data: SliderTheme.of(context).copyWith(
-              overlayColor: Color.fromRGBO(2, 94, 231, 1),
-              activeTickMarkColor: Color.fromRGBO(2, 94, 231, 1),
-              activeTrackColor: Color.fromRGBO(2, 94, 231, 1),
-              inactiveTrackColor: Color.fromRGBO(2, 94, 231, 1),
-              thumbColor: Color.fromRGBO(2, 94, 231, 1),
-              valueIndicatorColor: Color.fromRGBO(2, 94, 231, 1),
-              showValueIndicator: showValueIndicator
-                  ? ShowValueIndicator.always
-                  : ShowValueIndicator.onlyForDiscrete,
-            ),
-            child: new RangeSlider(
-              min: min,
-              max: max,
-              lowerValue: lowerValue,
-              upperValue: upperValue,
-              divisions: divisions,
-              showValueIndicator: showValueIndicator,
-              valueIndicatorMaxDecimals: valueIndicatorMaxDecimals,
-              onChanged: (double lower, double upper) {
-// call
-                callback(lower, upper);
-              },
-            ),
-          ),
-        ),
-        new Container(
-          child: new Text("$lowerValueText - $upperValueText\$"),
-        ),
-      ],
-    );
   }
 }

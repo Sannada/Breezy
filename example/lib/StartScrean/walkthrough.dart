@@ -10,7 +10,7 @@ class Walkthrough extends StatefulWidget {
       {this.title,
       this.content,
       this.imageIcon,
-      this.imagecolor = Colors.indigo});
+      this.imagecolor = const Color.fromRGBO(2, 94, 231, 1)});
 
   @override
   WalkthroughState createState() {

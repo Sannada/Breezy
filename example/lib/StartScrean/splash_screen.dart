@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
         fit: StackFit.expand,
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(color: Colors.indigo),
+            decoration: BoxDecoration(color: Color.fromRGBO(2, 94, 231, 1)),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         radius: 50.0,
                         child: Icon(
                           Icons.map,
-                          color: Colors.indigo,
+                          color: Color.fromRGBO(2, 94, 231, 1),
                           size: 50.0,
                         ),
                       ),

@@ -34,11 +34,15 @@ class HistoriList extends StatelessWidget {
                   SlideRightRoute(
                       widget: RouteDetails(
                           startPoint: country[index].startPoint,
+                          startPointLat: country[index].startPointLat,
+                          startPointLng: country[index].startPointLng,
                           endPoint: country[index].endPoint,
-                         // budget: country[index].maxBudget,
-                        //  numberOfGuests: country[index].numberOfGuests,
-                         // departureDate: country[index].departureDate,
-                        //  arivalDate: country[index].arriveDate
+                          endPointLat: country[index].endPointLat,
+                          endPointLng: country[index].endPointLng,
+                          budget: country[index].maxBudget,
+                         numberOfGuests: country[index].numberOfGuests,
+                        //departureDate: country[index].departureDate,
+                        // arivalDate: country[index].arriveDate
                       )));
 
             },
