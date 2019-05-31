@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="89b6ae44-23eb-4a1e-9db5-23384d105d93" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example/assets/image/1.1.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/StartScrean/flutkart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/StartScrean/flutkart.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/StartScrean/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/StartScrean/splash_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/StartScrean/walkthrough.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/StartScrean/walkthrough.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/fragments/map_fragment.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/fragments/map_fragment.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/fragments/preferences.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/fragments/preferences.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/fragments/route_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/fragments/route_details.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/pages/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/pages/home_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/screens/Histori.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/screens/Histori.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/screens/add_histori_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/screens/add_histori_dialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/screens/db_create_histori.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/screens/db_create_histori.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/screens/list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/screens/list.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/screens/new_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/screens/new_drawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="89b6ae44-23eb-4a1e-9db5-23384d105d93" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +12,7 @@
     <session id="562382933">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.opened" value="2" />
@@ -82,8 +66,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/example/lib/screens/list.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="40" column="65" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
+            <state relative-caret-position="289">
+              <caret line="40" column="66" lean-forward="true" selection-start-line="36" selection-start-column="26" selection-end-line="40" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -395,11 +379,11 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="1" sideWeight="0.49848714" visible="true" weight="0.3262295" />
+      <window_info anchor="bottom" id="Run" order="1" sideWeight="0.49848714" weight="0.3262295" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="5" sideWeight="0.5015129" side_tool="true" visible="true" weight="0.3262295" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5015129" side_tool="true" weight="0.3262295" />
       <window_info anchor="bottom" id="Flutter Performance" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32719547" />
@@ -687,8 +671,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/example/lib/screens/list.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="40" column="65" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
+        <state relative-caret-position="289">
+          <caret line="40" column="66" lean-forward="true" selection-start-line="36" selection-start-column="26" selection-end-line="40" selection-end-column="66" />
         </state>
       </provider>
     </entry>
