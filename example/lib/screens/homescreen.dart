@@ -1,4 +1,7 @@
-import 'new_drawer.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:location_example/fragments/preferences.dart';
+
+import '../app.dart';
 import 'package:flutter/material.dart';
 import 'Histori.dart';
 import 'home_presenter.dart';
@@ -77,7 +80,51 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
       appBar: new AppBar(
         title: Text("Travel History"),
       ),
-      drawer: NewDrawer(),
+      drawer: Drawer(
+          child: Container(
+            color: Colors.white,
+            child: new Column(
+              children: <Widget>[
+                UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 0.0, color: Colors.white)),
+                  accountName: Text("Elon Musk"),
+                  accountEmail: Text("elonmusk@gmail.com"),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundColor: Color.fromRGBO(7, 93, 231, 1),
+                    radius: 100.0,
+                    child: Text(
+                      "E",
+                      style: TextStyle(fontSize: 30.0, color: Colors.white),
+                    ),
+                  ),
+                ),
+                new Column(
+                  children: <Widget>[
+                    new ListTile(
+                        title: new Text("Filter"),
+                        trailing: new Icon(Icons.filter_list),
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          Navigator.push(context,
+                              SlideRightRoute(widget: Preferences()));
+                        }),
+                    new ListTile(
+                        title: new Text("Settings"),
+                        trailing: new Icon(Icons.settings),
+                        onTap: () {}),
+                    Divider(),
+                    new ListTile(
+                        title: new Text("Sing In"),
+                        trailing: new Icon(FontAwesomeIcons.signInAlt),
+                        onTap: () {
+
+                        }),
+                  ],
+                )
+              ],
+            ),
+          )),
       body: new FutureBuilder<List<Histori>>(
         future: homePresenter.getHistori(),
         builder: (context, snapshot) {
