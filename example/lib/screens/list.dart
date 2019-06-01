@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:location_example/fragments/route_details.dart';
 import '../fragments/preferences.dart';
 import '../app.dart';
 import 'add_histori_dialog.dart';
@@ -31,14 +32,17 @@ class HistoriList extends StatelessWidget {
               Navigator.push(
                   context,
                   SlideRightRoute(
-                      widget: Preferences(
+                      widget: RouteDetails(
                           startPoint: country[index].startPoint,
+                          startPointLat: "49.83826",//Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
+                          startPointLng: "24.02324",//Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
                           endPoint: country[index].endPoint,
+                          endPointLat: "52.379189",//Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
+                          endPointLng: "4.899431",//Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
                           budget: country[index].maxBudget,
-                          numberOfGuests: country[index].numberOfGuests,
-                          departureDate: country[index].departureDate,
-                          arivalDate: country[index].arriveDate)));
+                          numberOfGuests: country[index].numberOfGuests)));
             },
+
             child: new Container(
                 color: Colors.white,
                 child: new Center(

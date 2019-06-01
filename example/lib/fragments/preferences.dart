@@ -975,6 +975,7 @@ class _PreferencesState extends State<Preferences> {
                 formKey.currentState.save();
 
                 //Розкоментити коли клас History і базу буде змінено під структуру яка знизу
+                //Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
                 Histori histori = new Histori(
                   startPoint,
                   //startPointLat,
