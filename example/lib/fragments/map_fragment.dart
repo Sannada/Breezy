@@ -210,7 +210,7 @@ class _MapFragmentState extends State<MapFragment> {
               accountName: Text("Elon Musk"),
               accountEmail: Text("elonmusk@gmail.com"),
               currentAccountPicture: CircleAvatar(
-                backgroundColor: Color.fromRGBO(2, 94, 231, 1),
+                backgroundColor: Color.fromRGBO(7, 93, 231, 1),
                 radius: 100.0,
                 child: Text(
                   "E",
@@ -514,13 +514,13 @@ class _MapFragmentState extends State<MapFragment> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Icon(FontAwesomeIcons.mapMarkerAlt,
-                                color: Color.fromRGBO(2, 94, 231, 1)),
+                                color: Color.fromRGBO(7, 93, 231, 1)),
                             Container(margin: EdgeInsets.only(top: 4)),
                             Icon(FontAwesomeIcons.mapMarkerAlt,
-                                color: Color.fromRGBO(2, 94, 231, 1)),
+                                color: Color.fromRGBO(7, 93, 231, 1)),
                             Container(margin: EdgeInsets.only(top: 4)),
                             Icon(FontAwesomeIcons.mapMarkerAlt,
-                                color: Color.fromRGBO(2, 94, 231, 1)),
+                                color: Color.fromRGBO(7, 93, 231, 1)),
                           ],
                         ),
                       ),
@@ -549,10 +549,10 @@ class _MapFragmentState extends State<MapFragment> {
                         child: Column(
                           children: <Widget>[
                             Icon(FontAwesomeIcons.child,
-                                color: Color.fromRGBO(2, 94, 231, 1), size: 22),
+                                color: Color.fromRGBO(7, 93, 231, 1), size: 22),
                             Container(margin: EdgeInsets.only(top: 4)),
                             Icon(FontAwesomeIcons.dollarSign,
-                                color: Color.fromRGBO(2, 94, 231, 1), size: 22),
+                                color: Color.fromRGBO(7, 93, 231, 1), size: 22),
                             Container(margin: EdgeInsets.only(bottom: 25)),
                           ],
                         ),
@@ -593,10 +593,10 @@ class _MapFragmentState extends State<MapFragment> {
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.directions_car,
-                                color: Color.fromRGBO(2, 94, 231, 1)),
+                                color: Color.fromRGBO(7, 93, 231, 1)),
                             Container(margin: EdgeInsets.only(top: 4)),
                             Icon(Icons.home,
-                                color: Color.fromRGBO(2, 94, 231, 1)),
+                                color: Color.fromRGBO(7, 93, 231, 1)),
                             Container(margin: EdgeInsets.only(bottom: 25)),
                           ],
                         ),

@@ -1,5 +1,4 @@
 import 'package:location_example/app.dart';
-import '../screens/new_drawer.dart';
 import 'package:flutter/material.dart';
 import 'map_fragment.dart';
 

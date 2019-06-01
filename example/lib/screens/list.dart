@@ -21,111 +21,117 @@ class HistoriList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new ListView.builder(
-        itemCount: country == null ? 0 : country.length,
-        itemBuilder: (BuildContext context, int index) {
-          return new Card(
-              child: MaterialButton(
-            color: Colors.white,
-            splashColor: Colors.white,
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  SlideRightRoute(
-                      widget: RouteDetails(
-                          startPoint: country[index].startPoint,
-                          startPointLat: "49.83826",//Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
-                          startPointLng: "24.02324",//Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
-                          endPoint: country[index].endPoint,
-                          endPointLat: "52.379189",//Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
-                          endPointLng: "4.899431",//Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
-                          budget: country[index].maxBudget,
-                          numberOfGuests: country[index].numberOfGuests)));
-            },
-
-            child: new Container(
+    return new Container(
+        color: Color.fromRGBO(241, 240, 245, 1),
+        child: ListView.builder(
+            itemCount: country == null ? 0 : country.length,
+            itemBuilder: (BuildContext context, int index) {
+              return new Card(
+                  child: MaterialButton(
                 color: Colors.white,
-                child: new Center(
-                  child: new Row(
-                    children: <Widget>[
-                      new Image.asset(
-                        'assets/image/trevel.png',
-                        height: 45,
-                        width: 45,
-                      ),
-                      new Expanded(
-                        child: new Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: new Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                splashColor: Colors.white,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      SlideRightRoute(
+                          widget: RouteDetails(
+                              startPoint: country[index].startPoint,
+                              startPointLat: "49.83826",
+                              //Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
+                              startPointLng: "24.02324",
+                              //Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
+                              endPoint: country[index].endPoint,
+                              endPointLat: "52.379189",
+                              //Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
+                              endPointLng: "4.899431",
+                              //Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
+                              budget: country[index].maxBudget,
+                              numberOfGuests: country[index].numberOfGuests)));
+                },
+                child: new Container(
+                    color: Colors.white,
+                    child: new Center(
+                      child: new Row(
+                        children: <Widget>[
+                          new Image.asset(
+                            'assets/image/trevel.png',
+                            height: 45,
+                            width: 45,
+                          ),
+                          new Expanded(
+                            child: new Padding(
+                              padding: EdgeInsets.all(20.0),
+                              child: new Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  new Text(
+                                    country[index].endPoint,
+                                    textAlign: TextAlign.center,
+                                    style: new TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                        color: Colors.black),
+                                  ),
+                                  new Text(
+                                    "Start Point: " + country[index].startPoint,
+                                    // set some style to text
+                                    style: new TextStyle(
+                                        fontSize: 15.0, color: Colors.black),
+                                  ),
+                                  new Text(
+                                    "Destination: " + country[index].endPoint,
+                                    // set some style to text
+                                    style: new TextStyle(
+                                        fontSize: 15.0, color: Colors.black),
+                                  ),
+                                  new Text(
+                                    "Budget: " + country[index].maxBudget,
+                                    // set some style to text
+                                    style: new TextStyle(
+                                        fontSize: 15.0, color: Colors.black),
+                                  ),
+                                  new Text(
+                                    "Departure Date: " +
+                                        country[index].departureDate,
+                                    // set some style to text
+                                    style: new TextStyle(
+                                        fontSize: 15.0, color: Colors.black),
+                                  ),
+                                  new Text(
+                                    "Arrival Date: " +
+                                        country[index].arriveDate,
+                                    // set some style to text
+                                    style: new TextStyle(
+                                        fontSize: 15.0, color: Colors.black),
+                                  ),
+                                  new Text(
+                                    "Number Of Guests: " +
+                                        country[index].numberOfGuests,
+                                    // set some style to text
+                                    style: new TextStyle(
+                                        fontSize: 15.0, color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          new Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              new Text(
-                                country[index].endPoint,
-                                textAlign: TextAlign.center,
-                                style: new TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.0,
-                                    color: Colors.black),
-                              ),
-                              new Text(
-                                "Start Point: " + country[index].startPoint,
-                                // set some style to text
-                                style: new TextStyle(
-                                    fontSize: 15.0, color: Colors.black),
-                              ),
-                              new Text(
-                                "Destination: " + country[index].endPoint,
-                                // set some style to text
-                                style: new TextStyle(
-                                    fontSize: 15.0, color: Colors.black),
-                              ),
-                              new Text(
-                                "Budget: " + country[index].maxBudget,
-                                // set some style to text
-                                style: new TextStyle(
-                                    fontSize: 15.0, color: Colors.black),
-                              ),
-                              new Text(
-                                "Departure Date: " +
-                                    country[index].departureDate,
-                                // set some style to text
-                                style: new TextStyle(
-                                    fontSize: 15.0, color: Colors.black),
-                              ),
-                              new Text(
-                                "Arrival Date: " + country[index].arriveDate,
-                                // set some style to text
-                                style: new TextStyle(
-                                    fontSize: 15.0, color: Colors.black),
-                              ),
-                              new Text(
-                                "Number Of Guests: " +
-                                    country[index].numberOfGuests,
-                                // set some style to text
-                                style: new TextStyle(
-                                    fontSize: 15.0, color: Colors.black),
+                              new IconButton(
+                                icon: const Icon(Icons.clear,
+                                    color: const Color(0xFF757575)),
+                                onPressed: () =>
+                                    homePresenter.delete(country[index]),
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                      new Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          new IconButton(
-                            icon: const Icon(Icons.clear,
-                                color: const Color(0xFF757575)),
-                            onPressed: () =>
-                                homePresenter.delete(country[index]),
-                          ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-                padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
-          ));
-        });
+                    ),
+                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
+              ));
+            }));
   }
 
   displayRecord() {

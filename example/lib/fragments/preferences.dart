@@ -4,7 +4,6 @@ import 'route_details.dart';
 import 'package:location_example/screens/players.dart';
 import '../app.dart';
 import '../screens/Histori.dart';
-import '../screens/new_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart';
@@ -62,7 +61,7 @@ class _PreferencesState extends State<Preferences> {
   DateTime _departDate = new DateTime.now();
   DateTime _arriveDate = new DateTime.now();
 
-  Color color1 = Color.fromRGBO(2, 94, 231, 1);
+  Color color1 = Color.fromRGBO(7, 93, 231, 1);
   Color color2 = Colors.white;
 
   Color mainColor1;
@@ -324,7 +323,7 @@ class _PreferencesState extends State<Preferences> {
     return Scaffold(
       floatingActionButton: submitButton(),
       body: Container(
-        decoration: BoxDecoration(color: Color.fromRGBO(241, 241, 245, 1)),
+        decoration: BoxDecoration(color: Color.fromRGBO(241, 240, 245, 1)),
         child: ListView(
           children: <Widget>[
             Container(
@@ -768,7 +767,7 @@ class _PreferencesState extends State<Preferences> {
                   inactiveTrackBarHeight: 25),
               tooltip: FlutterSliderTooltip(
                 textStyle: TextStyle(
-                    fontSize: 17, color: Color.fromRGBO(2, 94, 231, 1)),
+                    fontSize: 17, color: Color.fromRGBO(7, 93, 231, 1)),
                 numberFormat: intl.NumberFormat(),
               ),
               handler: FlutterSliderHandler(
@@ -776,14 +775,14 @@ class _PreferencesState extends State<Preferences> {
                 child: Material(
                   borderRadius: BorderRadius.circular(10.0),
                   type: MaterialType.canvas,
-                  color: Color.fromRGBO(2, 94, 231, 1),
+                  color: Color.fromRGBO(7, 93, 231, 1),
                   elevation: 10,
                   child: Container(
                       padding: EdgeInsets.all(5),
                       child: Icon(
                         Icons.adjust,
                         size: 30,
-                        color: Color.fromRGBO(2, 94, 231, 1),
+                        color: Color.fromRGBO(7, 93, 231, 1),
                       )),
                 ),
               ),
@@ -791,14 +790,14 @@ class _PreferencesState extends State<Preferences> {
                 child: Material(
                   borderRadius: new BorderRadius.circular(10.0),
                   type: MaterialType.canvas,
-                  color: Color.fromRGBO(2, 94, 231, 1),
+                  color: Color.fromRGBO(7, 93, 231, 1),
                   elevation: 10,
                   child: Container(
                       padding: EdgeInsets.all(5),
                       child: Icon(
                         Icons.adjust,
                         size: 30,
-                        color: Color.fromRGBO(2, 94, 231, 1),
+                        color: Color.fromRGBO(7, 93, 231, 1),
                       )),
                 ),
               ),
@@ -844,7 +843,7 @@ class _PreferencesState extends State<Preferences> {
         shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(10.0)),
         minWidth: double.infinity,
-        color: Color.fromRGBO(2, 94, 231, 1),
+        color: Color.fromRGBO(7, 93, 231, 1),
         textColor: Colors.white,
         height: 50.0,
         onPressed: () async {
@@ -880,7 +879,7 @@ class _PreferencesState extends State<Preferences> {
           title: new Text(title,
               style: TextStyle(fontSize: 15.0, color: Colors.grey[600])),
           controlAffinity: ListTileControlAffinity.trailing,
-          activeColor: Color.fromRGBO(2, 94, 231, 1),
+          activeColor: Color.fromRGBO(7, 93, 231, 1),
         ));
   }
 
@@ -939,11 +938,11 @@ class _PreferencesState extends State<Preferences> {
               tabs: _kTapPages,
               labelPadding: EdgeInsets.all(10.0),
               labelColor: Colors.white,
-              unselectedLabelColor: Color.fromRGBO(2, 94, 231, 1),
+              unselectedLabelColor: Color.fromRGBO(7, 93, 231, 1),
               indicator: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                      color: Color.fromRGBO(2, 94, 231, 1),
+                      color: Color.fromRGBO(7, 93, 231, 1),
                       blurRadius: 5.0,
                       // has the effect of softening the shadow
                       spreadRadius: 0.1,
@@ -953,7 +952,7 @@ class _PreferencesState extends State<Preferences> {
                         0.3, // vertical, move down 10
                       ))
                 ],
-                color: Color.fromRGBO(2, 94, 231, 1),
+                color: Color.fromRGBO(7, 93, 231, 1),
                 borderRadius: BorderRadius.circular(10.0),
               )),
         ));
@@ -968,7 +967,7 @@ class _PreferencesState extends State<Preferences> {
             child: FloatingActionButton(
               shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(10.0)),
-              backgroundColor: Color.fromRGBO(2, 94, 231, 1),
+              backgroundColor: Color.fromRGBO(7, 93, 231, 1),
               child: Text('Submit', style: TextStyle(color: Colors.white)),
               onPressed: () async {
                 //if (isFilledStart && isFilledEnd) {
