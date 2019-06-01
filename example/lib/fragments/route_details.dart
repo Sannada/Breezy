@@ -5,13 +5,13 @@ import 'map_fragment.dart';
 class RouteDetails extends StatefulWidget {
   const RouteDetails(
       {this.startPoint,
-      this.startPointLat,
-      this.startPointLng,
-      this.endPoint,
-      this.endPointLat,
-      this.endPointLng,
-      this.numberOfGuests,
-      this.budget});
+        this.startPointLat,
+        this.startPointLng,
+        this.endPoint,
+        this.endPointLat,
+        this.endPointLng,
+        this.numberOfGuests,
+        this.budget});
 
   final String startPoint;
   final String startPointLat;
@@ -243,7 +243,6 @@ class _RouteDetailsState extends State<RouteDetails> {
         fontSize: 50, color: Colors.white, fontStyle: FontStyle.italic),
   );
 }
-
 Widget hotelsList_1() {
   return ListView.separated(
     padding: const EdgeInsets.all(8.0),
@@ -253,7 +252,6 @@ Widget hotelsList_1() {
         height: 50,
         color: Colors.amber,
         child: Center(child: Image(image: 1.1.png)),
-
       );
     },
   );

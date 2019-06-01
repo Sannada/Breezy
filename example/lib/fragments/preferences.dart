@@ -977,11 +977,11 @@ class _PreferencesState extends State<Preferences> {
                 //Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
                 Histori histori = new Histori(
                   startPoint,
-                  //startPointLat,
-                  //startPointLng,
+                  startPointLat,
+                  startPointLng,
                   endPoint,
-                  //endPointLat,
-                  //endPointLng,
+                  endPointLat,
+                  endPointLng,
                   minBudget.toString(),
                   maxBudget.toString(),
                   numberOfGuests,

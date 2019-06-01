@@ -14,20 +14,18 @@ class HistoriList extends StatelessWidget {
   HomePresenter homePresenter;
 
   HistoriList(
-    List<Histori> this.country,
-    HomePresenter this.homePresenter, {
-    Key key,
-  }) : super(key: key);
+      List<Histori> this.country,
+      HomePresenter this.homePresenter, {
+        Key key,
+      }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-        color: Color.fromRGBO(241, 240, 245, 1),
-        child: ListView.builder(
-            itemCount: country == null ? 0 : country.length,
-            itemBuilder: (BuildContext context, int index) {
-              return new Card(
-                  child: MaterialButton(
+    return new ListView.builder(
+        itemCount: country == null ? 0 : country.length,
+        itemBuilder: (BuildContext context, int index) {
+          return new Card(
+              child: MaterialButton(
                 color: Colors.white,
                 splashColor: Colors.white,
                 onPressed: () {
@@ -35,18 +33,18 @@ class HistoriList extends StatelessWidget {
                       context,
                       SlideRightRoute(
                           widget: RouteDetails(
-                              startPoint: country[index].startPoint,
-                              startPointLat: "49.83826",
-                              //Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
-                              startPointLng: "24.02324",
-                              //Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
-                              endPoint: country[index].endPoint,
-                              endPointLat: "52.379189",
-                              //Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
-                              endPointLng: "4.899431",
-                              //Влад, зроби так щоб ці дані на сторінці Preferences теж передвались в базу
-                              budget: country[index].maxBudget,
-                              numberOfGuests: country[index].numberOfGuests)));
+                            startPoint: country[index].startPoint,
+                            startPointLat: country[index].startPointLat,
+                            startPointLng: country[index].startPointLng,
+                            endPoint: country[index].endPoint,
+                            endPointLat: country[index].endPointLat,
+                            endPointLng: country[index].endPointLng,
+                            budget: country[index].maxBudget,
+                            numberOfGuests: country[index].numberOfGuests,
+                            //departureDate: country[index].departureDate,
+                            // arivalDate: country[index].arriveDate
+                          )));
+
                 },
                 child: new Container(
                     color: Colors.white,
@@ -98,8 +96,7 @@ class HistoriList extends StatelessWidget {
                                         fontSize: 15.0, color: Colors.black),
                                   ),
                                   new Text(
-                                    "Arrival Date: " +
-                                        country[index].arriveDate,
+                                    "Arrival Date: " + country[index].arriveDate,
                                     // set some style to text
                                     style: new TextStyle(
                                         fontSize: 15.0, color: Colors.black),
@@ -131,7 +128,7 @@ class HistoriList extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
               ));
-            }));
+        });
   }
 
   displayRecord() {
